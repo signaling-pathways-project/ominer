@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>edu.bcm.dldcc.big</groupId>
+	<artifactId>nursa</artifactId>
+	<version>4.5.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<name>SignalingPathway 4.0</name>
+	<description>SignalingPathway 4.0, v 4.5(SPP lean on GIT )</description>
+
+	<properties>
+	 	<version.jboss.bom>10.0.1.Final</version.jboss.bom>
+	 	 <version.wildfly.maven.plugin>1.0.2.Final</version.wildfly.maven.plugin>
+	 	 <deltaspike.version>1.7.2</deltaspike.version>
+	 	 <maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
+	    <httpclient.version>4.5</httpclient.version>
+        <commons-io.version>2.4</commons-io.version>
+         <version.surefire.plugin>2.16</version.surefire.plugin>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<org.primefaces.version>5.0</org.primefaces.version>
+		<skipTests>true</skipTests>
+		<swagger.host>http://localhost</swagger.host>
+		<infinispan.version>8.2.4.Final</infinispan.version>
+		<version.maven.war.plugin>2.5</version.maven.war.plugin>
+		 <jackson.version>2.7.2</jackson.version>
+        <deploy.name>nursa</deploy.name>
+	</properties>
+
+	<ciManagement>
+		<url>http://svn.dldcc.bcm.edu/jenkins</url>
+		<system>Jenkins-CI</system>
+	</ciManagement>
+	
+	<distributionManagement>
+		<repository>
+			<id>dldcc-public</id>
+			<name>Internal Releases</name>
+			<url>https://svn.dldcc.bcm.edu/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>dldcc-public</id>
+			<name>Internal Releases</name>
+			<url>https://svn.dldcc.bcm.edu/nexus/content/repositories/snapshots/</url>
+			</snapshotRepository>
+	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>dldcc-public</id>
+			<name>DLDCC Public Repository Group</name>
+			<url>https://svn.dldcc.bcm.edu/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Maven Repository Group</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public</url>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</pluginRepository>
+
+	</pluginRepositories>
+
+	<dependencyManagement>
+      <dependencies>
+          <dependency>
+              <groupId>org.wildfly.bom</groupId>
+              <artifactId>wildfly-javaee7-with-tools</artifactId>
+              <version>${version.jboss.bom}</version>
+              <type>pom</type>
+              <scope>import</scope>
+          </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <dependency>
+	            <groupId>org.apache.deltaspike.distribution</groupId>
+	            <artifactId>distributions-bom</artifactId>
+	            <version>${deltaspike.version}</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+    	</dependencies>
+    	</dependencyManagement>
+	
+	<dependencies>
+
+		<dependency>
+				<groupId>org.apache.deltaspike.core</groupId>
+				<artifactId>deltaspike-core-api</artifactId>
+				</dependency>
+			<dependency>
+				<groupId>org.apache.deltaspike.core</groupId>
+				<artifactId>deltaspike-core-impl</artifactId>
+				<scope>runtime</scope>
+			</dependency>
+			
+		<dependency>
+		  <groupId>org.infinispan</groupId>
+		  <artifactId>infinispan-embedded</artifactId>
+		  <version>${infinispan.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+			<version>2.3.20</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.jboss.resteasy</groupId>
+		    <artifactId>resteasy-jackson-provider</artifactId>
+		   <scope>provided</scope>
+		</dependency>
+		<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        
+		<dependency>
+		  <groupId>io.swagger</groupId>
+		  <artifactId>swagger-jaxrs</artifactId>
+		  <version>1.5.0</version>
+		  <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>jsr311-api</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mashape.unirest</groupId>
+			<artifactId>unirest-java</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20140107</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.dspace</groupId>
+			<artifactId>xoai-data-provider</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-jpamodelgen</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongo-java-driver</artifactId>
+			<version>3.3.0</version>
+		</dependency>
+
+		<!-- COMMONS FOR FILEUPLOAD -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+
+		
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces-mobile</artifactId>
+			<version>0.9.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>${org.primefaces.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>cupertino</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+
+		<!-- PrimeFaces custom theme -->
+		<dependency>
+			<groupId>edu.bcm.dldcc.big</groupId>
+			<artifactId>pfThemes</artifactId>
+			<version>0.0.10-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>2.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- servlet -->
+		<dependency>
+			<groupId>org.jboss.spec.javax.servlet</groupId>
+			<artifactId>jboss-servlet-api_3.0_spec</artifactId>
+			<version>1.0.2.Final</version>
+		</dependency>
+
+	
+		<dependency>
+			<groupId>javax.enterprise</groupId>
+			<artifactId>cdi-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.spec.javax.annotation</groupId>
+			<artifactId>jboss-annotations-api_1.2_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>dom4j</groupId>
+			<artifactId>dom4j</artifactId>
+			<version>1.6.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.spec.javax.ejb</groupId>
+			<artifactId>jboss-ejb-api_3.2_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.spec.javax.faces</groupId>
+			<artifactId>jboss-jsf-api_2.2_spec</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator-annotation-processor</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.protocol</groupId>
+			<artifactId>arquillian-protocol-servlet</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.directory.studio</groupId>
+			<artifactId>org.apache.commons.codec</artifactId>
+			<version>1.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.11</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${deploy.name}</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.0.4</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.3</version>
+					<configuration>
+						<show>public</show>
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven.compiler.plugin.version}</version>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<debug>true</debug>
+						<debuglevel>lines,vars,source</debuglevel>
+						<compilerArgument>-proc:none</compilerArgument>
+					</configuration>
+				</plugin>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>build-helper-maven-plugin</artifactId>
+					<version>1.5</version>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											build-helper-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.5,)
+										</versionRange>
+										<goals>
+											<goal>add-source</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>run-annotation-processors-only</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<compilerArgument>-proc:only</compilerArgument>
+							<includes>
+								<include>**/model/**/*.java</include>
+							</includes>
+						</configuration>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>process-sources</phase>
+						<configuration>
+							<sources>
+								<source>${project.build.directory}/generated-sources/annotations</source>
+							</sources>
+						</configuration>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${version.maven.war.plugin}</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			 <plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-ejb-plugin</artifactId>
+			  <version>2.3</version>
+            	<configuration>
+			      <archive>
+						<manifestEntries>
+							<Dependencies>org.infinispan export</Dependencies>
+						</manifestEntries>
+					</archive>
+			    </configuration>
+			 </plugin>
+
+			<plugin>
+				<groupId>com.github.kongchen</groupId>
+				<artifactId>swagger-maven-plugin</artifactId>
+				<version>3.1.4</version>
+				<configuration>
+					<skipSwaggerGeneration>false</skipSwaggerGeneration>
+					<apiSources>
+						<apiSource>
+							<springmvc>false</springmvc>
+							<locations>
+								<location>edu.bcm.dldcc.big.nursa.services.rest</location>
+							</locations>
+							<schemes>
+								<scheme>http</scheme>
+								<scheme>https</scheme>
+							</schemes>
+							<host>${swagger.host}</host>
+							<basePath>/nursa/rest</basePath>
+							<info>
+								<title>Signaling Pathways Project internal api specs</title>
+								<version>1.0.0</version>
+								<description>Nursa api specs</description>
+								<termsOfService>
+									https://www.signalingpathways.org/
+								</termsOfService>
+								<contact>
+									<email>amcowiti@bcm.edu</email>
+									<name>A Mcowiti</name>
+									<url>http://bcm.edu</url>
+								</contact>
+								<license>
+									<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+									<name>Apache 2.0</name>
+								</license>
+							</info>
+							<outputPath>${basedir}/src/main/resources/document.html</outputPath>
+							<swaggerDirectory>${basedir}/src/main/webapp/docs</swaggerDirectory>
+							<securityDefinitions>
+								<securityDefinition>
+									<name>api_key</name>
+									<type>apiKey</type>
+									<in>query</in>
+								</securityDefinition>
+							</securityDefinitions>
+						</apiSource>
+					</apiSources>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>generate</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>dev</value>
+				</property>
+			</activation>
+			<properties>
+				<deployment>dev</deployment>
+				<swagger.host>http://localhost</swagger.host>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.wildfly.plugins</groupId>
+						<artifactId>wildfly-maven-plugin</artifactId>
+						<version>${version.wildfly.maven.plugin}</version>
+						<configuration>
+							<hostname>***</hostname>
+							<username>***</username>
+							<password>***</password>
+							<filename>${project.build.finalName}.${project.packaging}</filename>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<goals>
+									<goal>deploy</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<swagger.host>https://localhost</swagger.host>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.4.3</version>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+					
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
