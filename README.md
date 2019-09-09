@@ -1,1 +1,1 @@
-# ominer v2 
+# SPP ominer UI 
