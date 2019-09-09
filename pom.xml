@@ -8,7 +8,6 @@
 	<packaging>war</packaging>
 
 	<name>SignalingPathway 4.0</name>
-	<description>SignalingPathway 4.0, v 4.5(SPP lean on GIT )</description>
 
 	<properties>
 	 	<version.jboss.bom>10.0.1.Final</version.jboss.bom>
@@ -214,7 +213,7 @@
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.2.2</version>
+			<version>1.4</version>
 		</dependency>
 
 		<dependency>
