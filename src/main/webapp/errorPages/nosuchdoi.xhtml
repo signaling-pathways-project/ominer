@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	template="/WEB-INF/templates/standard.xhtml">
+	
+	<ui:define name = "title">No resource matching the requested DOI</ui:define>
+	
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+		</ui:include>
+	</ui:define>
+
+	<ui:define name = "pageTitle">
+		<p class="error-text">404</p>
+		
+		<p>Sorry, the resource or page you requested (<strong><h:outputText value="#{param['rurl']}" /></strong>) with that DOI (<strong><h:outputText value="#{param['rdoi']}" /></strong>) does not exists, has  been moved or has been since deleted. 
+		Possible reasons this can happen:</p>
+		<li>If typing in the URL by hand, the DOI entered contained a typographical error.</li>
+		<li>The DOI has been depreciated or deleted</li>
+		<li>The URL was bookmarked with an old URL</li>
+		<ui:remove>
+		<h5>What do I do now?</h5>
+		<p>If none of the above is true and you have found a broken link from within SPP or from another site, please <a href="mailto:support@nursa.org">email</a> us.</p>
+		</ui:remove>
+	</ui:define>
+</ui:composition>

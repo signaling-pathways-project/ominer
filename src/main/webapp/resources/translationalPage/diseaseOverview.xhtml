@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+
+	<composite:interface>
+		<composite:attribute name="disease"
+			type="edu.bcm.dldcc.big.nursa.model.translational.Disease"
+			displayName="A disease object" required="true" />
+	</composite:interface>
+	<composite:implementation>
+		<h:form>
+		<div id="#{cc.clientId}">
+			<p:panel header="Overview" toggleable="false">
+				<div class="dataDisplay">
+					<layout:dataRow label="Description" data="#{cc.attrs.disease.description}" />
+					<layout:dataRow label="Disease" data="#{cc.attrs.disease.name.name}" />
+					<!-- <layout:dataRow label="Genes" collection="#{cc.attrs.disease.getGeneMapKeysAsList}" displayPath = "official" />
+					<layout:dataRow label="PMID" collection="#{cc.attrs.disease.references}" /> -->
+					<layout:dataRow label="Synonyms" collection="#{cc.attrs.disease.synonyms}" displayPath = "name"/>
+					<div class="row">
+						<div class="col-md-2">
+						<strong>OMIM ID</strong></div>
+						<div class="col-md-10"><a href="http://www.omim.org/entry/#{cc.attrs.disease.omimID}" target="_blank">#{cc.attrs.disease.omimID}</a></div>
+					</div>
+				</div>
+			</p:panel>
+		</div>
+		</h:form>
+	</composite:implementation>
+
+</ui:composition>

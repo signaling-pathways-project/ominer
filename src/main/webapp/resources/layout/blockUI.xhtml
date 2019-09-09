@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<!-- cmw 2/19/14
+	
+	Wrapper for PF's blockUI that has custom content 
+	
+	IMPORTANT: all composite components are naming containers, so when you pass through
+	the trigger and block attributes, you will need to either specify an exact path 
+	
+	
+	-->
+
+	<composite:interface
+		displayName="Wrapper for PF blockUI with custom content">
+		<composite:attribute name="trigger"
+			displayName="pass-thru for PF blockUI trigger attribute"
+			required="true" type="String" />
+		<composite:attribute name="block"
+			displayName="pass-thru for PF blockUI block attribute"
+			required="true" type="String" />
+			<composite:attribute name="widgetVar"
+			displayName="pass-thru for PF blockUI widgetVar attribute"
+			required="true" type="String" />
+	</composite:interface>
+	<composite:implementation>
+
+		<p:blockUI trigger="#{cc.attrs.trigger}" block="#{cc.attrs.block}" widgetVar = "#{cc.attrs.widgetVar}">
+		Loading content...
+			<div class="ajaxSpinner">
+				<div class="dot1"></div>
+				<div class="dot2"></div>
+			</div>
+		</p:blockUI>
+
+	</composite:implementation>
+</ui:composition>

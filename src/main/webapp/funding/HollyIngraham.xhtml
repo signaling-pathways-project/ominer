@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value ="NURSA-funded Research Projects" outcome = "/funding/nursa_projects"/></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Integrating hypothalamic ERα signaling with peripheral metabolic and reproductive tissues</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/Holly-Ingraham.gif']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>Holly Ingraham</strong><br/>
+					UCSF<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			We propose to systemically assess the physiological and genomic
+consequences of hypothalamic ERα signaling in the mediobasal hypothalamus (MBH). In women, loss of
+estrogen correlates with increased risk for obesity and Type 2 diabetes. Hence, the precipitous drop in
+hormone replacement therapy, coupled with longer lifespans, suggests that the risk for metabolic diseases will
+continue to rise for the large number of post-menopausal women in the U.S.<br /><br />
+
+			Recent studies from our lab (Correa et al, 2015, Cell Reports) and others have established the importance of
+central estrogen signaling via ERα in regulating sex-specific aspects of metabolism and reproduction in mouse
+models. Although the role of central estrogen signaling in modulating female metabolism and reproduction has
+been appreciated for decades, a comprehensive strategy to understand the molecular aspects of estrogen
+signaling in the brain is lacking. Newer technology allows us to address this challenge. <br /><br />
+
+			We will focus on two peripheral target tissues, BAT and ovary, that both integrate the aggregate effects of
+central ERα signaling in a gender-specific manner. Two approaches will be taken that use stereotaxic delivery
+of AAV-viral vectors into the MBH to manipulate estrogen signaling. The first will acutely and conditionally
+knockout ERα in the VMHvl (or ARC) in intact and OVX adult females. The second will artificially activate ERα
+neurons in the VMHvl using chemogenetics via DREADD technology. The molecular and metabolic changes in
+the VMHvl, BAT and ovary will be assessed using Transcriptome, Translatome and Metabalome Profiling. We
+will also leverage a newly created reporter mouse (Ucp1-Luc2 transgene) that allows for real time imaging of
+brown adipose tissue (BAT) activity in females. Quality control will be used to select the best 3-4 experimental
+samples for further processing to obtain final data sets. Once datasets are generated and curated, top
+candidate hits will be validated by standard methods. Such data will provide new mechanistic insights into the
+gender-specific integration of central ERα signaling with metabolic and reproductive endpoint organs.
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

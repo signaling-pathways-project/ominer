@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+	
+	<ui:define name = "title">Signaling Pathways Project - The Gene Expression Metasignatures </ui:define>
+	
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name = "active" value = "About"/>
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name = "breadcrumb">
+	<ul class="breadcrumb">
+		<li><h:link value="Home" outcome="/index.jsf" /></li>
+		<li><h:link value="About" outcome="/about/index.jsf" /></li>
+	</ul>
+	</ui:define>
+
+	<ui:define name = "pageTitle">
+		<h5>The Gene Expression Metasignatures (GEMS)</h5>
+		<p>The Gene Expression Metasignatures (GEMS) analysis tool was developed to allow researchers to determine a weighted consensus across multiple datasets for the regulation of a gene by acute (0-4 h) or chronic (24 h) treatment with 17beta-estradiol in MCF-7 cells. GEMS was retired in November 2012. In its place we have developed a broader, large-scale differential gene expression tool for the nuclear receptor signaling research community, <a href="http://www.nursa.org/nursaGrails/transcriptomine/query?showLayout=1" terget="_blank">Transcriptomine</a>. Transcriptomine collates ‘omics-scale differential gene expression studies across the nuclear receptor and coregulator signaling field into a single analysis tool, allowing researchers to detect patterns across multiple datasets. A large number of 17beta-estradiol MCF-7 datasets have been uploaded to the database, including all those originally in GEMS. These can currently be viewed as individual fold changes.</p>
+	</ui:define>
+</ui:composition>

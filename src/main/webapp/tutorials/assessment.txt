@@ -1,0 +1,181 @@
+//-------------------------------
+// item 1
+// will need to verify/update all frame number references
+//-------------------------------
+
+&itemType1=multiple_choice
+&stem1=Proteins which are similar in structure to nuclear receptors, but for which natural ligands either do not exist, or are yet to be identified, are referred to as _________.
+&distractor1_1=Coregulators
+&distractor1_2=Chimeric receptors
+&correct1_1=Orphan receptors
+&distractor1_3=Ligand-binding domains
+&additionalText1=(Lesson 4: Identification and Cloning of Nuclear Receptors, frame 962)&
+
+//-------------------------------
+// item 2
+//-------------------------------
+
+&itemType2=multiple_choice
+&stem2=Estrogen receptor and progesterone receptor bind DNA as _________.
+&distractor2_1=Heterodimers with RXR to inverted repeats
+&correct2_1=Homodimers to inverted repeats
+&distractor2_2=Homodimers to direct repeats
+&distractor2_3=Heterodimers with androgen receptor to direct repeats
+&additionalText2=(Lesson 5: The Nuclear Receptor Superfamily, frame 283)&
+
+//-------------------------------
+// item 3
+//-------------------------------
+
+&itemType3=multiple_choice
+&stem3=Vitamin D receptor generally binds DNA as _________. 
+&distractor3_1=A homodimer to inverted repeats
+&distractor3_2=A heterodimer with RXR to inverted repeats
+&correct3_1=A heterodimer with RXR to direct repeats
+&distractor3_3=A heterodimer with TR to direct repeats
+&additionalText3=(Lesson 5: The Nuclear Receptor Superfamily, frame 600)&
+
+//-------------------------------
+// item 4
+//-------------------------------
+
+&itemType4=multiple_choice
+&stem4=The _________ DNA-binding domain is a defining feature of the nuclear receptor superfamily. 
+&distractor4_1=Homeodomain (helix-turn-helix)
+&distractor4_2=Winged helix (forkhead)
+&correct4_1=Zinc finger
+&distractor4_3=Leucine zipper
+&additionalText4=(Lesson 6: Functional Domains of Nuclear Receptors, frame 1240)&
+
+//-------------------------------
+// item 5
+//-------------------------------
+
+&itemType5=multiple_choice
+&stem5=Corepressor ___________ boxes mediate corepressor interactions with nuclear receptors.
+&correct5_1=CoRNR
+&distractor5_1=SMRT
+&distractor5_2=N-CoR
+&distractor5_3=Deacetylation
+&additionalText5=(Lesson 9: Corepressors, frame 180)&
+
+//-------------------------------
+// item 6
+//-------------------------------
+
+&itemType6=multiple_choice
+&stem6=_______ and _______  have prominent roles in glucose and lipid metabolism. 
+&distractor6_1=PPARs, GCNF
+&distractor6_2=LXRs, PR
+&correct6_1=PPARs, LXRs
+&distractor6_3=PR, GCNF
+&additionalText6=(Lesson 6: Functional Domains of Nuclear Receptors, frame 2360)&
+
+//-------------------------------
+// item 7
+//-------------------------------
+
+&itemType7=multiple_choice
+&stem7=_______, _________ and ________ are members of the SRC/p160 coactivator family.
+&distractor7_1=SRC-1, p/CIP and TRAP220
+&distractor7_2=SRC-1, CBP and p/CIP
+&correct7_1=SRC-1, GRIP1 and p/CIP
+&distractor7_3=SRC-1, GRIP1 and PGC-1
+&additionalText7=(Lesson 8: Coregulator Cloning and Characterization, frame 1720)&
+
+//-------------------------------
+// item 8
+//-------------------------------
+
+&itemType8=multiple_choice
+&stem8=Characterization of the alpha helical NR box, or LXXLL motif, was first published by _________ laboratory.
+&distractor8_1=Pierre Chambon's
+&distractor8_2=David Moore's
+&correct8_1=Malcolm Parker's
+&distractor8_3=Jan-Ake Gustafsson's
+&additionalText8=(Lesson 8: Coregulator Cloning and Characterization, frame 2508)&
+
+//-------------------------------
+// item 9
+//-------------------------------
+
+&itemType9=multiple_choice
+&stem9=Protein methylases such as _______ and ________ play roles in regulation of gene transcription by nuclear receptors. 
+&distractor9_1=CARM-1, SRA
+&distractor9_2=PRMT-1, P/CAF
+&correct9_1=CARM-1, PRMT-1
+&distractor9_3=BRG-1, PRMT-1
+&additionalText9=(Lesson 8: Coregulator Cloning and Characterization, frame 3350)&
+
+//-------------------------------
+// item 10
+//-------------------------------
+
+&itemType10=multiple_choice
+&stem10=_____________ in the C-terminal region of some corepressors are involved in their interaction with nuclear receptors.
+&distractor10_1=Repression domains
+&distractor10_2=N-CoR boxes
+&correct10_1=CoRNR boxes
+&distractor10_3=NR boxes
+&additionalText10=(Lesson 9, Corepressors, frame 820)&
+
+//-------------------------------
+// item 11
+//-------------------------------
+
+&itemType11=multiple_choice
+&stem11=_____________  disrupt local nucleosome structure to potentiate transcriptional _______________ by nuclear receptors. 
+&distractor11_1=Histone acetylases, silencing 
+&distractor11_2=Histone deacetylases, silencing
+&correct11_1=Histone acetylases, activation
+&distractor11_3=Histone deacetylases, activation
+&additionalText11=(Lesson 9, Corepressors, frame 1190)&
+
+//-------------------------------
+// item 12
+//-------------------------------
+
+&itemType12=multiple_choice
+&stem12=___________ and _____________ are required for embryonic viability in mice.
+&distractor12_1=SRC-1, TRAP220
+&distractor12_2=SRC-1, N-CoR
+&correct12_1=N-CoR, TRAP220
+&distractor12_3=TRAP220, GRIP1
+&additionalText12=(Lesson 10, Coregulators in vivo)&
+
+//-------------------------------
+// item 13
+//-------------------------------
+
+&itemType13=multiple_choice
+&stem13=___________ is an _________ which mediates chromatin domain remodeling by nuclear receptors.
+&distractor13_1=SRC-1, ATPase
+&distractor13_2=BRG-1, histone acetylase
+&correct13_1=BRG-1, ATPase
+&distractor13_3=SRC-1, histone acetylase
+&additionalText13=(Lesson 8, Cloning and Characterization of Coactivators, frame 3329)&
+
+
+//-------------------------------
+// item 14
+//-------------------------------
+
+&itemType14=multiple_choice
+&stem14=____________ has been shown to be overexpressed in 60 percent of primary breast tumors.
+&distractor14_1=AIB1/TIF2
+&distractor14_2=N-CoR
+&correct14_1=AIB1/SRC-3
+&distractor14_3=TRAP220
+&additionalText14=(Lesson 13, Rational Drug Design, frame 160)&
+
+//-------------------------------
+// item 15
+//-------------------------------
+
+&itemType15=multiple_choice
+&stem15=LXXLL motif peptidomimetics target the interface between __________ and __________.
+&distractor15_1=Coactivators, histones
+&distractor15_2=Histones, DNA
+&correct15_1=Nuclear receptors, coactivators
+&distractor15_3=Nuclear receptors, corepressors
+&additionalText15=(Lesson 13, Rational Drug Design, frame 805)&

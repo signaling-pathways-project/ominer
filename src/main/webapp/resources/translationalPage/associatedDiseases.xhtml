@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:func="http://bcm.edu.dldcc.big/nursa/functions"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+
+	<composite:interface>
+		<composite:attribute name="annotation"
+			type="edu.bcm.dldcc.big.nursa.model.translationalAnnotations.AssociatedDiseaseAnnotation"
+			required="true" />
+		<composite:attribute name="curated" type="java.lang.String"
+			displayName="The text at the top" required="true" />
+	</composite:interface>
+	<composite:implementation>
+		<h:form>
+			<p:panel header="Disease Associations" toggleable="true" collapsed="true">
+				<p:ajax event="toggle"
+					listener="#{ajaxPanelController.alternateComponentState(cc.attrs.annotation.id.toString())}"
+					update="diseasePnlContent" onstart="$.blockUI()"
+					oncomplete="$.unblockUI()" />
+				<p:outputPanel id="diseasePnlContent">
+					<p:outputPanel
+						rendered="#{ajaxPanelController.renderComponent(cc.attrs.annotation.id.toString())}">
+						<p class="curated">
+							<h:outputText value="#{cc.attrs.curated}" />
+						</p>
+
+						<p:dataTable id="diseaseTable" var="disease"
+							value="#{translationalService.lazyLoaders.get(cc.attrs.annotation.id.toString())}" rows="10"
+							emptyMessage="No data are currently available" 
+							paginator="true"
+							paginatorPosition="bottom"
+							paginatorTemplate="Show {RowsPerPageDropdown} per page {CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+							currentPageReportTemplate="Showing {startRecord} - {endRecord} of {totalRecords}"
+							rowsPerPageTemplate="10,20,50"
+							sortBy="#{disease.name.name}"
+							lazy="true">
+							<f:facet name="header">OMIM</f:facet>
+							<p:ajax event="page" onstart="$.blockUI()"
+								oncomplete="$.unblockUI()" />
+
+							<p:column headerText="Name" sortBy="#{disease.name.name}">
+								<h:link value="#{disease.name.name}" outcome="./index.jsf">
+									<f:param name="doi" value="#{disease.doi.doi}" />
+								</h:link>
+							</p:column>
+							<p:column headerText="Synonym">
+								<layout:dataRow
+									baseURL="#{dataResource.organization.baseURL}"
+									collection="#{disease.synonyms}" displayPath="name" layout="verticle" />
+							</p:column>
+							<p:column headerText="Description">
+								<h:outputText value="#{func:truncateToWord(disease.description,100)}" />
+							</p:column>
+						</p:dataTable>
+						<p:blockUI trigger="diseaseTable" block="diseaseTable">
+							Loading content...
+							<div class="ajaxSpinner">
+								<div class="dot1"></div>
+								<div class="dot2"></div>
+							</div>
+						</p:blockUI>
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:panel>
+		</h:form>
+	</composite:implementation>
+
+</ui:composition>

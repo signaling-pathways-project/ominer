@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+	
+	<ui:define name = "title">Signaling Pathways Project - Ominer | Discovering relationships between signaling pathways, gene and tissues</ui:define>
+	<ui:define name="header">
+
+	<ui:include src="/WEB-INF/templates/header.xhtml">
+		<ui:param name = "tmPage" value = "true"/>
+	</ui:include>
+				
+	</ui:define>
+	
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name = "active" value = "Tools"/>
+		</ui:include>
+	</ui:define>
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li class="active">Ominer</li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageSpecificCss">
+		<h:outputStylesheet name="nouislider.min.css" library="css"/>
+	</ui:define>
+
+	<ui:define name="body">
+		<!-- End tab design -->
+		<div class="tm-header">
+			<div class="row tm-tiles">
+				<div class="col-md-9">
+					<div class="clearfix">
+						<!-- <h:link outcome = "/transcriptomine/index.jsf">
+							<h:graphicImage width="75" styleClass="pull-left" library="images" name="/ominer.png" />
+						</h:link> -->
+						<div class="pull-left tm-logo-text">
+							<span class="lead">Ominer</span><br />
+							<b>Discover relationships between signaling pathway nodes, gene targets and tissues</b>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+				</div>
+			</div>
+		</div>
+		<p:panel styleClass="primary tm-landing" toggleable="true" collapsed="false">
+			<form class="tm-search-form" id="tm-search-form">
+				<h6 class="text-center">Start your research</h6>
+
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">
+
+						<div class="form-group">
+						<b><small style="color: #669966">Tip: For best user
+								experience , click "Reset" to run a new query</small></b> <b>
+						</b>
+						</div>
+						<div class="form-group">
+							<b><small>Target gene(s) of interest</small></b>
+						    <select name="geneSearchType" class="form-control" id="gene-type">
+								<option value="any" selected="selected">Select an option</option>
+								<option value="consensome">Consensome</option>
+								<option value="gene">Single Gene</option>
+								<option value="geneList">Gene List</option>
+								<option value="goTerm">Gene Ontology Term</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<b><small>'Omics Category</small></b>
+						    <select name="omicsCategory" id="omics-category" disabled="disabled" class="form-control">
+<!-- 						    	<option value="any" selected="selected">Transcriptomics &amp; Cistromics (Chip-Seq) </option> -->
+								<option value="transcriptomics" selected="selected">Transcriptomics</option>
+								<option value="cistromics">Cistromics (Chip-Seq)</option>
+							</select>
+						</div>
+						<!-- Auto complete and gene list -->
+						<div class="form-group autocomplete-field" id="gene-autocomplete-holder">
+							<label for="gene-autocomplete"><small>Start typing and select from the suggested gene symbols</small></label>
+							<input id="gene-autocomplete" name="gene-tmp" type="text" placeholder="" class="form-control" />
+							<input id="gene-autocomplete-target" name="gene" type="text" placeholder="" class="form-control hide" />
+							<span class="help-block"><small>Please select a Gene</small></span>
+						</div>
+						<div class="form-group autocomplete-field" id="geneList-holder">
+							<label for="fileUpload"><small>Gene List(Please upload a csv file with either HGNC symbols or Entrez gene IDs)</small></label>
+							 <div class="input-group">
+								<input class="" type="file" accept=".csv" id="fileUpload" />
+							</div>
+							<input type="hidden" id="file-upload-target" value="" />
+							<span class="help-block"><small>Please add at least two valid Genes</small></span>
+							<span class="help-block success-help-block"><small>We found <span id="invalid-genes">0</span> invalid genes out of <span id="total-genes">0</span> provided genes, the results will be based on the valid genes</small></span>
+						</div>
+						<div class="form-group autocomplete-field" id="goTerm-autocomplete-holder">
+							<label for="goTerm-autocomplete"><small>Enter a GO term below</small></label>
+							<input id="goTerm-autocomplete" name="goTerm-tmp" type="text" placeholder="" class="form-control" />
+							<input id="goTerm-autocomplete-target" name="goTerm" type="text" placeholder="" class="form-control hide" />
+							<small style="color: #669966">To submit a GO term query you must select at least a specific pathway module category and class</small>
+							<span class="help-block"><small>Please select a Go term</small></span>
+						</div>
+						<!-- End auto complete and gene list -->
+						<!-- Start Pathway -->
+						<b><small>Signaling Pathway Module Category</small></b><br />
+						<div class="form-group" id="pathway-group">
+
+							<select id="pathway-modules" disabled="disabled" name="pathway-modules" class="form-control pathway-modules">
+								<option value="all" tname="all" ptype="type">All Signaling Pathway Module Categories</option>
+							</select>
+							<input id="pathway-target" value="all" name="pathway" ptype="type" class="form-control hide" />
+						</div>
+						<!-- End Pathway -->
+						<b><small>Biosample Category</small></b>
+						<div class="form-group">
+						    <select id="species" name="species" disabled="disabled" class="form-control">
+							  <option value="all">All Species</option>
+							  <option value="Human">Human</option>
+							  <option value="House Mouse">Mouse</option>
+							  <option value="Norway Rat">Rat</option>
+							</select>
+						</div>
+						<div class="form-group" id="tissue-cell-line-group">
+						    <select id="tissue-cell-line" disabled="disabled" name="tissue-cell-line" class="form-control">
+								<option value="all" tname="all">All Physiological Systems</option>
+							</select>
+							<br />
+							<script type="text/template" class="tissues-and-cell-lines-option">
+								<option value="{{rc.id}}" tname="{{rc.name}}">{{rc.name}}</option>
+							</script>
+							<script type="text/template" class="tissue-cell-line-sub-template">
+								<div class="tissue-cell-line-sub">
+									<select id="tissue-cell-line-{{rc.parent}}" name="tissue-cell-line-sub" class="form-control">
+										<option value="all" tname="all">All Organs</option>
+									</select>
+								</div>
+							</script>
+							<!-- <input id="tissue-category-target" value="all" name="tissue-category" type="hidden" class="form-control hide" /> -->
+							<input id="physiological-systems-target" displaytext="All" value="all" name="physiological-systems" type="hidden" class="form-control hide" />
+							<input id="organ-target" displaytext="All" value="all" name="organ-category" type="hidden" class="form-control hide" />
+						</div>
+						<!-- Regulation -->
+						<div id="regulation">
+<!-- 							<b><small>Regulation</small></b><br />
+ -->							<!-- Significance -->
+							<div class="form-group">
+								<label for="significance"><small>FDR Significance cut-off</small></label>
+								<div>
+								    <select id="significance" disabled="disabled" name="significance" class="form-control">
+									  <option value="0.05">5E-02</option>
+									  <option value="0.01">1E-02</option>
+									  <option value="0.001">1E-03</option>
+									  <option value="0.0001">1E-04</option>
+									  <option value="0.00001">1E-05</option>
+									  <option value="0.000001">1E-06</option>
+									  <option value="0.0000001">1E-07</option>
+									  <option value="0.00000001">1E-08</option>
+									  <option value="0.000000001">1E-09</option>
+									</select>
+								</div>
+								<span class="help-block"><small>Please enter a value for significance</small></span>
+							</div>
+							<!-- Fold change -->
+							<div class="form-group hide">
+								<input type="hidden" id="fold-change-min" name="foldChangeMin" value="2" />
+								<input type="hidden" id="fold-change-max" name="foldChangeMax" value="30" />
+							</div>
+						</div>
+						<div class="pull-right" id="submit-reset">
+							<button id="reset-search" type="reset" class="btn btn-default">Reset</button> 
+							<button type="submit" id="submit-query" class="btn btn-primary disabled" data-loading-text="Validating...">Submit</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</p:panel>
+		
+		<!-- Start consensome -->
+		<a id="consensome-scroll" name="consensome-scroll"></a>
+		<div class="consensome alert alert-info" id="consensome-summary">
+			<h5>Consensome (beta): summary</h5>
+			<div id="consensome-summary-data"></div>
+			<script type="text/template" class="consensome-summary-data">
+				<p>There are <b>{{rc.numberOfExperiments}}</b> Transcriptomine experiments that match the selected pathway/biosample category/species options. Please click Submit to view the Consensome.</p>
+			</script>
+		</div>
+		<div id="consensome-results" class="consensome ui-panel ui-widget ui-widget-content ui-corner-all primary">
+			<div class="ui-panel-content ui-widget-content">
+				<h5 class="clearfix">Consensome (beta)
+					<a id="consensome-download" href="#" target="_blank" class="btn btn-info pull-right">
+						<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&#160;Download Results
+					</a>
+				</h5>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="alert alert-info" style="font-size: 13px">
+							<b>Category: </b><span id="category-cp"></span><br />
+							<b>Class: </b><span id="class-cp"></span><br />
+							<b>Family: </b><span id="family-cp"></span><br />
+							<b>Species: </b><span id="species-cp"></span><br />
+							<b>Physiological System: </b><span id="physiological-system-cp"></span><br />
+							<b>Organ: </b><span id="organ-cp"></span><br />
+							
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="alert">
+							<p style="font-size: 13px">Consensomes are list of genes ranked according to a meta-analysis of their differential expression in publicly archived transcriptomic datasets involving perturbations of a specific signaling pathway in a given biosample category. Consensome are intended as a guide to identifying those genes most consistently impacted by a given pathway in a given tissue context. <!-- For more information please see our publication.: =====--> </p>
+						</div>
+					</div>
+				</div>
+				<p>Calculated across <strong id="num-of-data-points">X</strong> data points from <strong id="num-of-experiments">Y</strong> experiments in <strong id="num-of-datasets">Z</strong> datasets.</p>
+				<div id="consensome-results-table-tm-wrap">
+					<table id="consensome-results-table-tm" class="display" cellspacing="0" width="100%">
+				        <thead>
+				            <tr>
+				                <th class="col-md-2">Target</th>
+				                <th class="col-md-2">Gene Name</th>
+				                <th class="col-md-2">Discovery Rate<!-- Frequency --></th>
+				                <th class="col-md-2">GMFC</th>
+				                <th class="col-md-2">CPV</th>
+				                <th class="col-md-2">Percentile</th>
+				            </tr>
+				        </thead>
+				        <tfoot>
+				            <tr>
+				                <th>Target</th>
+				                <th>Gene Name</th>
+				                <th>Discovery Rate<!-- Frequency --></th>
+				                <th>GMFC</th>
+				                <th>CPV<!-- p-value --></th>
+				                <th>Percentile</th>
+						   </tr>
+						   
+				        </tfoot>
+				        <tbody id="consensome-results-table-body-tm">
+				        </tbody>
+				    </table>
+				    
+				    <script type="text/template" class="consensome-results-table-row-tm">
+					<tr>
+						<td class="text-center">
+<a target="_blank" href="#{request.contextPath}/ominer/query.jsf?{{rc.geneUrl}}">
+		                		<i>{{rc.gene}}</i>
+		                	</a>
+</td>
+						<td class="text-center">{{rc.targetName}}</td>
+		                <td class="text-center">{{rc.discoveryRate}}</td>
+		                <td class="text-center">{{rc.gmFc}}</td>
+		                <td class="text-center">{{rc.qValue}}</td>
+						<td class="text-center">{{rc.percentile}}</td>
+		            </tr>
+		        	</script>
+		        
+		        	<br /><br />
+				</div>
+				<div id="consensome-results-table-cis-wrap">
+				    <table id="consensome-results-table-cis" class="display" cellspacing="0" width="100%">
+				        <thead>
+				            <tr>
+				                <th class="col-md-2">Target</th>
+				                <th class="col-md-2">Gene Name</th>
+				                <th class="col-md-2">MACS2 Average <!-- Frequency --></th>
+				                <th class="col-md-2">Percentile</th>
+				            </tr>
+				        </thead>
+				        <tfoot>
+				            <tr>
+				                <th>Target</th>
+				                <th>Gene Name</th>
+				                <th>MACS2 Average <!-- Frequency --></th>
+				                <th>Percentile</th>
+						   </tr>
+						   
+				        </tfoot>
+				        <tbody id="consensome-results-table-body-cis">
+				        </tbody>
+				    </table>
+
+		        	
+		        	<script type="text/template" class="consensome-results-table-row-cis">
+					<tr>
+						<td class="text-center">
+<a target="_blank" href="#{request.contextPath}/ominer/query.jsf?{{rc.geneUrl}}">
+		                		<i>{{rc.gene}}</i>
+		                	</a>
+</td>
+						<td class="text-center">{{rc.targetName}}</td>
+		                <td class="text-center">{{rc.macs2score}}</td>
+						<td class="text-center">{{rc.percentile}}</td>
+		            </tr>
+		        	</script>
+		        	
+		        	<br /><br />
+				</div>
+				
+			</div>
+		</div>
+		<div class="consensome alert" id="consensome-requirements">
+			<h5>Consensome (beta): requirements </h5>
+			<p>There are 0 Transcriptomine experiments that match the selected pathway/biosample category/species options. A minimum of 4 experiments is required to generate a Consensome. Please check back on our dataset directory regularly as new datasets are added on a regular basis.</p>
+		</div>
+		<div class="consensome alert" id="consensome-error">
+			<h5>Consensome (beta): error</h5>
+			<p>There was an error while processing your request. Please refresh the page and try again. If you continue to experience this please e-mail us at <a href="mailto:support@nursa.org">support@nursa.org</a></p>
+		</div>
+		<!-- End consensome -->
+		<div id="searchResults" name="search-results">
+			<div class="ui-panel ui-widget ui-widget-content ui-corner-all primary">
+				<div class="ui-panel-content ui-widget-content">
+					<div class="row">
+						<div class="col-md-12">
+							<h5 id="search-results-title">Regulation Report</h5>
+						</div>
+					</div>
+					<!-- Nav tabs -->
+					<ul id="result-tabs" class="nav nav-tabs" role="tablist">
+						<li role="presentation" class="active" id="tm-tab-header"><a href="#tm-tab" aria-controls="tm-tab" role="tab" data-toggle="tab">Transcriptomics</a></li>
+						<li role="presentation" id="cistromics-tab-header"><a href="#cistromics-tab" aria-controls="cistromics-tab" role="tab" data-toggle="tab">Cistromics</a></li>
+					</ul>
+
+					<!-- Tab panes -->
+					<div class="tab-content">
+						<!-- Start TM -->
+						<div role="tabpanel" class="tab-pane active" id="tm-tab">
+							<div id="tm-results">
+								<div class="row">
+									<div class="col-md-12">
+										<a id="download-results" href="#" target="_blank" class="btn btn-info">
+											<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&#160;Download Results
+										</a>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-4">
+										<!-- TM View Change form -->
+										<div id="tm-view-change-form" class="tm-view-change-form clearfix">
+											<div class="form-group pull-left">
+												<label class="tm-view-change-label">Display by: </label>
+												<div class="input-group">
+													<select id="plot-option" class="form-control input-sm">
+														<option value="gene">Target</option>
+														<option value="pathway">Category</option>
+														<option value="rna">Biosample</option>
+														<option value="species">Species</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4" id="up-down-checkboxes">
+										<div class="row">
+											<div class="col-md-4">
+												<input type="checkbox" value="down" name="down-filter" checked="checked" /> Down
+											</div>
+											<div class="col-md-4">
+												<input type="checkbox" value="up" name="up-filter" checked="checked" /> Up
+											</div>
+										</div>
+									</div>
+									<div class="selected-amount col-md-4" id="selected-amount">
+										<small class="pull-right">Currently displaying <span id="currently-displaying">0</span> out of <span id="display-total">0</span> data points.</small>
+									</div>
+								</div>
+
+
+								<div id="scatter-plot"></div>
+						    </div>
+						    <div id="tm-errors"></div>
+						</div>
+						<!-- End TM -->
+						<!-- Start Cistromic -->
+						<div role="tabpanel" class="tab-pane" id="cistromics-tab">
+							<div id="cistromics-results">
+								<div class="row">
+									<div class="col-md-8">
+										<div class="alert alert-info" style="font-size: 13px">
+											<b>Type: </b><span>Cistromic</span><br />
+											<span id="cistromics-genes-of-interest-cp"><b>Gene(s) of Interest: </b><span></span></span><br />
+											<b>Signaling Pathway Category: </b><span id="cistromics-pathway-cp"></span><br />
+											<b>Signaling Pathway Class: </b><span id="cistromics-class-cp"></span><br />
+											<b>Signaling Pathway Family: </b><span id="cistromics-family-cp"></span><br />
+											<b>Biosample Category: </b><span id="cistromics-species-cp"></span> <span id="cistromics-biosample-cp"></span><br />
+										</div>
+									</div>
+									<div class="col-md-4">
+										<a id="cistromics-download" href="#" target="_blank" class="btn btn-info pull-right">
+											<span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&#160;Download Results
+										</a>
+									</div>
+								</div>
+								<!-- Cistromics View Change form -->
+								<div id="cistromics-view-change" class="cistromics-view-change clearfix">
+									<div class="form-group pull-left">
+										<label class="tm-view-change-label">Display by: </label>
+										<div class="input-group">
+											<select id="cistromics-plot-option" class="form-control input-sm">
+												<option value="pathway">Category</option>
+												<option value="gene">Target</option>
+												<option value="rna">Biosample</option>
+												<option value="species">Species</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div id="cistromics-scatter-plot">Graph goes here</div>
+							</div>
+							<div id="cistromics-errors">
+							</div>
+						</div>
+						<!-- End Cistromic -->
+					</div>
+				</div>
+			</div>
+	    </div>
+
+	    <div id="graph-more-info" class="popover top" role="tooltip">
+			<div class="arrow"></div>
+			<div class="arrow-bg"></div>
+			<h3 class="popover-title">
+				<span class="tm-tooltip-title">Fold Change Information</span>
+				<span class="cistromics-tooltip-title">FMACS2 Peak</span>
+				<span id="close-graph-more-info" class="pull-right"><span class="badge">x</span></span>
+			</h3>
+			<div id="graph-more-info-content" class="popover-content">
+			</div>
+		</div>
+		
+		<script type="text/template" class="graphFoldChangeInformation">
+			<div><span><b>Symbol:</b>{{rc.symbol}}</span></div>
+			<!-- <div><span><b>BSMS:</b> {{rc.bsms}}</span></div> -->
+			<div><span><b>Fold Change:</b>{{rc.foldChange}}</span></div>
+			<div><span><b>p value:</b>{{rc.pvalue}}</span></div>
+			<div><span><b>Biosample:</b>{{rc.bioSample}}</span></div>
+			<div><span><b>Experiment:</b>{{rc.experimentName}}</span></div>
+			<div><span><b>Species:</b>{{rc.speciesCommonName}}</span></div>
+			<br /><button type="button" class="btn btn-info btn-block show-bsms" bsms="{{rc.bsms}}">Bioactive Small Molecule(s)</button>
+			<button type="button" class="btn btn-info btn-block fc-details" rel="{{rc.fcid}}">More Information</button><br />
+		</script>
+		<script type="text/template" class="cistromicsMoreInfo">
+			<div><span><b>Symbol:</b> {{rc.symbol}}</span></div>
+			<!-- <div><span><b>BSMS:</b> {{rc.bsms}}</span></div> -->
+			<div><span><b>MACS2 Binding Score:</b> {{rc.score}}</span></div>
+			<div><span><b>MACS2 Q value:</b> 1&lt; E-05</span></div>
+			<div><span><b>Biosample:</b> {{rc.bioSample}}</span></div>
+			<div><span><b>Experiment:</b> {{rc.experimentName}}</span></div>
+			<div><span><b>Species:</b> {{rc.speciesCommonName}}</span></div>
+			<br /><button type="button" class="btn btn-info btn-block show-bsms" bsms="{{rc.bsms}}">Bioactive Small Molecule(s)</button>
+			<button type="button" class="btn btn-info btn-block fc-details" rel="{{rc.fcid}}">More Information</button><br />
+		</script>
+
+		<!-- BSM Modal -->
+		<div class="modal" id="bsm-details" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog">
+		    	<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="btn btn-sm btn-default pull-right" data-dismiss="modal">Close</button>
+						<h4 class="modal-title">Bioactive Small Molecule(s)</h4>
+					</div>
+					<div class="modal-body" id="bsm-modal-body">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-default pull-right" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+<!-- Fold Change information modal -->
+		<script type="text/template" class="fc-change-template">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{rc.title}}</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-no-border table-hover">
+						<tr>
+							<td width="20%"><b>Symbol:</b></td>
+							<td>
+								<!-- <a target="_blank" href="#{request.contextPath}/{{rc.symbolUrl}}">{{rc.symbol}}</a> -->
+								{{rc.symbol}}
+							</td>
+						</tr>
+						<tr>
+							<td><b>Fold Change:</b></td>
+							<td>{{rc.foldChange}}</td>
+						</tr>
+						<tr>
+							<td><b>p value:</b></td>
+							<td>{{rc.pValue}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Experiment Information</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-no-border table-hover">
+						<tr>
+							<td width="20%"><b>Name:</b></td>
+							<td>{{rc.experimentName}}</td>
+						</tr>
+						<tr>
+							<td><b>Description:</b></td>
+							<td><p>{{rc.expDescription}}</p></td>
+						</tr>
+						<tr>
+							<td><b>ID:</b></td>
+							<td>{{rc.experimentNumber}}</td>
+						</tr>
+						<tr>
+							<td><b>Biosample:</b></td>
+							<td>{{rc.tissueName}}</td>
+						</tr>
+						<tr>
+							<td><b>Species:</b></td>
+							<td>{{rc.speciesCommonName}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Dataset Information</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-no-border table-hover">
+						<tr>
+							<td width="20%"><b>Name:</b></td>
+							<td><p>{{rc.datasetName}}</p></td>
+						</tr>
+						<tr>
+							<td><b>Description:</b></td>
+							<td><p>{{rc.datasetDescription}}</p></td>
+						</tr>
+						<tr>
+							<td><b>DOI:</b></td>
+							<td>
+								<a target="_blank" href="#{request.contextPath}/datasets/dataset.jsf?doi={{rc.datasetDoi}}">{{rc.datasetDoi}}</a>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Citation:</b></td>
+							<td>
+								<div class="citation">
+									<p><span id="citation"></span> {{rc.datasetName}} v1.0. NURSA Datasets.</p>
+									dx.doi.org/{{rc.datasetDoi}}
+								</div>
+								<div class="no-citation">Not Available</div>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Version &amp; Provenance:</b></td>
+							<td><p>
+								{[ if (rc.repoUrl) { ]}
+								This is Version 1.0 of an annotated derivative of the original dataset, which can be found in <a target="_blank" href="{{rc.repoUrl}}">{{rc.repo}}</a>
+								{[ } ]}
+								{{rc.repoText}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Download Dataset Citation:</b></td>
+							<td>
+								<a target="_blank" href="#{request.contextPath}/rest/transcriptomine/download/dataset/{{rc.datasetId}}">
+									<h:graphicImage library="images" styleClass="image-left" name="endnote-icon.png" />
+									<h:graphicImage library="images" styleClass="image-left" name="Mendeley.png" />
+									<h:graphicImage library="images" styleClass="image-left" name="Papers3.png" />
+									<h:graphicImage library="images" styleClass="image-left" name="zoterologo.png" />
+								</a>
+							</td>
+						</tr>
+					</table>	
+				</div>
+			</div>
+		</script>
+		
+		<!-- Fold Change information modal -->
+		<script type="text/template" class="fc-change-template-cistromics">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">{{rc.title}}</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-no-border table-hover">
+						<tr>
+							<td width="20%"><b>Symbol:</b></td>
+							<td>
+								<!-- <a target="_blank" href="#{request.contextPath}/{{rc.symbolUrl}}">{{rc.symbol}}</a> -->
+								{{rc.symbol}}
+							</td>
+						</tr>
+						<tr>
+							<td width="40%"><b>MACS2 Score:</b></td>
+							<td>{{rc.score}}</td>
+						</tr>
+						<tr>
+							<td><b>p value:</b></td>
+							<td>{{rc.pValue}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Experiment Information</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-no-border table-hover">
+						<tr>
+							<td width="20%"><b>Name:</b></td>
+							<td>{{rc.experimentName}}</td>
+						</tr>
+						<tr>
+							<td><b>Description:</b></td>
+							<td><p>{{rc.expDescription}}</p></td>
+						</tr>
+						<tr>
+							<td><b>ID:</b></td>
+							<td>{{rc.experimentNumber}}</td>
+						</tr>
+						<tr>
+							<td><b>Biosample:</b></td>
+							<td>{{rc.tissueName}}</td>
+						</tr>
+						<tr>
+							<td><b>Species:</b></td>
+							<td>{{rc.speciesCommonName}}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title">Dataset Information</h3>
+				</div>
+				<div class="panel-body">
+					<table class="table table-no-border table-hover">
+						<tr>
+							<td width="20%"><b>Name:</b></td>
+							<td><p>{{rc.datasetName}}</p></td>
+						</tr>
+						<tr>
+							<td><b>Description:</b></td>
+							<td><p>{{rc.datasetDescription}}</p></td>
+						</tr>
+						<tr>
+							<td><b>DOI:</b></td>
+							<td>
+								<a target="_blank" href="#{request.contextPath}/datasets/dataset.jsf?doi={{rc.datasetDoi}}">{{rc.datasetDoi}}</a>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Citation:</b></td>
+							<td>
+								<div class="citation">
+									<p><span id="citation"></span> {{rc.datasetName}} v1.0. NURSA Datasets.</p>
+									dx.doi.org/{{rc.datasetDoi}}
+								</div>
+								<div class="no-citation">Not Available</div>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Version &amp; Provenance:</b></td>
+							<td><p>
+								{[ if (rc.repoUrl) { ]}
+								This is Version 1.0 of an annotated derivative of the original dataset, which can be found in <a target="_blank" href="{{rc.repoUrl}}">{{rc.repo}}</a>
+								{[ } ]}
+								{{rc.repoText}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td><b>Download Dataset Citation:</b></td>
+							<td>
+								<a target="_blank" href="#{request.contextPath}/rest/transcriptomine/download/dataset/{{rc.datasetId}}">
+									<h:graphicImage library="images" styleClass="image-left" name="endnote-icon.png" />
+									<h:graphicImage library="images" styleClass="image-left" name="Mendeley.png" />
+									<h:graphicImage library="images" styleClass="image-left" name="Papers3.png" />
+									<h:graphicImage library="images" styleClass="image-left" name="zoterologo.png" />
+								</a>
+							</td>
+						</tr>
+					</table>	
+				</div>
+			</div>
+		</script>
+		<div class="modal" id="fc-details" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog modal-lg">
+		    	<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="btn btn-sm btn-default pull-right" data-dismiss="modal">Close</button>
+						<h4  class="modal-title">
+								<span id='changeTitleTm'>Fold Change Details</span>
+								<span id='changeTitleCis'>MACS2 Score Details</span>
+						</h4>
+					</div>
+					<div class="modal-body" id="fc-change-body">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-default pull-right" data-dismiss="modal">Close</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		<!-- End::Fold Change information modal -->
+
+		<script type="text/template" class="bsm-template">
+			<!-- <div><b>Name: </b>{{rc.name}}</div> -->
+			<div><b>SPP Symbol: </b>{{rc.bsmOfficialSymbol}}</div>
+			<div><b>BSM Name: </b>{{rc.name}}</div>
+			<div><b>PubChem CID: </b><a href="{{rc.pubchemUrl}}" target="_blank">{{rc.pubchemId}}</a></div>
+			<div><b>IUPHAR Guide to Pharmacology ID: </b><a href="{{rc.url}}" target="_blank">{{rc.iuphar}}</a></div>
+		</script>
+		<script type="text/template" class="bsm-pathway-template">
+			<!-- This is going to be repeated -->
+			<div><b>Signaling Pathway Module Category: </b>{{rc.category}}</div>
+			<div><b>Class: </b>{{rc.cclass}}</div>
+			<div><b>Family: </b>{{rc.family}}</div>
+			<div><b>Node(s): </b>{{rc.nodes}}</div>
+			<!-- End repeated part -->
+		</script>
+		<!-- End BSM Modal -->
+
+	</ui:define>
+	<ui:define name="tmjs">
+		<h:outputScript library="js" name="d3.v3.min.js" target="body" />
+		<h:outputScript library="js" name="jquery.dataTables.js" target="body" />
+		<h:outputScript library="js" name="underscore-min.js" target="body" />
+		<h:outputScript library="js" name="jquery-ui.min.js" target="body" />
+		<h:outputScript library="js" name="jquery.history.js" targe="body" />
+		<h:outputScript library="js" name="highcharts.js" targe="body" />
+		<h:outputScript library="js" name="exporting.js" target="body" />
+		<h:outputScript library="js" name="offline-exporting.js" target="body" />
+		<h:outputScript library="js" name="nouislider.min.js" target="body" />
+		<h:outputScript library="js" name="query-and-datasets-common.js" target="body" />
+		<h:outputScript library="js" name="query.js" target="body" />
+	</ui:define>
+</ui:composition>

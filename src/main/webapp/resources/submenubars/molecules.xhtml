@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+	<composite:interface>
+		<composite:attribute name="submenu" type="java.lang.String"
+			required="true" />
+	</composite:interface>
+	<composite:implementation>
+		<div class="subNavigationMenu" id="moleculesSubMenu"  onmouseover="document.getElementById('moleculesSubMenu').style.display = 'block';" onmouseout="document.getElementById('moleculesSubMenu').style.display = 'none';">
+			<h:link outcome="/molecules/index">
+				<h:outputText value="WELCOME"
+					styleClass="#{cc.attrs.submenu eq 'WELCOME' ? 'selected-sub-menu' : 'not-selected-sub-menu'}" />
+			</h:link>
+			<h:link outcome="/molecules/nr">
+				<h:outputText value="NUCLEAR RECEPTOR"
+					styleClass="#{cc.attrs.submenu eq 'NR' ? 'selected-sub-menu' : 'not-selected-sub-menu'}" />
+			</h:link>
+			<h:link outcome="/molecules/coreg">
+				<h:outputText value="COREGULATORS"
+					styleClass="#{cc.attrs.submenu eq 'COREG' ? 'selected-sub-menu' : 'not-selected-sub-menu'}" />
+			</h:link>
+			<h:link outcome="/molecules/ligand">
+				<h:outputText value="LIGAND"
+					styleClass="#{cc.attrs.submenu eq 'LIGAND' ? 'selected-sub-menu' : 'not-selected-sub-menu'}" />
+			</h:link>
+		</div>
+	</composite:implementation>
+</ui:composition>

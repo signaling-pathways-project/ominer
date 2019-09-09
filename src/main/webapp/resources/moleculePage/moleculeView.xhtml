@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	>
+	<composite:interface
+		displayName="overview section for receptors and coregs">
+		<composite:attribute name="mol" displayName="a bsm object"
+			type="edu.bcm.dldcc.big.nursa.model.Molecule" required="true" />
+
+	</composite:interface>
+	<composite:implementation>
+
+		<div id="#{cc.clientId}">
+
+			<p:panel header="Overview" toggleable="false">
+				<div class="dataDisplay">
+					<layout:dataRow label="Synonyms" collection="#{cc.attrs.mol.synonymsAsList}" maxItems="25" displayPath = "name"/>
+					<layout:dataRow label="NURSA Name" data="#{cc.attrs.mol.name.name}" />
+					<layout:dataRow label="Official Symbol" data="#{cc.attrs.mol.official.name}" />
+					<!-- Input values for PharmGKB data requests -->
+					<input type="hidden" name="gene-symbol" value="#{cc.attrs.mol.official.name}" />
+
+					<p:dataList styleClass="no-border-data-list" value="#{cc.attrs.bsm.datasources}" var="dataResource" type="none">
+						<input type="hidden" name="#{dataResource.organization.abbreviation}" value="#{dataResource.synonyms}" />
+					</p:dataList>
+					<layout:dataRow label="Description" data="#{cc.attrs.mol.blurb}" />
+					
+					<layout:pubmedDataRow label="Original References:" 
+					collection="#{cc.attrs.mol.definitiveLiterature}" 
+					pubmed="pubmedId" citation="citation" volume="volume" pagination="pagination" />
+					
+				</div>
+			</p:panel>
+
+		</div>
+	</composite:implementation>
+</ui:composition>

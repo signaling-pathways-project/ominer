@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value ="NURSA-funded Research Projects" outcome = "/funding/nursa_projects"/></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Identification of novel host-derived ligands for nuclear receptors in parasitic nematodes</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/mangelsdorf.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>David Mangelsdorf</strong><br/>
+					UT Southwestern<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			Parasitic nematodes are a worldwide health and economic burden: human parasites infect one quarter of the population, and plant parasites cause billions of dollars of crop damage each year. We hypothesize that the nuclear receptor, DAF-12, which governs the infective and developmental stage of parasitic nematodes, is activated upon ligand binding. Although endogenous DAF-12 ligands have been discovered for free-living nematodes, no endogenous ligands have been identified for any parasitic species. Our preliminary data suggest that upon infection it is the host and not the parasite that synthesizes these ligands. This host-dependent ligand activates DAF-12 and enables the parasite to establish residency in the host, start feeding, and develop into a reproductive adult. The goals of the two aims in this application are to combine novel organic chemical extraction procedures with in vitro and in vivo ligand screening to identify the endogenous ligands for DAF-12 from two major nematode parasites. In aim one we will isolate ligands from a model mammalian host (mice) for hookworms, a parasite that causes life-threatening anemia in humans. In aim two we will use a similar strategy to isolate ligands from the roots of soybean plants, which are plagued by the intractable parasite, soybean cyst nematode. The outcomes of these studies will:<br /><br />
+			<ol>
+				<li>identify the first ligands for nuclear receptors from parasitic nematodes; </li>
+				<li>provide novel methods and reagents for investigating nuclear receptor signaling in parasitic nematodes; and </li>
+				<li>provide novel therapeutic targets for treating parasites that pose global health and economic problems.</li>
+			</ol>
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

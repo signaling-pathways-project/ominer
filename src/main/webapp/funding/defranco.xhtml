@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value="NURSA-funded Research Projects"
+					outcome="/funding/nursa_projects" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Chromatin dynamics of fetal hypothalamic neural stem cells</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/defranco.gif']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>Don DeFranco</strong><br/>
+					University of Pittsburgh<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			Glucocorticoids (GCs) are widely used agents for a number of chronic and acute inflammatory, autoimmune and allergic disorders and also play a critical role regulating cognitive and emotional behavior. Hyperactivation of GC signaling in the brain has been implicated in the development of post-traumatic stress disorder, anxiety and depression. Potent synthetic GCs such as dexamethasone (Dex) are standard antenatal therapy for pregnant women at risk for preterm delivery to prevent respiratory distress syndrome in neonates. However, neonatal or antenatal Dex exposure may have detrimental effects on cognition and behavior in later life.<br /><br />
+
+			GCs released during stress or given therapeutically are also known to disrupt the reproductive axis. In particular, GCs may act both directly and indirectly to regulate gonadotropin-releasing hormone (GnRH) neuron function in the hypothalamus. Treatment of neonatal mice with Dex leads to a delay in long-term disruptions in reproductive function that is associated with reduced hypothalamic expression of GnRH and the receptors for the gonadotropin inhibitory hormone. Childhood trauma can alter reproductive function but long term clinical studies have not examined whether therapeutic neonatal or prenatal GC exposure has lasting negative effects on reproductive function. In addition to affecting reproductive centers, antenatal GCs impact “metabolic programming” in the developing hypothalamus. For example, hepatic steatosis and other growth deficits in female rats exposed to Dex as fetuses, and subjected to a high fat diet as adults, derives in part from hypothalamic defects in the growth hormone axis (i.e. via growth hormone releasing hormone). Additionally, a decrease in body core temperature in adult female rats caused by antenatal Dex exposure is associated with decreased thyrotropin-releasing hormone expression in the hypothalamus.<br /><br />
+
+			For the past few years we have examined glucocorticoid receptor (GR) function in cultured neural stem/progenitor cells (NSPCs) isolated from mouse embryos (E14.5) (i.e. neurospheres [NS]) as a model to examine molecular mechanisms of GC effects on cerebral cortical development. NS cultures are particularly advantageous for analysis of NSPC function since with subsequent passaging in vitro, they “mature” and adopt distinct progenitor cell fates that mimic those that occur in fetal and neonatal development. We propose to apply the knowledge and expertise that we have gained in this system to examine GC genomic effects in NS cultures from fetal hypothalamus.<br /><br />
+
+			We hypothesize that long-term changes in hypothalamic regulation of reproduction and metabolism can result from GC-induced alterations in hypothalamic NSPC function. Three genome-wide approaches will be used to identify global, sex-specific transcription and epigenetic changes in the chromatin landscape of this unique NSPC population, whose developmental programming may be altered by GC exposure.<br /><br />
+
+			<strong>Specific Aims</strong><br />
+
+			<ol>
+				<li><strong>Use global DNase I hypersensitivity (DHS)
+						analysis of fetal hypothalamic NS to determine whether GC exposure
+						leads to transient or permanent alterations in the chromatin
+						landscape.</strong> Global DHS analysis will be performed with fetal
+					hypothalamic NS derived from males versus females to reveal
+					sex-specific differences in hormone effects, as well as from
+					cultures of increasing passages (e.g. P1-P3) during which stem and
+					progenitor cells become progressively lineage restricted.</li>
+				<li><strong>Use ChIP-Seq and gene expression
+						microarrays to identify GR target genes and regulated transcripts
+						in fetal hypothalamic NS of different sexes and stages of lineage
+						restriction.</strong> Biological outcomes that will be assessed in GC
+					treated NS at different passages include examination of hormone
+					effects on differentiation.</li>
+			</ol>
+
+			<p>The outcomes of our studies will identify global gene
+				expression and epigenetic chromatin landscape changes that occur in
+				fetal hypothalamic NSPCs upon GC exposure and will provide insights
+				into maternal and childhood stress-induced alterations in
+				hypothalamic function that impact reproductive and metabolic
+				functions in adult life.</p>
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

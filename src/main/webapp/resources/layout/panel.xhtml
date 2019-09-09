@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<!-- 3/13/14 cmw
+ flat UI panel -->
+
+
+	<composite:interface>
+		<!-- title -->
+		<composite:attribute name="title" displayName="title" type="String" required="false" />
+		<!-- 	style - possible choices are default, primary, success, info, warning and danger
+			see Bootstap 3 components for more info http://getbootstrap.com/components/#panels -->
+		<composite:attribute name = "style" displayName = "style" type = "String" required= "false" default="default"/>
+	</composite:interface>
+
+	<composite:implementation>
+		<div class="panel panel-#{cc.attrs.style}">
+			<ui:fragment rendered="#{cc.attrs.title != null}">
+				<div class="panel-heading">#{cc.attrs.title}</div>
+			</ui:fragment>
+			<div class="panel-body">
+				<ui:fragment rendered="#{cc.attrs.curated != null}">
+					<p class="curated">#{cc.attrs.curated}</p>
+				</ui:fragment>
+				<composite:insertChildren />
+			</div>
+		</div>
+
+	</composite:implementation>
+
+</ui:composition>

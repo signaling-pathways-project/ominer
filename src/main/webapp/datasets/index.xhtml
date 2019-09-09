@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	template="/WEB-INF/templates/detail.xhtml">
+
+	<ui:param name="dataset" value="#{datasetService.selectedDataset}" />
+	
+	
+	<ui:define name="title">Signaling Pathways - Datasets
+
+	</ui:define>
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Datasets" />
+		</ui:include>
+	</ui:define>
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li class="active">Datasets</li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="detail">
+		<p:panel styleClass="primary" toggleable="false" collapsed="false">
+			<!-- Hidden content for the graphs for future implementation -->
+			<div id="charts-carousel" class="charts-carousel carousel slide active hide" data-ride="carousel">
+				<!-- Wrapper for slides -->
+				<div class="clearfix">
+					<div class="carousel-controls pull-left" id="play-pause">
+						<span class="fui-pause active"></span>
+						<span class="fui-play"></span>
+					</div>
+					<div id="captions" class="pull-left captions">
+						<div class="carousel-caption item-00">
+			    			<b>Data breakdown by Molecules</b>
+			    			<div class="summary"></div>
+			    		</div>
+			    		<div class="carousel-caption item-01">
+			    			<b>Data breakdown by RNA Source</b>
+			    			<div class="summary"></div>
+			    		</div>
+			    		<div class="carousel-caption item-02">
+			    			<b>Data breakdown by Species</b>
+			    			<div class="summary"></div>
+			    		</div>
+					</div>
+					<ol class="carousel-indicators pull-right">
+						<li data-target="#charts-carousel" data-slide-to="0" class="active"></li>
+						<li data-target="#charts-carousel" data-slide-to="1"></li>
+						<li data-target="#charts-carousel" data-slide-to="2"></li>
+					</ol>
+				</div>
+				<div class="carousel-inner" role="listbox">
+					<div class="item active first-slide" rel="item-00">
+						<div id="molChart" class="chart">
+						</div>
+					</div>
+					<div class="item" rel="item-01">
+						<div id="rnaChart" class="chart">
+						</div>
+					</div>
+					<div class="item" rel="item-02">
+						<div id="sepeciesChart" class="chart">
+						</div>
+					</div>
+				</div>
+				<!-- Controls -->
+				<a class="left carousel-control" href="#charts-carousel" role="button" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control" href="#charts-carousel" role="button" data-slide="next">
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+			
+			<script type="text/template" class="dataSummary">
+				<p class="lead">Currently curating <b>{{rc.numberOfDataPoints}}</b> data points, <b>{{rc.numberOfExperiments}}</b> experiments, <b>{{rc.numberOfNuclearReceptors}}</b> nuclear receptors, <b>{{rc.numberOfLigands}}</b> ligands, <b>{{rc.numberOfCoregulators}}</b> coregulators and <b>{{rc.numberOfTissueAndCells}}</b> tissues and cell lines. </p>
+			</script>
+			<!-- End hidden content for the graphs -->
+			<div id="datasets">
+				<p><span id="num-data-sets">0</span> datasets found. Use the filter to narrow the listings.</p>
+				<div class="row filter">
+					<div class="col-md-3" id="dataset-type">
+						<h6><span class="label label-info">Dataset Type</span></h6>
+						<label class="checkbox" for="checkbox4">
+				            <input type="checkbox" value="Transcriptomic" name="type-filter" id="checkbox4" data-toggle="checkbox" class="custom-checkbox" />
+				            <span class="icons">
+				            	<span class="icon-unchecked"></span>
+				            	<span class="icon-checked"></span>
+				            </span>
+							Transcriptomic <!-- (<span id="t-total" rel="Transcriptomic">0</span>) -->
+						</label>
+						<label class="checkbox" for="checkbox5">
+							<input type="checkbox" value="Cistromic" name="type-filter" id="checkbox5" data-toggle="checkbox" class="custom-checkbox" />
+				            <span class="icons">
+				            	<span class="icon-unchecked"></span>
+				            	<span class="icon-checked"></span>
+				            </span>
+							Cistromics (ChIP-Seq)
+						</label>
+					</div>
+					<div class="col-md-3">
+						<h6><span class="label label-info">Pathway Module</span></h6>
+						<div class="form-group" id="pathway-group">
+							<select id="pathway-modules" name="pathway-modules" class="form-control pathway-modules">
+								<option value="all" tname="all">All Signaling Pathway Module Categories</option>
+							</select>
+							<input id="pathway-target" value="all" name="pathway" type="text" placeholder="" class="form-control hide" />
+						</div>
+					</div>
+					<div class="col-md-3">
+						<h6><span class="label label-info">Biosample</span></h6>
+						<div class="form-group" id="tissue-cell-line-group">
+							<label for="tissue-cell-line"><small>Physiological System</small></label>
+						    <select id="tissue-cell-line" name="tissue-cell-line" class="form-control">
+								<option value="all">All</option>
+							</select>
+							<br />
+							<script type="text/template" class="tissues-and-cell-lines-option">
+								<option value="{{rc.id}}" tname="{{rc.name}}">{{rc.name}}</option>
+							</script>
+							<script type="text/template" class="tissue-cell-line-sub-template">
+								<div class="tissue-cell-line-sub">
+									<!-- <label for="tissue-cell-line-{{rc.parent}}"><small>Organ</small></label> -->
+									<select id="tissue-cell-line-{{rc.parent}}" name="tissue-cell-line-sub" class="form-control">
+										<option value="{{rc.parent}}">All</option>
+									</select>
+								</div>
+							</script>
+<!-- 							<input id="tissue-category-target" value="all" name="tissue-category" type="text" placeholder="" class="form-control hide" />
+ -->							<input id="physiological-systems-target" displaytext="All" value="all" name="physiological-systems" type="hidden" class="form-control hide" />
+						
+						</div>
+					</div>
+					<div class="col-md-3" id="species">
+						<h6><span class="label label-info">Species</span></h6>
+						<label class="checkbox" for="species1">
+				            <input type="checkbox" value="13" name="species-filter" id="species1" data-toggle="checkbox" class="custom-checkbox" />
+				            <span class="icons">
+				            	<span class="icon-unchecked"></span>
+				            	<span class="icon-checked"></span>
+				            </span>
+				            Human
+				        </label>
+				        <label class="checkbox" for="species2">
+				            <input type="checkbox" value="16" name="species-filter" id="species2" data-toggle="checkbox" class="custom-checkbox" />
+				            <span class="icons">
+				            	<span class="icon-unchecked"></span>
+				            	<span class="icon-checked"></span>
+				            </span>
+				            Mouse
+				        </label>
+				        <label class="checkbox" for="species3">
+				            <input type="checkbox" value="17" name="species-filter" id="species3" data-toggle="checkbox" class="custom-checkbox" />
+				            <span class="icons">
+				            	<span class="icon-unchecked"></span>
+				            	<span class="icon-checked"></span>
+				            </span>
+				            Rat
+				        </label>
+					</div>
+				</div>
+				<hr />
+				<table id="datasetsTable" class="display" cellspacing="0" width="100%">
+			        <thead>
+			            <tr>
+			                <th id="hs-symbol" class="col-md-2">DOI</th>
+			                <th class="col-md-8">Dataset Name</th>
+			                <th class="col-md-8">Experiments</th>
+			                <th class="col-md-2">Release Date</th>
+			                <th class="">Time in Seconds</th>
+			                <!-- <th class="">T IDs</th> -->
+			            </tr>
+			        </thead>
+			        <tfoot>
+			            <tr>
+			                <th id="hs-symbol">DOI</th>
+			                <th>Dataset Name</th>
+			                <th>Experiments</th>
+			                <th>Release Date</th>
+			                <th>Time in Seconds</th>
+			                <!-- <th class="">T IDs</th> -->
+			            </tr>
+			        </tfoot>
+			        <tbody id="datasetsTableBody">
+			        </tbody>
+			    </table>
+			    <script type="text/template" class="datasetRow">
+					<tr data-href="#{request.contextPath}/datasets/index.jsf?doi={{rc.doi}}">
+						<td>{{rc.doi}}</td>
+						<td><a target="_blank" href="#{request.contextPath}/datasets/index.jsf?doi={{rc.doi}}">{{rc.name}}</a></td>
+						<td>{{rc.expSize}}</td>						
+						<td>{{rc.releaseDate}}</td>
+						<td>{{rc.sorbyDate}}</td>
+						<!-- <th class="">{{rc.tissuesCategoriesID}}</th> -->
+				    </tr>
+				</script>
+				<script type="text/template" class="402-error">
+				<tr>
+					<td colspan="4">
+						<div class="alert alert-warning" role="alert"><h6>Your request timed out. Please try refreshing the page again.</h6></div>
+					</td>
+				</tr>
+				</script>
+			</div>
+		</p:panel>
+	</ui:define>
+
+	<ui:define name="datasetsjs">
+		<h:outputScript library="js" name="jquery.dataTables.min.js" target="body" />
+		<h:outputScript library="js" name="underscore-min.js" target="body" />
+		<h:outputScript library="js" name="query-and-datasets-common.js" target="body" />
+		<h:outputScript library="js" name="exp-info.js" target="body" />
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+	<composite:interface>
+		<composite:attribute name="title" type="java.lang.String"
+			required="true" />
+		<composite:attribute name="text" type="java.lang.String"
+			required="false" />
+		<composite:attribute name="image" type="java.lang.String"
+			required="true" />
+
+	</composite:interface>
+	<composite:implementation>
+		<p:panel styleClass="welcomePanel">
+			<h:outputText value="#{cc.attrs.title}" styleClass="welcomeTitle" />
+			<br/>
+			<h:outputText value="#{cc.attrs.text}" styleClass="welcomeText" />
+			<br/>
+			<h:graphicImage library="gfx" name="#{cc.attrs.image}" styleClass="welcomeImage" />
+		</p:panel>
+	</composite:implementation>
+</ui:composition>

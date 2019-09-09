@@ -1,0 +1,114 @@
+<HTML>
+
+<HEAD>
+<TITLE>Source Code Testbed</TITLE>
+<SCRIPT src="source_code.js"></SCRIPT>
+<SCRIPT>
+<!--
+
+var nextyear = new Date();
+nextyear.setFullYear(nextyear.getFullYear() + 1);
+
+// -->
+</SCRIPT>
+</HEAD>
+
+<BODY>
+
+<H1>Source Code Testbed</H1>
+
+<P>This file is for testing the functions in the source_code.js file.</P>
+
+
+<H2>Query String Functions</H2>
+
+<P>Click these links to reload this page</P>
+
+<UL>
+
+<LI><A href="source_code.html?c=54692812393433531129">with a source
+code in the URL</A>,</LI>
+
+<LI><A href="source_code.html?foo=bar&nugget=bumpy">with irrelevant
+query string stuff</A>,</LI>
+
+<LI><A
+href="source_code.html?c=54692812393433531129&crunchy=frog">with a
+source code and some irrelevant stuff</A> and</LI>
+
+<LI><A href="source_code.html">without a source code</A>.</LI>
+
+</UL>
+
+<P>Click here to see just <A href="javascript:alert(stripQuery())">the
+query string part of the URL</A>.</P>
+
+<P>Click here to see <A href="javascript:alert(queryString('c'))">the
+value of the `c' key in the URL</A>.
+
+
+<H2>Cookie Functions</H2>
+
+<P>Now to test the cookie functions. Set your browser to alert you
+when cookies are set, and click these links:</P>
+
+<!-- <P>First, <A href="javascript:alert(document.cookie)">erase all
+cookies for this document</A>.</P> -->
+
+<UL>
+
+<LI><A href="javascript:cookieSet('homer', 'donut')">Set cookie
+`homer' to the value `donut'</A> with no path or expiry.</LI>
+
+<LI><A href="javascript:alert(cookieGet('homer'))">Show value of
+cookie `homer'</A>.</LI>
+
+<LI><A href="javascript:cookieDelete('homer')">Delete
+`homer'</A></LI>
+
+<LI><A href="javascript:cookieSet('marge', 'tall blue hair', nextyear,
+'/')">Set cookie `marge' to the value `tall blue hair'</A> with expiry
+none year from now and path `/'.</LI>
+
+<LI><A href="javascript:alert(cookieGet('marge'))">Show value of
+cookie `marge'</A>.</LI>
+
+<LI><A href="javascript:cookieDelete('marge', '/')">Delete
+`marge'</A></LI>
+
+<LI><A href="javascript:alert(document.cookie)">Show all
+cookies for this document</A></LI>
+
+</UL>
+
+
+<H2>Obfuscation Functions</H2>
+
+<UL>
+
+<!-- 54692812393433531129 -->
+
+<LI><A
+href="javascript:alert(encodeSourceCode('54692812393433531129'))">Obfuscate the
+source code 54692812393433531129</A></LI>
+
+<LI><A
+href="javascript:alert(decodeSourceCode(encodeSourceCode('54692812393433531129')))">Decode
+the encoding of 54692812393433531129</A></LI>
+
+<LI><A
+href="javascript:alert(SourceCode(encodeSourceCode('54692812393433531129')))">Same
+as above, but with wrapper function SourceCode()</A></LI>
+
+<LI><A href="javascript:alert(sourceCodeCookieSet())">Set the source
+code cookie</A></LI>
+
+<LI><A href="javascript:alert(cookieGet('C'))">Show the source code
+cookie</A></LI>
+
+</UL>
+
+
+</BODY>
+
+</HTML>

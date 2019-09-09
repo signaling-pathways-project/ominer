@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+<!--  large page header -->
+<ui:composition>
+<!--Begin CTCT Sign-Up Form-->
+	<!-- EFD 1.0.0 [Thu Sep 03 15:48:02 EDT 2015] -->
+	<div class="modal" id="cc-signup" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+					<h4 class="modal-title">Sign up to stay in touch!</h4>
+				</div>
+				<div class="modal-body">
+					<div class="ctct-embed-signup" style="font: 16px Helvetica Neue, Arial, sans-serif; font: 1rem Helvetica Neue, Arial, sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased;">
+						<div style="color:#5b5b5b; background-color:#e8e8e8; border-radius:5px;">
+						    <span id="success_message" style="display:none;">Thanks for signing up!</span>
+							<form data-id="embedded_signup:form" class="ctct-custom-form Form" name="embedded_signup" method="POST" action="https://visitor2.constantcontact.com/api/signup">
+								<p>NURSA occasionally sends newsletters describing updates to the website, new datasets, funding opportunities, meetings, etc. Sign up here to receive these newsletters.</p>
+								<!-- The following code must be included to ensure your sign-up form works properly. -->
+								<input data-id="ca:input" type="hidden" name="ca" value="9ecea3a7-9a8d-437e-8e2f-a0c70285609a" />
+								<input data-id="list:input" type="hidden" name="list" value="1542783642" />
+								<input data-id="source:input" type="hidden" name="source" value="EFD" />
+								<input data-id="required:input" type="hidden" name="required" value="list,email" />
+								<input data-id="url:input" type="hidden" name="url" value="" />
+								<p data-id="Email Address:p" ><label data-id="Email Address:label" data-name="email" class="ctct-form-required">Email Address</label> <input data-id="Email Address:input" type="text" name="email" value="" maxlength="80" /></p>
+								<p data-id="First Name:p" ><label data-id="First Name:label" data-name="first_name">First Name</label> <input data-id="First Name:input" type="text" name="first_name" value="" maxlength="50" /></p>
+								<p data-id="Last Name:p" ><label data-id="Last Name:label" data-name="last_name">Last Name</label> <input data-id="Last Name:input" type="text" name="last_name" value="" maxlength="50" /></p>
+								<button type="submit" class="Button ctct-button Button--block Button-secondary" data-enabled="enabled">Sign Up</button>
+						    </form>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<p class="ctct-form-footer">By submitting this form, you are granting: NURSA permission to email you. You may unsubscribe via the link found at the bottom of every email.  (See our <a href="http://www.constantcontact.com/legal/privacy-statement" target="_blank">Email Privacy Policy</a> for details.) Emails are serviced by Constant Contact.</p>
+				</div>
+      		</div>
+		</div>
+	</div>
+</ui:composition> 
+</html>

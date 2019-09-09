@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+   xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+        http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+   <!-- using pu= NURSA since code( Resources) define emf as such -->
+   <persistence-unit name="NURSA">
+   		<!--  <jta-data-source>java:jboss/datasources/nursaTestDS</jta-data-source>-->
+      <!-- Using real db in test -->
+      <jta-data-source>java:/jdbc/nursa</jta-data-source>
+      <properties>
+         <property name="hibernate.hbm2ddl.auto" value="update" />
+        <property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.use_sql_comments" value="true" />
+      </properties>
+   </persistence-unit>
+</persistence>

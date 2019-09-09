@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+<!-- 1/23/14 cmw
+ flat UI input text field with support for CSS and messaging for validation failures -->
+
+
+	<composite:interface>
+		<composite:attribute name="label" displayName="the label"
+			type="String" required="false" />
+		<composite:attribute name="required flag" displayName="true or false - if component requires a value"
+			type="String" required="false" default= "false"/>
+			<!-- TODO add code for passing in other validators -->
+		
+	</composite:interface>
+	
+	<composite:implementation>
+	
+	<div class="form-group #{inputField.valid?'':'has-error'}">
+									<h:outputLabel value="First Name*" for="firstName" 
+									styleClass = "#{inputField.valid?'':'error'}"/>
+									<h:inputText value="" class="form-control input-sm"
+										id="firstName" required="true" binding = "#{inputField}"/>
+								</div>
+	
+	</composite:implementation>
+	
+	</ui:composition>

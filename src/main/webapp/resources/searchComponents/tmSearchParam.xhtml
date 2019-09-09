@@ -1,0 +1,124 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+	<composite:interface>
+		<composite:attribute name="tmSearchParam"
+			type="edu.bcm.dldcc.big.nursa.model.ominer.TranscriptomineSearchParam"
+			required="true" />
+	</composite:interface>
+	<composite:implementation>
+		<h:panelGrid columns="9">
+			<!-- Operator -->
+			<p:selectOneMenu value="#{cc.attrs.tmSearchParam.operator}">
+				<f:selectItem itemLabel="Select One" itemValue=""
+					noSelectionOption="true" />
+				<f:selectItem itemLabel="And" itemValue="and" />
+				<f:selectItem itemLabel="Or" itemValue="or" />
+				<f:selectItem itemLabel="Not" itemValue="not" />
+			</p:selectOneMenu>
+			<!-- Gene -->
+			<p:outputPanel id="genePanel">
+				<p:selectOneMenu value="#{cc.attrs.tmSearchParam.searchChoice}">
+					<f:selectItem itemLabel="Any" itemValue="any" />
+					<f:selectItem itemLabel="Gene(s)" itemValue="Single Gene" />
+					<f:selectItem itemLabel="GO Term(s)" itemValue="GO Term" />
+					<f:selectItem itemLabel="Disease Term(s)" itemValue="Disease Term" />
+					<f:selectItem itemLabel="Upload Gene List"
+						itemValue="Upload Gene List" />
+					<p:ajax update="genePanel" />
+				</p:selectOneMenu>
+				<h:panelGrid columns="2"
+					rendered="#{cc.attrs.tmSearchParam.searchChoice eq 'Single Gene'}">
+					<h:outputText value="Gene(s): " styleClass="labelText" />
+
+					<p:autoComplete value="#{cc.attrs.tmSearchParam.gene}"
+						completeMethod="#{geneListProducer.completeGeneName}"
+						forceSelection="true" styleClass="informationText"
+						converter="geneConverter" multiple="true" />
+				</h:panelGrid>
+				<h:panelGrid columns="2"
+					rendered="#{cc.attrs.tmSearchParam.searchChoice eq 'GO Term'}">
+					<h:outputText value="GO Term(s): " styleClass="labelText" />
+
+					<p:autoComplete value="#{cc.attrs.tmSearchParam.goTerm}"
+						completeMethod="#{goTermListProducer.completeGOTermName}"
+						forceSelection="true" styleClass="informationText"
+						converter="goTermConverter" multiple="true" />
+				</h:panelGrid>
+				<h:panelGrid columns="2"
+					rendered="#{cc.attrs.tmSearchParam.searchChoice eq 'Disease Term'}">
+					<h:outputText value="Disease(s): " styleClass="labelText" />
+
+					<p:autoComplete value="#{cc.attrs.tmSearchParam.disease}"
+						completeMethod="#{diseaseListProducer.completeDiseaseName}"
+						forceSelection="true" styleClass="informationText"
+						converter="diseaseConverter" multiple="true" var="disease"
+						itemLabel="#{disease.name}" itemValue="#{disease}" />
+				</h:panelGrid>
+
+				<h:panelGrid columns="2"
+					rendered="#{cc.attrs.tmSearchParam.searchChoice eq 'Upload Gene List'}">
+					<h:outputText value="Gene List: " styleClass="labelText" />
+
+					<p:outputPanel id="fileArea">
+
+					</p:outputPanel>
+
+				</h:panelGrid>
+			</p:outputPanel>
+			<!-- Fold Change -->
+			<p:outputPanel id="foldChange">
+				<h:panelGrid columns="2">
+					<p:selectOneMenu
+						value="#{cc.attrs.tmSearchParam.foldChangeOperator}">
+						<f:selectItems value="#{enumOperatorProducer.searchOperators}" />
+					</p:selectOneMenu>
+					<p:inputText value="#{cc.attrs.tmSearchParam.foldChangeValue}" />
+				</h:panelGrid>
+			</p:outputPanel>
+			<!-- Direction -->
+			<p:selectOneMenu value="#{cc.attrs.tmSearchParam.direction}">
+				<f:selectItem itemLabel="Either" itemValue="Either" />
+				<f:selectItem itemLabel="Up Only" itemValue="Up" />
+				<f:selectItem itemLabel="Down Only" itemValue="Down" />
+			</p:selectOneMenu>
+			<!-- Significance -->
+			<p:outputPanel id="significance">
+				<h:panelGrid columns="2">
+					<p:selectOneMenu
+						value="#{cc.attrs.tmSearchParam.significanceOperator}">
+						<f:selectItems value="#{enumOperatorProducer.searchOperators}" />
+					</p:selectOneMenu>
+
+					<p:inputText value="#{cc.attrs.tmSearchParam.significance}" />
+				</h:panelGrid>
+			</p:outputPanel>
+			<!-- Molecule -->
+			
+			<!-- Species -->
+			<p:selectOneMenu value="#{cc.attrs.tmSearchParam.species}"
+				converter="speciesConverter">
+				<f:selectItems value="#{speciesListProducer.species}" var="species"
+					itemLabel="#{species.name}" itemValue="#{species}" />
+			</p:selectOneMenu>
+			<!-- Tissue -->
+			<p:selectOneMenu value="#{cc.attrs.tmSearchParam.tissue}"
+				converter="tissueConverter">
+				<f:selectItems value="#{tissueListProducer.tissues}" var="tissue"
+					itemLabel="#{tissue.name}" itemValue="#{tissue}" />
+			</p:selectOneMenu>
+			<!-- Cell Line -->
+			<p:selectOneMenu value="#{cc.attrs.tmSearchParam.cellLine}"
+				converter="cellLineConverter">
+				<f:selectItems value="#{cellLineListProducer.cellLines}"
+					var="cellLine" itemLabel="#{cellLine.name}" itemValue="#{cellLine}" />
+			</p:selectOneMenu>
+		</h:panelGrid>
+	</composite:implementation>
+</ui:composition>

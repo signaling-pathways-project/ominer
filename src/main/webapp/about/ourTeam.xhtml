@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Informatics Team</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="About" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="About" outcome="/about/index.jsf" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Our Team</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<p:panel header="Biocuration Team" styleClass="primary faqs">
+			<div class="row bios">
+				<div class="col-md-6">
+					<img width="150" height="150" src="#{resource['/images/about/neil.jpg']}" alt="..." class="img-rounded image-left" />
+					<h6>Neil McKenna, Ph.D.</h6>
+					Dr. McKenna is a Principal Investigator for the Nuclear Receptor Signaling Atlas Consortium and leads the NURSA informatics team. Dr. McKenna received his Ph.D. from the National University of Ireland at Galway, and trained under Dr Bert O’Malley at Baylor College of Medicine on characterization of nuclear receptor complexes. He founded the Nuclear Receptor Signaling Atlas (NURSA) website in 2003 and has led its development since. In 2005 he founded the MEDLINE-indexed journal, Nuclear Receptor Signaling, of which he is currently Editor-In-Chief along with Dr. O’Malley and Dr. Ronald Evans. Dr. McKenna has previously led NURSA’s involvement in the National Institute of Diabetes, Digestive and Kidney Disease’s Consortium Interconnectivity Network (dkCOIN, now dkNET). Dr. McKenna serves as an advisor to NIH on biomedical big data as part of the BD2K initiative, and his primary interest is in developing internet-based approaches to helping researchers share and leverage biomedical research data. He has received supplemental funding to develop a model for connecting journal articles with their associated datasets to facilitate mining of these datasets.
+				</div>
+				<div class="col-md-6">
+					<img width="150" height="150" src="#{resource['/images/about/Ochsner-Scott.jpg']}" alt="..." class="img-rounded image-left" />
+					<h6>Scott Ochsner, Ph.D.</h6>
+					Dr. Scott Ochsner received his Ph.D. from Baylor College of Medicine. He trained in bioinformatics under Dr. Gretchen 
+					Darlington characterizing liver progenitor cell transcriptomics. Along with Dr. McKenna, he helps develop and curate 
+					Transcriptomine for the Nuclear Receptor Signaling Atlas.
+				</div>
+			</div>
+		</p:panel>
+		<p:panel header="Biomedical Informatics Team" styleClass="primary faqs">
+			<div class="row bios">
+				<div class="col-md-6">
+					<img width="150" height="150" src="#{resource['/images/about/becnel.jpg']}" alt="..." class="img-rounded image-left" />
+					<h6>Lauren Becnel, Ph.D.<br/></h6>
+					Lauren Becnel, Ph.D. is the technical lead for NURSA and provides program management and direct supervision of NURSA 
+					biomedical informatics staff members. Dr. Becnel is also the Director of the Biomedical Informatics Group of the 
+					NCI-Designated Dan L. Duncan Cancer Center and Co-Director of its Biostatistics and Informatics Shared Resource 
+					with appointments as an Assistant Professor in the Departments of Medicine and Molecular and Cell Biology. She has 
+					been Informatics PI or Technical Lead on a number of national and regional multi-institutional consortium projects 
+					including the BCM site repository of the AIDS and Cancer Specimen Resource 
+					(<a href="http://www.acsr.org" target="_blank">www.acsr.org</a>), dkCOIN NIDDK cloud-based data sharing project 
+					(<a href="http://www.dkcoin.org" target="_blank">www.dkcoin.org</a>), and the Prostate SPORE Biomedical 
+					Informatics Network. She also serves on the Advisory Panel for the CDISC (Clinical Data Interchange Standards Consortium) 
+					BRIDG Model and Biomedical 'Omics Research Group of the Association of Biomolecular Resource Facilities.
+				</div>
+				<div class="col-md-6">
+					<img width="150" height="150" src="#{resource['/images/about/Yolanda-Darlington.jpg']}" alt="..." class="img-rounded image-left" />
+					<h6>Yolanda Darlington, Ph.D.</h6>
+					Yolanda Darlington, Ph.D., is the biomedical informatics project manager of the NURSA Bioinformatics Hub and is 
+					responsible for organizing and leading efforts of the development team by monitoring day-to-day project progress, 
+					scope, timelines, and work product delivery. She works with the Co-PIs, Curation faculty, Dr. Becnel, NURSA Beta 
+					Testing Team and other key stakeholders to capture software requirements and communicates these to the development 
+					team using an adapted Agile development strategy. She received her PhD in cell and molecular biology.
+				</div>
+			</div>
+			<hr />
+			<div class="row bios">
+				<div class="col-md-6">
+					<!-- <img width="150" height="150" src="#{resource['/images/about/neil.jpg']}" alt="..." class="img-rounded image-left" /> -->
+					<h6>Apollo McOwiti, M.S.</h6>
+					Apollo McOwiti, M.S., is a senior Java Enterprise Edition software engineer and information architect, with 
+					considerable experience in the design and implementation of software service oriented architecture. He is responsible 
+					for converting software requirements from Dr. Darlington into architecture documentation for the NURSA developer team.  
+					Mr. McOwiti holds a Master’s degree in Chemistry, with over 15 years’ experience with Java Enterprise, SOA, and 
+					enterprise architecture.
+				</div>
+				<div class="col-md-6">
+					<img width="150" height="150" src="#{resource['/images/about/Wasula-Kankanamge.jpg']}" alt="Wasula Kankanamge" class="img-rounded image-left" />
+					<h6>Wasula Kankanamge</h6>
+					Wasula Kankanamge is a web developer who specializes in Node.js, JavaScript, jQuery, Bootstrap and other user interface 
+					technologies. He acts as the user interface and experience developer for NURSA who also designs and implements data 
+					visualization components for the Hub and its tools. Mr. Kankanamge brings over eight years’ experience to the project.
+				</div>
+			</div>
+			<hr />
+			<div class="row bios">
+				<div class="col-md-6">
+					<!-- <img width="150" height="150" src="#{resource['/images/about/neil.jpg']}" alt="..." class="img-rounded image-left" /> -->
+					<h6>Alexey Naumov</h6>
+					Alexey Naumov is a Java Enterprise Edition software engineer with experience in data aggregation, integration through 
+					ETL (extraction, transformation and loading), analysis and mining. He utilizes software architectural specifications 
+					from Mr. McOwiti to enhance existing and develop new components of the NURSA Hub and modules within its toolsets. 
+					xMr. Naumov has over 5 years’ experience in JEE programming, enterprise technologies and relational/NoSQL database experience.
+				</div>
+			</div>
+		</p:panel>
+	</ui:define>
+
+</ui:composition>

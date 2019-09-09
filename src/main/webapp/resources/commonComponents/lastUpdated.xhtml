@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<!-- cmw 1/21/14
+	outputs last updated time for the site
+	uses an application wide variable for the data
+	since I don't want to change pattern logic every time this appears, 
+	it's going in here to put it in one place :)
+	-->
+
+	<composite:interface
+		displayName="displays the last time the site was updated">
+		<composite:attribute name="styleClass"
+			displayName="the CSS class for the surrounding span" type="String"
+			required="false" default="updated" />
+
+	</composite:interface>
+	<composite:implementation>
+
+		<!-- sitewide variables  -->
+		<o:importConstants type="edu.bcm.dldcc.big.nursa.util.SiteVariables" />
+
+		<p class="#{cc.attrs.styleClass}">
+			<b>Last updated: </b>
+			<h:outputText value="#{SiteVariables.LAST_UPDATED}">
+				<f:convertDateTime pattern="MMMM d, yyyy" />
+			</h:outputText>
+		</p>
+
+	</composite:implementation>
+</ui:composition>

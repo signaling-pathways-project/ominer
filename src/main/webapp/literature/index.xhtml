@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/WEB-INF/templates/template.xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:cc="http://java.sun.com/jsf/composite/commonComponents">
+	<ui:param name="navigationTop" value="LITERATURE" />
+	<ui:define name="body">
+		<h:form id="literatureForm">
+			<div id="literatureHomeSearchBar">Literature Search Bar</div>
+			<h:panelGrid columns="2">
+				<p:panel header="Filter">
+					<p:accordionPanel multiple="true">
+						<p:tab title="Category">
+							<p:selectManyCheckbox
+								value="#{literatureSearchController.selectedLiteratureSearch.category}"
+								layout="pageDirection" converter="referenceCategoryConverter">
+								<f:selectItems
+									value="#{referenceCategoryListProducer.referenceCategorys}"
+									var="reference" itemLabel="#{reference.name}"
+									itemValue="#{reference}" />
+								<p:ajax update=":literatureForm:literatureSearchResults"
+									listener="#{literatureSearchController.updateSearch}" />
+							</p:selectManyCheckbox>
+						</p:tab>
+						<p:tab title="Species">
+							<p:selectManyCheckbox
+								value="#{literatureSearchController.selectedLiteratureSearch.species}"
+								layout="pageDirection" converter="speciesConverter">
+								<f:selectItems value="#{speciesListProducer.species}"
+									var="species" itemLabel="#{species.name}"
+									itemValue="#{species}" />
+								<p:ajax update=":literatureForm:literatureSearchResults"
+									listener="#{literatureSearchController.updateSearch}" />
+							</p:selectManyCheckbox>
+						</p:tab>
+						<p:tab title="Research Area">
+							<p:selectManyCheckbox
+								value="#{literatureSearchController.selectedLiteratureSearch.researchArea}"
+								layout="pageDirection" converter="researchAreaConverter">
+								<f:selectItems value="#{researchAreaListProducer.researchAreas}"
+									var="ra" itemLabel="#{ra.name}" itemValue="#{ra}" />
+								<p:ajax update=":literatureForm:literatureSearchResults"
+									listener="#{literatureSearchController.updateSearch}" />
+							</p:selectManyCheckbox>
+						</p:tab>
+						<p:tab title="Journal">
+							<p:selectManyCheckbox
+								value="#{literatureSearchController.selectedLiteratureSearch.journal}"
+								layout="pageDirection" converter="journalConverter">
+								<f:selectItems value="#{journalListProducer.journals}"
+									var="journal" itemLabel="#{journal.name}"
+									itemValue="#{journal}" />
+								<p:ajax update=":literatureForm:literatureSearchResults"
+									listener="#{literatureSearchController.updateSearch}" />
+							</p:selectManyCheckbox>
+						</p:tab>
+						<p:tab title="My Favorites" rendered="#{identity.loggedIn}">
+						</p:tab>
+					</p:accordionPanel>
+				</p:panel>
+				<p:dataList id="literatureSearchResults" var="literature"
+					value="#{literatureSearchController.searchResults}"
+					paginator="true" rows="10"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10,15">
+
+					<cc:literatureView
+						reference="#{literature}" />
+					<br />
+
+				</p:dataList>
+			</h:panelGrid>
+			<div class="buttonRight">
+				<p:commandButton icon="ui-icon ui-icon-plusthick"
+					title="Add New Literature" action="#{referenceController.add}"
+					oncomplete="editLiteratureWidget.show()"
+					update=":literatureForm:editLiterature" process="@this"
+					rendered="#{identity.hasRole('editor', 'NURSA', 'GROUP')}" />
+			</div>
+			<div style="clear: both" />
+
+			<p:dialog id="editLiterature" header="Edit Literature"
+				widgetVar="editLiteratureWidget" resizable="false" modal="true">
+				<!-- STUFF -->
+				<cc:literatureEdit
+					reference="#{referenceController.selectedReference}" />
+				<div style="clear: both" />
+				<div class="buttonRight">
+					<p:commandButton value="Cancel"
+						action="#{referenceController.cancel}" update=":literatureForm"
+						oncomplete="editLiteratureWidget.hide()" process="@none" />
+
+					<p:commandButton value="Save" action="#{referenceController.save}"
+						update=":literatureForm" oncomplete="editLiteratureWidget.hide()"
+						process="@parent" />
+
+				</div>
+				<div style="clear: both" />
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

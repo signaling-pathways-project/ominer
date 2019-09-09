@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value ="NURSA-funded Research Projects" outcome = "/funding/nursa_projects"/></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Defining Lipidomic Signatures of Nuclear Receptor Activity Using MS/MSALL</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/Repa.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>Joyce Repa</strong><br/>
+					UT Southwestern<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			Nuclear receptors are ligand-activated transcription factors that play essential roles in virtually all aspects of reproduction, development, growth, metabolism, and aging. Ligands/hormones, which are primarily small lipophilic molecules, have been identified for a subset of receptors. Efforts are still underway to identify additional agonists/antagonists and modulators to fine-tune the activities of nuclear receptors in hopes of developing novel therapeutic strategies to impact disease.<br /><br />
+
+			Many nuclear receptors, particularly those deemed the “adopted orphan” receptors, have profound effects on lipid metabolism. This proposal describes the use of an innovative technology, MS/MSALL, to define the lipidomes of cells, tissues, and organs following manipulations to impact receptor activity. Our infusion-based MS/MSALL technique, using an AB Sciex Triple TOF 5600+®, can identify over 400 lipids from all major classes (accuracy &lt;2ppm mass accuracy, 30-40K resolution for TOF scan range 200 -1200 Da). This lipidomic analysis can be performed on small samples (20-30 µl plasma or &lt;5 mg tissue) and is relatively high-throughput allowing for the analysis of samples per day. We have developed associated computer software for summary and statistical evaluation of these large data sets. <br /><br />
+
+			Using this technology we will complete the following specific aims: <br />
+
+			Specific Aim 1. Define the LXR lipidome in cell culture models (primary macrophages and hepatocytes) and in plasma and tissues of wildtype versus Lxr-/- mice following exposure to a variety of LXR ligands. The lipidomes for an assortment of endogenous, synthetic, and “less-specific” agonists will be compared. <br /><br />
+
+			Specific Aim 2. Characterize the lipidome signatures for FXR and PPAR&amp;61537; in mouse plasma and tissues following ligand exposure. Again, endogenous, synthetic, and natural product ligands will be used and resulting lipidomes compared.<br /><br />
+
+			The results will provide exciting data to link nuclear receptor biology to lipid processes in cells and tissues relevant to metabolic disease: macrophage/atherosclerosis; hepatocyte/NAFLD. LXRs were chosen as our first target (SA1) due to anticipated changes in sterol and fatty acid levels, which can serve to further validate the method. However, this technology will likely reveal changes in other lipid classes never before measured in these models, and provide important findings for future hypothesis-driven studies. PPAR&amp;0000945; and FXR were chosen as our second targets (SA2) as these receptors are recognized and/or proposed targets for lipid-modifying therapies.
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

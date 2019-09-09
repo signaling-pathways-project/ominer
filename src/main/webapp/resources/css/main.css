@@ -1,0 +1,1604 @@
+@CHARSET "UTF-8";
+/* bumping down the font size from what comes with Flat UI Kit - ultimately, this 
+should be done via LESS and recompiling the CSS files in the kit, but for testing purposes,
+this is fine */
+body, p {
+	font-size: 15px;
+	line-height: 1.5em;
+}
+
+h1 {
+	font-size: 26px;
+} 
+h2 {
+	font-size: 24px;
+}
+h3, h4, h5, h6 {
+	font-size: 18px;
+}
+
+/* styles for home page header */
+.header {
+	background: #2d558d;
+	position: relative;
+	margin-bottom: 5px;
+	/*border-bottom: 2px solid #0764a0;*/
+}
+
+a .title, a .title:hover, a .small-title, a .small-title:hover {
+	font-family: 'PT Sans', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	color: #e6e7e8;
+	line-height: 62px;
+	font-size: 40px;
+}
+
+a .small-title, a .small-title:hover {
+	/*font-size: 50px;*/
+}
+
+
+a .subtitle, a subtitle:hover {
+	font-family: 'PT Sans', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	margin-bottom: 0px;
+	height: 22px;
+	margin-left: 5px;
+}
+
+a .mission, a .mission:hover, a .small-mission, a .small-mission:hover {
+	font-size: 24px;
+	color: #a7a9ac;;
+}
+
+.header .myNURSA {
+	float: right;
+}
+
+.header .myNURSA a {
+	color: #FFFFFF;
+}
+
+.header .nursa-logo {
+	margin: 0 10px 0px 0px;
+}
+
+.header .socialButtons {
+	text-align: right;
+}
+
+/* styles for regular page header */
+.headerSmall {
+	color: #ffffff;
+	margin: 5px 0px 5px 0px;
+	position: relative;
+	padding:10px 0;
+}
+
+/* Start email signup */
+
+#email-sgnup {
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+}
+
+#email-sgnup.btn-inverse {
+	background-color: #656f7a;
+}
+
+.headerSmall #email-sgnup {
+	right: 10px;
+	bottom: 10px;
+}
+
+#success_message {
+	font-size: 18px;
+    padding: 20px;
+    display: block;
+}
+
+.ctct-custom-form {
+    font: 16px Helvetica Neue,Arial,sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-width:350px;
+    margin:0 auto;
+    box-sizing:border-box;
+    padding: 15px;
+}
+.ctct-form-defaults {
+    color: #000;
+    padding:15px;
+    border-radius:5px;
+}
+.ctct-custom-form * { box-sizing:border-box; }
+.ctct-custom-form p { margin: 0; margin-bottom: 24px;}
+.ctct-custom-form select { width: 100%; height: 46px; border: 1px solid #b0b6bb; background-color: #fff; box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); }
+.ctct-custom-form .ctct-form-required { position: relative; }
+.ctct-custom-form .ctct-form-required:before {content: "\2217";position: absolute;top: -4px;left: -12px;color: #f5463b; }
+.ctct-custom-form input[type="text"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #b0b6bb;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-family: Helvetica Neue, Arial, sans-serif;
+    color: #394856;
+    font-size: 16px;
+    line-height: 1.5; 
+    }
+.ctct-custom-form input[type="text"]:focus { outline: 1px solid #5dacd6; }
+.ctct-custom-form .ctct-form-errorMessage {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 12px;
+    color: #f5463b; 
+}
+.ctct-custom-form ::-webkit-input-placeholder { color: #88919a; }
+.ctct-custom-form :-moz-placeholder { color: #88919a; }
+.ctct-custom-form ::-moz-placeholder { color: #88919a; }
+.ctct-custom-form :-ms-input-placeholder { color: #88919a; }
+.ctct-custom-form input.is-error, .ctct-custom-form .ctct-form-input.is-error {
+    border-color: #f5463b !important;
+    color: #f5463b !important; 
+}
+.ctct-custom-form label {
+    display: block;
+    margin-bottom: 12px;
+    line-height: 1; 
+}
+.ctct-custom-form .Button {
+    display: inline-block;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 14px 20px;
+    line-height: 1;
+    background-image: none;
+    background-color: #ebedee;
+    color: #0078c1;
+    border: none;
+    box-shadow: none;
+    border-radius: 2px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out; 
+}
+.ctct-custom-form .ctct-button {
+    color: #fff;
+    background-color: #0078c1;
+    display: block;
+    width: 100%; 
+}
+
+.ctct-custom-form .ctct-button:hover {
+    color: #fff;
+    background-color: #3e9fda; 
+}
+
+.ctct-custom-form .ctct-button:active {
+    background-color: #005c94; 
+}
+
+.ctct-custom-form .ctct-form-footer {
+    font-size: 11px;
+    font-family: Helvetica Neue,Arial,sans-serif;
+    padding: 10px 0px 0px 0px;
+}
+
+/* End email signup */
+
+.header .nursa-logo, .headerSmall .nursa-logo {
+	height: 100px;
+}
+
+.headerSmall .subtitle {
+	margin-bottom: 0px;
+	height: 22px;
+	font-size: 16px;
+	margin-left: 5px;
+}
+
+@media (min-width: 769px) {
+	.header {
+		padding: 20px 0 20px 20px;
+		/*margin: 5px 0px 5px 0px;*/
+		/*border-radius: 8px 8px 0px 0px;*/
+		/*border: 2px solid rgba(0, 102, 153, 0.05);*/
+    	/*border-bottom: 2px solid #069;*/
+	}
+	.headerSmall {
+		padding: 20px 0 20px 0;
+	    margin: 5px 0px 5px 0px;
+	    border-radius: 8px 8px 0px 0px;
+	    border: 2px solid rgba(0, 102, 153, 0.05);
+	    border-bottom: 2px solid #069;
+	}
+	.header .title a {
+		/*font-size: 100px;*/
+	}
+	.header .nursa-logo {
+		height: 100px;
+	}
+	.headerSmall .title a {
+		/*font-size: 75px;*/
+	}
+	.header .subtitle {
+		height: 36px;
+	}
+}
+
+.headerSmall .myNURSA {
+	float: right;
+	margin-bottom: 0px;
+}
+
+.headerSmall .myNURSA a {
+	color: #FFFFFF;
+}
+
+.headerSmall .nursa-logo {
+	margin: 0px 3px 0px 0px;
+}
+
+.headerSmall .socialButtons {
+	text-align: right;	
+}
+
+.headerSmall .mission {
+	font-size: 1em;
+	font-style: italic;
+}
+/* styles for panels on home page */
+.homePage {
+	margin-top: 30px;
+}
+
+.carousel-outer {
+	margin-bottom: 0;
+}
+
+.homePage .panel {
+	min-height: 170px;
+	transition: color .25s ease, border-color .25s ease;
+	-webkit-transition: color .25s ease, border-color .25s ease;
+	-moz-transition: color .25s ease, border-color .25s ease;
+}
+
+.homePage .panel-heading {
+	transition: background-color .25s ease, border-color .25s ease;
+	-webkit-transition: background-color .25s ease, border-color .25s ease;
+	-moz-transition: background-color .25s ease, border-color .25s ease;
+}
+
+.homePage .panel:hover {
+	/*color: #669966; commenting out 4/25/14 cmw while we test some other options*/
+	border-color: #669966;
+}
+
+.homePage .panel:hover .panel-heading {
+	border-color: #669966;
+	background-color: #92DBCD;
+}
+
+.homePage h5{
+	color: #34495e;
+}
+
+/*only links in panel headings won't have underlines */
+#home-page .panel-heading a, #home-page .panel-heading a:hover {
+	text-decoration: none;
+}
+
+.jumbotron {
+	margin-top: 25px;
+}
+
+.jumbotron h2 {
+	margin-top: 0;
+}
+
+.home-page-panels .panel {
+	min-height: 225px;
+}
+
+.clickableDiv { /* apollo 2enable whole div section be clickable */
+	position:absolute; 
+	width:100%;
+	height:100%;
+	top:0;
+	left: 0;
+	z-index: 1;
+	/* overlap error in IE7/8, make sure you have an empty gif */
+	/*background-image: url('empty.gif'); Well, we dont have one */ 
+} 
+
+/*slightly modify a tags in home page panel bodies*/
+.homePage a {
+	color: #34495e;
+}
+
+.homePage a:hover {
+	color: #16A287;
+}
+
+/*styles for main nav */
+.nursaNav .navbar .nav>li>a {
+	padding: 11px 28px;
+}
+
+.nursaNav .navbar .nav>li>ul {
+	margin-left: 15px;
+}
+
+.nursaNav .navbar {
+	margin-bottom: 6px;
+}
+
+.nursaNav .navbar .nav>li>ul:before {
+	left: 20px;
+}
+
+/*active menu item*/
+.nursaNav .navbar .nav>li>a.active {
+	/*color: #669966;*/
+	color: #2d558d;
+}
+.navbar .nav > li > a:hover, .navbar .nav > li > a:focus{
+	color: #2d558d;	
+}
+.navbar .nav ul a:hover {
+	background-color: #2d558d;
+}
+
+/* breadcrumb */
+.breadcrumb {
+	background-color: #ffffff;
+	padding: 0;
+	margin: 0;
+}
+.breadcumbs-search-wrap .breadcrumb{
+	margin: 0;
+	line-height: 37px;
+}
+.ui-autocomplete-panel{
+    width: 330px;
+}
+.ui-autocomplete {
+	display: inline-block;
+	width: 100%;
+	height: 37px;
+}
+.fui-search {
+	position: absolute;
+	right: 25px;
+	top: 8px;
+}
+.ui-autocomplete-item {
+	overflow: hidden;
+}
+.autocomplete-wrap > div{
+	width: 100%;
+}
+.breadcumbs-search-wrap form {
+	margin-bottom: 6px;
+}
+
+/* styles for page footer */
+.bottom-menu {
+	padding: 10px 0px 10px 0px;
+}
+
+.footer {
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+/*more customizations of PF */
+/*remove styling from subelements of this class
+this relates to a fix that uses p:dataList instead of ui:repeat to address
+a bug that happened on the geneView component and may possibly appear elsewhere*/
+.noDecorate .ui-widget-content {
+	background: none;
+	border: none;
+}
+
+/* shrink paginator font and line height to avoid it wrapping */
+.ui-paginator {
+	font-size: .9em;
+	line-height: .9em;
+}
+
+/*remove bold from dt.ui-datalist-item
+this is to address an issue using ui:repeat on the molecule pages*/
+dt.ui-datalist-item {
+	font-weight: normal;
+}
+
+/* make autocomplete query term highlight even moar bold */
+.ui-autocomplete-query {
+	font-weight: 900;
+}
+
+/* style fixes to accommodate Flat UI Kit and PF */
+
+/*keep icons from showing other icons inside */
+.ui-paginator .ui-paginator-page,.ui-paginator .ui-paginator-pages,.ui-paginator .ui-paginator-next,.ui-paginator .ui-paginator-last,.ui-paginator .ui-paginator-first,.ui-paginator .ui-paginator-prev,.ui-paginator .ui-paginator-current
+	{
+	line-height: 1em;
+}
+
+/* button padding */
+.ui-button-text-only .ui-button-text {
+	padding: 0px;
+}
+
+/*checkbox spacing issue with labels */
+.ui-chkbox {
+	margin-left: 5px;
+	position: relative;
+	top: 2px;
+}
+
+/* UI Panel styling for ortho tabs */
+.ortho-tabs {
+	margin-bottom: 10px;
+	padding: 0;
+}
+#ortho-tabs .ui-tabs-nav {
+	padding: 0;
+	border-bottom-right-radius: 0; 
+	border-bottom-left-radius: 0; 
+}
+
+.ui-panel {
+	margin-bottom: 10px;
+}
+
+.ui-dialog-abastract {
+	overflow: scroll;
+	position: absolute;
+}
+
+/* icon on panel titles */
+.ui-panel .ui-panel-titlebar-icon,.ui-panel .ui-panel-titlebar-icon:hover,.ui-panel .ui-panel-titlebar-icon:focus {
+	margin-top: 3px;
+}
+
+/*icon placement on dialog boxes */
+.ui-dialog .ui-dialog-titlebar-close,.ui-dialog .ui-dialog-titlebar-minimize,.ui-dialog .ui-dialog-titlebar-maximize
+	{
+	margin-top: 5px;
+}
+
+/*fixes dialog box close button jumpiness*/
+a.ui-dialog-titlebar-icon:hover {
+	border: none !important;
+	padding: 1px !important;
+}
+
+/* turn off the transition for the close icon in dialog boxes
+unless you want it to stay on after the dialog closes :) */
+a.ui-dialog-titlebar-icon {
+	transition: none;
+	-webkit-transition: none;
+	-moz-transiton: none;
+}
+
+/* center triangle for selectOneMenu
+this may need to be made more specific */
+.ui-selectonemenu .ui-selectonemenu-trigger {
+	padding-top: 7px;
+	padding-left: 0px;
+}
+
+/* remove color from input elements */
+.ui-widget-content select.ui-state-default, .ui-widget-header select.ui-state-default, select.ui-state-default, 
+.ui-widget-content input.ui-state-default, .ui-widget-header input.ui-state-default, input.ui-state-default {
+	background-image:none;
+	background: #ffffff;
+	border: 2px solid #bdc3c7;
+	color: #34495e;
+}
+
+/*datatable headers */
+.ui-datatable th {
+	border: 1px solid #e7e7e7 !important;
+	transition: color .25s ease, border-color .25s ease;
+	-webkit-transition: color .25s ease, border-color .25s ease;
+	-moz-transition: color .25s ease, border-color .25s ease;
+}
+
+/* links inside widgets */
+.ui-widget-content a:not(.btn) {
+	color: #669966;
+}
+
+.ui-widget-content a:not(.btn):hover {
+	color: #669966;
+}
+
+#ortho-tabs .ui-tabs-nav li a, #ortho-tabs .ui-tabs-nav li a:hover {
+	color: #fff;
+}
+
+/* Remove styling from the btn class */
+.ui-widget-content a.btn {
+	color: #ffffff;
+}
+
+/*end style fixes to accommodate Flat UI Kit and PF */
+
+/* styles for filter */
+.filter {
+	transition: height 5s ease-in-out;
+}
+.filter .panel-title {
+	text-align: center;
+	margin: 15px 0;
+}
+
+.filter h6:first-child {
+	margin-top: 0px;
+}
+
+.filter h6 {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.filter .label {
+	width: 100%;
+	display: block;
+	line-height: 1.5;
+}
+
+.filter label {
+	line-height: 1em;
+}
+
+#datasets .filter label {
+	line-height: 1.5;	
+}
+#datasets .dataTables_length {
+	padding: 7px 0 0;
+}
+
+#datasets .dataTables_info {
+	padding: 12px 40px 5px;
+	clear: none;
+}
+#datasets .dataTables_filter {
+	padding: 5px 0 0;
+}
+#datasets .dataTables_paginate {
+	padding:4px 10px 2px 0px;
+}
+
+#datasetsTableBody a {
+	display: block;
+}
+.filter .ui-datalist-data, .filter .ui-list-data .ui-datalist-item{
+	list-style: none;
+}
+
+.tags-wrap .ui-widget-content {
+	padding-bottom: 5px;
+}
+
+.tags-wrap .ui-widget-content a {
+	text-decoration: none;
+	display: block;
+	width: 100%;
+}
+
+.tags-wrap .ui-widget-content a .tag{
+	width: 100%;
+	background: #e7e7e7;
+	background-color: #fff;
+	padding: 3px 5px;
+	border-radius: 4px;
+	white-space: nowrap;
+	overflow: hidden;
+	display: block;
+	text-overflow: ellipsis;
+}
+
+.tags-wrap .ui-widget-content a .tag:hover {
+	color: #669966;
+	background-color: #e6e6e6;
+	white-space: normal;
+	overflow: visible;
+	word-break:break-word;
+}
+
+.tags-wrap .ui-widget-content a .tag .glyphicon-remove-circle {
+	top: 3px;
+}
+
+/* end styles for filter */
+/* totals */
+.totals .panel {
+	margin-bottom: 0px;
+	background-color: #669966;
+	border-color: #669966;
+	text-align: center;
+	font-size: 16px;
+	line-height: 1;
+}
+
+/* end styles for totals */
+
+/*styles for molecule autocomplete 
+this will probably be expanded to a more generic class
+once more site sections are done*/
+
+/*this top aligns the autocomplete with the totals boxes*/
+.molSearchForm {
+	line-height: 1em;
+}
+
+.molAuto input {
+	/*width: 230px;*/
+}
+
+.molSearchForm .fui-search {
+	position: absolute;
+	top: 8px;
+	left: 260px;
+}
+
+.panelMolAuto .ui-autocomplete-table td {
+	/*I don't like using important, but it works here and shouldn't affect anything else */
+	border: none !important;
+}
+/* end styles for molecule autocomplete*/
+
+/* detail pages */
+.searchTerm {
+	font-size: 0.8em;
+	color: #E74C3C;
+}
+
+.updated {
+	font-size: .8em;
+	color: #E74C3C;
+	text-align: right;
+	font-style: italic;
+	padding-top: 10px;
+}
+
+.detailHeading {
+	position: relative;
+	margin-bottom: 5px;
+}
+
+.curated {
+	font-size: .7em;
+}
+
+.ligand-image {
+	max-width: 175px;
+	border: 1px solid #dddddd;
+	float: right;
+	padding: 5px;
+}
+
+.molDialog {
+	line-height: 1.5em;
+}
+
+/* end detail pages */
+
+/* compact styles for things like registration page */
+.compact,.compact p {
+	font-size: 14px;
+	line-height: 1em;
+}
+
+.compact .form-group {
+	margin-bottom: 10px;
+}
+
+.compact label {
+	margin-bottom: 0px;
+	font-weight: bold;
+}
+
+.compact .panel-heading {
+	padding: 8px;
+}
+
+.compact .panel-body {
+	padding: 8px;
+}
+
+/* end compact styles */
+
+/* recaptcha styles */
+#recaptcha_area {
+	margin-top: 5px;
+}
+
+/*general styles */
+.listTable {
+	margin-bottom: 20px;
+}
+
+/*remove them for breadcrumb, header NURSA and nav */
+.navbar a,.breadcrumb a,.navbar a:hover,.breadcrumb a:hover,.title a,.title a:hover
+	{
+	text-decoration: none;
+}
+
+small, .small {
+	line-height: 1.2em;
+}
+
+/* styles for data display - what we're using inside mol pages, &c. */
+.dataDisplay {
+	position: relative;
+}
+
+.dataDisplay .row {
+	padding: 5px 0px 5px 0px;
+}
+
+/* error message color */
+.error {
+	color: #E74C3C;
+}
+
+.error-image {
+	padding: 15px;
+}
+.error-text {
+	padding-left: 15px;
+	font-size: 190px;
+	text-align: center;
+}
+
+.spacer {height: 20px; display: block;}
+
+/* end general styles */
+
+/* AJAX loading spinner */
+.ajaxSpinner { 
+  width: 50px;
+  height: 50px;
+  margin: 0px auto;
+  position: relative;
+  text-align: center;
+  -webkit-animation: rotate 2.0s infinite linear;
+  animation: rotate 2.0s infinite linear;
+}
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  border-radius: 100%;
+  
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
+}
+
+.dot1 {
+	background-color: #3498DB;
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0px;
+  background-color: #669966;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@-webkit-keyframes rotate { 100% { -webkit-transform: rotate(360deg) }}
+@keyframes rotate { 100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }}
+
+@-webkit-keyframes bounce {
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+  0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+/* end spinner */
+
+/* faqs */
+
+.faq {}
+
+.faqs .lead {
+	margin-bottom: 10px;
+	font-size: 24px;
+}
+
+.faqs .lead:not(:first-child) {
+	padding-top: 10px; 
+}
+
+/* end faqs */
+
+/* Transitional Modify Search */
+.ui-autocomplete-input{
+	font-size: 12px;
+	width: 100%;
+	line-height: 25px;
+	height: 35px;
+	display: block;
+}
+
+
+.ui-datalist-empty-message {
+	display: none;
+}
+
+.formFlterWrap .ui-datalist-data {
+	padding-left: 5px;
+	font-size: 80%
+}
+
+.formFlterWrap input {
+	font-size: 12px;
+}
+
+/* End Transitional Modify Search */
+
+/* Images */
+.image-caption {
+	padding-top: 10px;
+}
+.image-left {
+	float: left;
+	margin: 0 10px 10px 0;
+}
+
+.bios .image-left, .bios .image-right {
+	margin-bottom: 0;	
+}
+
+.image-right {
+	float: right;
+	margin: 0 0 10px 10px;
+}
+.project-image-wrap {
+	padding: 0 15px 10px 0; 
+}
+/* End images*/
+
+/* jmol */
+#clazzloader-status {
+	display: none;
+}
+/* end jmol */
+
+/* Flat UI overides */
+.noPadding .ui-accordion-content {
+	padding: 0;
+}
+.h5, h5 {
+	font-size: 24px;
+}
+h5 small {
+	color: #7E838B;
+}
+h6 {
+	font-weight: 400;
+	font-size: 18px;
+}
+/* End UI overides */
+
+/* Bootstrap Overrides */
+.tooltip-inner {
+  background-color: #EFF0F2;
+  border:2px solid #336477;
+  color: #333;
+}
+.tooltip.top .tooltip-arrow, .tooltip.top-left .tooltip-arrow, .tooltip.top-right .tooltip-arrow {
+  border-top-color: #336477;
+}
+.tooltip.right .tooltip-arrow {
+  border-right-color: #336477;
+}
+.tooltip.left .tooltip-arrow {
+  border-left-color: #336477;
+}
+.tooltip.bottom .tooltip-arrow, .tooltip.bottom-left .tooltip-arrow, .tooltip.bottom-right .tooltip-arrow {
+  border-bottom-color: #336477;
+}
+/* End bootstrap overrides */
+.break-word a {
+	word-break: break-all
+}
+.one-liner-text {
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	overflow: hidden;
+	max-height: 1.8em;
+	line-height: 1.8em;
+}
+
+.twitter-feed {
+	padding: 0;
+}
+.twitter-feed .ui-widget-content {
+	border: none;
+}
+.more-tweets {
+	float:right;
+	font-size:x-small;
+	padding-right: 15px;
+}
+/* No border list */
+.no-border-data-list .ui-widget-content{
+	border: none;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak { display: none; }
+
+/* TM Header */
+.tm-header {
+	padding: 15px;
+}
+#qp {
+	display: none;
+}
+#qp h6 {
+	font-weight: 600;
+    font-size: 20px;
+    margin-top: 0;
+}
+.tm-header span.qp {
+	font-weight: bold;
+}
+
+.tm-header span.qp-comma {
+	display: none;
+}
+
+.tm-header span.qp span {
+	font-weight: 400;
+}
+.tm-tiles .tile {
+	position: relative;
+    padding: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 6px;
+}
+.tm-header .tile p {
+	margin-bottom: 0;
+}
+.walk-through img {
+	padding-left: 10px;
+    width: 77px;
+    cursor: pointer;
+}
+/* tm-search-form */
+#show-form {
+	/*font-size: 18px;*/
+}
+.tm-logo-text {
+	padding-left: 15px;
+}
+.tm-logo-text .lead {
+	font-weight: 400;
+}
+.tm-search-form {
+	/*margin-bottom: 30px;*/
+}
+
+.pathway-sub {
+	margin-top: 5px;
+}
+
+.consensome {
+	display: none;
+}
+/* carousels styles */
+.charts-carousel {
+	display: none;
+}
+.carousel-indicators {
+	position: relative;
+	float: left;
+	top: 0;
+	right: 0;
+	padding: 3px 10px;
+	background: #efefef;
+	border-radius: 5px;
+	border:1px solid #DBD9D9;
+}
+.carousel-indicators li {
+	margin: 0 3px;
+	width: 15px;
+	height: 15px;
+	border-radius: 8px;
+}
+.carousel-indicators li.active {
+	background: #606973;
+	width: 15px;
+	height: 15px;
+	border-radius: 8px;
+	margin: 0 3px;
+}
+.carousel {
+	padding: 0;
+    min-height:142px
+}
+.carousel-inner {
+	/*min-height: 850px;*/
+}
+.captions {
+	width: 88%;
+	padding: 0 10px;
+}
+.carousel-caption {
+	display: none;
+	width: 100%;
+	position: relative;
+	margin: 0 auto;
+	font-size: 16px;
+	border-radius: 6px 6px;
+	padding:5px 10px;
+}
+#captions .lead {
+	font-size: 16px;
+}
+#captions .lead p{
+	padding-bottom: 0;
+}
+.carousel-inner .item.active {
+	/*zoom:1;
+	opacity: 1;*/
+}
+.carousel-control.left {
+	left: 0;
+}
+.carousel-control.right {
+	right: 0;
+}
+.carousel-control .glyphicon-chevron-left {
+	left: 5px;
+	top: 5px;
+}
+.carousel-control .glyphicon-chevron-right {
+	right: 7px;
+	top: 4px;
+}
+.carousel-controls {
+	float: right;
+	top: 0;
+	left: 0;
+	padding: 3px 10px;
+	background: #efefef;
+	border:1px solid #DBD9D9;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.carousel-controls span {
+	display: none;
+}
+.carousel-controls span.active {
+	display: block;
+}
+.carousel-controls span {
+	opacity: 0.6;
+}
+.carousel-controls:hover span {
+	opacity: 1;
+}
+
+/* TM Search Form*/
+/*Flat UI Overide*/
+.form-control {
+	border-width: 1px;
+}
+.autocomplete-field {
+	display: none;
+}
+
+.autocomplete-field .help-block, .form-group .help-block, .form-group .has-success {
+	display: none;
+}
+
+.has-error .help-block, .has-success .success-help-block {
+	display: block;
+}
+
+.has-error .help-block.success-help-block {
+	display: none;
+}
+
+.autocomplete-field .ui-autocomplete, 
+.mol-autocomplete .ui-autocomplete, 
+.tissue-autocomplete .ui-autocomplete {
+	height: auto;
+}
+
+.autocomplete-field .ui-autocomplete li, 
+.mol-autocomplete .ui-autocomplete li, 
+.tissue-autocomplete .ui-autocomplete li {
+	list-style: none;
+	padding-left: 10px;
+}
+
+.ui-autocomplete-category {
+    font-weight: bold;
+    padding: .2em .4em;
+    cursor: text;
+    margin: 0;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.treatment-time-holder {
+	display: none;
+}
+
+#show-all-tissues-and-cell-lines {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+#tissues-table-body .tissue-cell-line-item{
+	padding: 0;
+}
+
+#fc-details .modal-body {
+	padding: 5px 8px;
+}
+
+#fc-details .panel {
+	margin-bottom: 10px;
+}
+
+#fc-details .panel-body {
+	padding: 0;
+}
+
+#fc-details table{
+	margin-bottom: 0;
+}
+
+#fc-details table tr td {
+	padding:5px 10px;
+}
+/* Graphs */
+
+/* Spinner */
+@-webkit-keyframes throbber {
+  0% {
+    background: #dde2e7;
+  }
+
+  10% {
+    background: #6b9dc8;
+  }
+
+  40% {
+    background: #dde2e7;
+  }
+}
+
+@-moz-keyframes throbber {
+  0% {
+    background: #dde2e7;
+  }
+
+  10% {
+    background: #6b9dc8;
+  }
+
+  40% {
+    background: #dde2e7;
+  }
+}
+
+@-o-keyframes throbber {
+  0% {
+    background: #dde2e7;
+  }
+
+  10% {
+    background: #6b9dc8;
+  }
+
+  40% {
+    background: #dde2e7;
+  }
+}
+
+@keyframes throbber {
+  0% {
+    background: #dde2e7;
+  }
+
+  10% {
+    background: #6b9dc8;
+  }
+
+  40% {
+    background: #dde2e7;
+  }
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.throbber:not(:required) {
+  -webkit-animation: throbber 2000ms 300ms infinite ease-out;
+  -moz-animation: throbber 2000ms 300ms infinite ease-out;
+  -ms-animation: throbber 2000ms 300ms infinite ease-out;
+  -o-animation: throbber 2000ms 300ms infinite ease-out;
+  animation: throbber 2000ms 300ms infinite ease-out;
+  background: #dde2e7;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  text-indent: -9999px;
+  width: 0.9em;
+  height: 1.5em;
+  margin: 0 1.6em;
+}
+.throbber:not(:required):before, .throbber:not(:required):after {
+  background: #dde2e7;
+  content: '\x200B';
+  display: inline-block;
+  width: 0.9em;
+  height: 1.5em;
+  position: absolute;
+  top: 0;
+}
+.throbber:not(:required):before {
+  -webkit-animation: throbber 2000ms 150ms infinite ease-out;
+  -moz-animation: throbber 2000ms 150ms infinite ease-out;
+  -ms-animation: throbber 2000ms 150ms infinite ease-out;
+  -o-animation: throbber 2000ms 150ms infinite ease-out;
+  animation: throbber 2000ms 150ms infinite ease-out;
+  left: -1.6em;
+}
+.throbber:not(:required):after {
+  -webkit-animation: throbber 2000ms 450ms infinite ease-out;
+  -moz-animation: throbber 2000ms 450ms infinite ease-out;
+  -ms-animation: throbber 2000ms 450ms infinite ease-out;
+  -o-animation: throbber 2000ms 450ms infinite ease-out;
+  animation: throbber 2000ms 450ms infinite ease-out;
+  right: -1.6em;
+}
+/* End Spinner*/
+.loading-charts {
+	position: relative;
+	height: 30px;
+	width: 66px;
+	margin: 0 auto;
+}
+
+.chart .loading-charts {
+	position: absolute;
+	left: -33px;
+	margin-left: 50%;
+	margin-top: -45px;
+	top: 50%;
+}
+
+.chart {
+	min-height: 700px;
+}
+
+.first-slide {
+	display: none;
+}
+
+text, .text {
+	text-transform: capitalize;
+	pointer-events: none;
+}
+#scatter-plot text {
+	text-transform: none;
+}
+
+text.center-text {
+	text-transform: none;
+	opacity: 1 !important;
+}
+
+#tooltip {
+	position: absolute;
+	width: 200px;
+	height: auto;
+	padding: 10px;
+	background-color: white;
+	border: 1px solid black;
+	text-align: center;
+	border-radius: 5px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+	pointer-events: none;
+}
+
+#tooltip.hidden {
+	display: none;
+}
+
+#tooltip p {
+	margin: 0;
+	font-family: sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+	text-align: left;
+}
+
+/* Search resutls */
+/*#searchResults, #resultsByExp, .Cistromic {*/
+#searchResults, #resultsByExp {
+	display: none;
+}
+
+#tm-results, #cistromics-results {
+	min-height: 250px;
+}
+
+.cistromics {
+	position: relative;
+}
+
+.tab-content {
+	padding: 0;
+	border:none;
+}
+
+#graph-view {
+	position: relative;
+}
+
+#search-results-title {
+	margin-top: 0;
+	margin-bottom: 30px
+}
+
+#download-results {
+	float: right;
+	margin-right: 15px;
+}
+
+.data-by-exp {
+	background: #f5f7f7;
+}
+
+table.dataTable thead th, table.dataTable thead th.sorting{
+	background-color: #669966;
+	color: #fff;
+}
+
+table.dataTable thead th.sorting_desc, table.dataTable thead th.sorting_asc {
+	background-color: #006699;
+	color: #fff;
+}
+
+#resultTable {
+	font-size: 14px;
+}
+
+.table-no-border>thead>tr>th, 
+.table-no-border>tbody>tr>th, 
+.table-no-border>tfoot>tr>th, 
+.table-no-border>thead>tr>td, 
+.table-no-border>tbody>tr>td, 
+.table-no-border>tfoot>tr>td {
+  border-top: none; 
+}
+
+.table > tbody > tr > td {
+	padding:4px 25px;
+}
+
+.abstract, .vi {
+	display: none;
+}
+
+#graphs-filter {
+	width: 350px;
+}
+#scatter-plot {
+	width: 100%;
+}
+#graph-more-info {
+	font-size: 13px;
+	border:2px solid #336477;
+	border-radius: 7px;
+}
+
+.popover-title{
+	background: #336477;
+}
+
+.cistromics-tooltip-title{
+	display: none;
+}
+
+.cistromics-tooltip .tm-tooltip-title {
+	display: none;
+}
+
+.cistromics-tooltip .cistromics-tooltip-title {
+	display: inline-block;
+}
+
+.popover.top .arrow {
+	border-top-color: #336477;
+}
+
+.arrow-bg{
+	border-top: 10px solid #FCF0F0;
+    border-left: 10px solid rgba(0, 0, 0, 0);
+    border-right: 10px solid rgba(0, 0, 0, 0);
+    position: absolute;
+    bottom: -6px;
+    width: 15px;
+    left: 50%;
+    margin-left: -10px;
+}
+
+#close-graph-more-info {
+	right: 0;
+	padding-left: 10px;
+    cursor: pointer;
+}
+
+#close-graph-more-info .badge {
+	border-radius: 10px;
+    background: #fff;
+    color: #000;
+    margin-right: -10px;
+}
+
+.highcharts-contextmenu hr {
+	margin: 0;
+}
+
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 900px;
+  }
+  .consensome-modal {
+  	width:1020px;
+  }
+}
+.modal-backdrop.in {
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+}
+.modal-content {
+	box-shadow: none;
+	width: 100%;
+	background: #fff;
+}
+/* Datasets detail page */
+.datasets-fc-table-wrap {
+	min-height: 150px;
+}
+.datasets-fc-table {
+	display: none;
+}
+.datasets-fc-form {
+	margin: 0 auto;
+	width: 282px
+}
+
+.datasets-fc-form .input-group, .tm-view-change-form .input-group, .cistromics-view-change .input-group {
+	width:140px; 
+	display: inline-table;
+}
+label.datasets-fc-form-label, 
+label.tm-view-change-label, 
+#get-fc-info-input, 
+#get-fc-info-form, 
+.datasets-fc-form .input-group-addon {
+	font-size: 13px;
+}
+
+.related-by {
+	line-height: 2.5;
+}
+
+.alert-warning {
+    color: #C09853;
+    background-color: #FCF8E3;
+    border-color: #FAEBCC;
+}
+
+/* UI slider overrides */
+.ui-slider {
+	background-color: #fff;
+	margin-bottom: 0;
+}
+
+.selected-amount {
+	padding-bottom: 10px;
+	font-weight: bold;
+}
+.min-selected {
+	color: #7cb5ec;
+}
+
+.max-selected {
+	color: #df5353;
+}
+
+.cutoff-label {
+	/*padding-top: 40px;*/
+}
+
+#slider-range, #slider-labels {
+	width: 75%;
+	float: right;
+}
+
+#slider-labels {
+	margin-bottom: 20px;
+	position: relative;
+}
+
+#slider-labels span {
+	display: inline-block;
+	font-size: 11px;
+	position: absolute;
+}
+
+.noUi-target {
+	margin-bottom: 20px;
+}
+
+.up-down-checkboxes label.checkbox {
+	padding-left: 25px;
+	margin-top: 0px;
+	margin-left: 25px;
+}
+
+.before-date, .after-date {
+	display: none;
+}
+
+/* BSM Info*/
+.bsm-pathway-wrap-0, .bsm-pathway-wrap-1, .bsm-wrap-0, .bsm-wrap-1 {
+	padding: 10px;
+}
+.bsm-pathway-wrap-0, .bsm-wrap-0 {
+	background: #ebebeb;
+    border-radius: 5px;
+}
+#experiment-content {
+	min-height: 220px;
+}

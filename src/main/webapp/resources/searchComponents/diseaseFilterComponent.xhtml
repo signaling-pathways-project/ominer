@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface>
+		<composite:attribute name="bean" required="true" />
+		<composite:attribute name="property" required="true" />
+		<composite:attribute name="addProperty" required="true" />
+		<composite:attribute name="removeProperty" required="true" />
+		<composite:attribute name="updateArea" required="true" />
+		<composite:attribute name="blockArea" required="true" />	
+	</composite:interface>
+	<composite:implementation>
+
+		<h6>
+			<span class="label label-info">Disease</span>
+		</h6>
+		
+		<p:dataList styleClass="tags-wrap" value="#{cc.attrs.bean[cc.attrs.property]}" var="disease" type="unordered" itemType="none" id="diseaseFilterComponent" emptyMessage="">
+			<p:commandLink update="diseaseFilterComponent, #{cc.attrs.updateArea}" title="Remove" styleClass="filter-tag" rendered="#{disease != null}"
+			onstart="PF('#{cc.attrs.blockArea}').show()" oncomplete="PF('#{cc.attrs.blockArea}').hide()">
+    	        <f:setPropertyActionListener value="#{disease}" target="#{cc.attrs.bean[cc.attrs.removeProperty]}"/> 
+        	    <span title="Click to remove this from the filter" class="tag">
+	        		<span class="glyphicon glyphicon-remove-circle"></span> <span class="go-term-text">#{disease.toString()}</span>
+	        	</span>
+        	</p:commandLink>
+		
+		</p:dataList>
+		<p:autoComplete
+			id="diseaseAC"
+			value="#{cc.attrs.bean[cc.attrs.addProperty]}"
+			completeMethod="#{translationalSynonymListProducer.completeSymbol}"
+					minQueryLength="2" var="searchMol" itemValue="#{searchMol}"
+					converter="translationalAutoSuggestConverter" forceSelection="true"
+					styleClass="molAuto" panelStyleClass="panelMolAuto"
+					emptyMessage="No results found for your query"
+					placeholder="Filter by disease name" maxResults="5"
+					title="Filter by disease name"
+					itemLabel="#{searchMol.toString()}">
+			<p:ajax event="itemSelect" update="diseaseFilterComponent, #{cc.attrs.updateArea}, diseaseAC" onstart="PF('#{cc.attrs.blockArea}').show()" oncomplete="PF('#{cc.attrs.blockArea}').hide()"/>
+			<f:attribute name="translationalType" value="Disease" />
+		</p:autoComplete>
+	</composite:implementation>
+</ui:composition>

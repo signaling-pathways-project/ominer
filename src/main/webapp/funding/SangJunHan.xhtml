@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value ="NURSA-funded Research Projects" outcome = "/funding/nursa_projects"/></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Identification of nuclear receptor genomic networks that link endometriosis to birth defects</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/Sang-Jun-Han.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>Sang Jun Han</strong><br/>
+					Baylor College of Medicine<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			Endometrial cells can escape from the lining of the uterus and flourish in ectopic sites (named ectopic lesions),
+resulting in endometriosis, a pathology that results in severe pelvic pain and infertility in up to 5-10% of women.
+Previous studies suggested essential roles for Estrogen Receptors (ERs) in the progression of endometriosis
+because estrogen is considered a key driver in endometriosis pathogenesis. However, the roles of ERs in the
+progression of endometriosis are not yet elucidated. Notably, endometriotic tissues, such as endometriotic
+lesions and eutopic endometrium, have a much higher ratio of ERβ to ERα compared to the normal
+endometrium. In addition, our preliminary data revealed that the gain of ERβ function stimulates ectopic lesion
+growth in mice with endometriosis. Therefore, these data strongly support an essential role for ERβ in the
+pathogenesis of endometriosis. As endometriosis is known to be an estrogen-dependent inflammatory disease,
+endometriosis is correlated with the pathogenesis of other women’s reproductive diseases. For example, the
+association between endometriosis and infertility is well supported throughout the literature. However, a
+definite cause-effect relationship between endometriosis and infertility is not yet described. Interestingly,
+elevated ERβ expression levels are also detected in the eutopic endometrium of humans and mice with
+endometriosis, in addition to ectopic lesions. Our novel ERβ-overexpressing mice, which have elevated levels
+of flag-tagged human ERβ in endometrial tissues, revealed that endometrium-specific ERβ overexpression
+causes infertility in mice due to loss of the decidualization process in the endometrium. In addition to the
+mouse endometrium, ERβ-overexpressing human endometrial stromal cells also did not differentiate into
+decidual cells upon exposure to a cocktail of steroid hormones and cAMP treatment for in vitro decidualization.
+Therefore, the gain of ERβ function causes endometrial dysfunction, leading to infertility. However, the
+molecular mechanisms behind the role of ERβ during the progression of endometriosis and the development of
+endometriosis-associated infertility have not yet been elucidated.<br /><br />
+
+			The overall goal of this proposal is to first generate a global “omics” level profile of ERβ function in
+endometriotic lesions and eutopic endometrium using a mouse model of endometriosis. Therefore, this project
+should advance our understanding of how ectopic and eutopic endometrial ERβ signaling cooperatively
+modulates the progression of endometriotic lesions and the development of endometriosis-associated
+infertility. To accomplish this project, we have two specific aims: <br /><br />
+
+			Specific Aim 1. To determine and validate the direct ERβ target gene signature in ectopic lesions that is
+required for their growth. <br /><br />
+
+			Specific Aim 2. To define and validate the direct ERβ target gene signature in the eutopic endometrium of
+mice with endometriosis that is involved in endometriosis-associated infertility.<br /><br />
+
+			To generate the specific transcriptome of endometriotic tissues, such as ectopic lesions and eutopic
+endometrium, RNA-Seq analyses will be conducted using ectopic lesions and eutopic endometrium of ERβ-
+overexpressing mice with surgically induced endometriosis compared to sham-treated uterus of control mice.
+To determine the endometriotic tissue-specific ERβ cistrome, ERβ ChIP-Seq will be performed with a Flag
+antibody, and the Flag ChIP-Seq of ectopic lesions and eutopic endometrium isolated from ERβ-
+overexpressing mice with endometriosis will be compared to the endometriotic tissues of control mice with
+endometriosis. Finally, to address each specific aim, we will integrate the transcriptome and ERβ-regulated
+cistrome to generate ectopic lesion- and eutopic endometrium-specific direct ERβ target gene signatures that
+have essential roles in endometriotic lesion growth and endometriosis-associated infertility.
+These ERβ-directed gene signatures could be employed as an alternative treatment option that may help
+reduce the side effects of the current endometriosis treatment options and improve the fecundity of women
+with endometriosis.
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

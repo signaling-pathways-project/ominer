@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value ="NURSA-funded Research Projects" outcome = "/funding/nursa_projects"/></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>The ERα transcriptome and inter-tissue communication in the regulation of metabolic homeostasis</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/Andrea-Hevener.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>Andrea Hevener</strong><br/>
+					UCLA<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			We propose to investigate the impact of estrogen receptor α expression on intra-tissue as well as inter-tissue gene expression and correlate these findings to alterations in metabolism and insulin sensitivity. We have focused on estrogen receptor (ER)α as loss of function mutations and reductions in expression are associated with profound metabolic consequences in both females and males, mouse to man. In this application we propose to leverage several unique resources allowing our research team unparalleled ability to provide the NURSA Hub with important biological information on the impact of ERα in regulating metabolism. First we will investigate the role of natural variation in EREα expression on inta- and inter-tissue gene expression and complex trait outcomes in both male and female mice using the UCLA Hybrid Mouse Diversity Panel (HMDP; over 100 strains of inbred mice (1)). This resource allows us high resolution genome wide mapping and systems level analysis. We will also integrate tissue metabolite profiles from these mice and assess the relationships between natural variation in ERα expression and metabolite signature. Lastly, we are also capable of assessing the impact of ERα in one tissue on gene expression and metabolite signature in another, inter-tissue impact between muscle, liver, and adipose.<br /><br />
+			Next we will obtain gene expression profiles for muscle, liver, and adipose tissue from the muscle-specific (MERKO), liver-specific (LERKO), and adipose-specific (FERKO) ERα knockout lines generated in the PIs laboratory and compare genetic and metabolite signatures with the global knockout mouse described previously by our group. We will assess both primary intra-tissue effects as well as inter-tissue consequences promoting complex phenotypes. To our knowledge we are the only laboratory to have simultaneously generated and phenotyped mice with a tissue-selective homozygous deletion in myocytes, adipocytes, hepatocytes, endothelial cells, myeloid cells, and pancreatic islets. <br /><br />
+			Although the estrogen receptor was one of the first NRs of the superfamily to be cloned, our knowledge regarding the tissue-specific mechanisms of ERα-regulated target gene expression and the mechanistic role of ERα in regulating integrative metabolism and insulin action remains incompletely understood. Considering the clinical evidence indicating a primary action for ER? in maintaining metabolic health, my laboratory has taken a tissue dissection approach to unravel the complex physiology of the global ER? knockout mouse enabling us to better understand the complex clinical ramifications associated with impaired ERα action. We will use our existing novel resources, the HMDP and conditional KO mouse lines, to determine the impact of ER? expression on intra-tissue as well as inter-tissue gene and metabolite signatures. We will integrate these two platforms to determine overlapping gene sets and metabolite signatures that we can then correlate with complex phenotypes including adiposity and insulin resistance. The HMDP platform we will provide to the Hub can be manipulated and mined by a variety of investigators within and outside the NR field. Herein we show how it can be applied and integrated with conventional genetic approaches in the study of ERα biology. The HMDP resource is versatile and expandable as additional analyses can be performed (all mouse lines are commercially available) to augment the power of this systems genetic approach. Based upon our track record of high impact productivity we are confident that this research will provide a powerful and durable resource that can be successfully mined by a wide variety of investigators to advance the NIDDK mission.
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

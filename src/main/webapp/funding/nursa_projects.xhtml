@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>NURSA-funded Research Projects</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div class="panel panel-default">
+		  <div class="panel-heading">NDSP Cycle 3 Funded Awardees</div>
+		  <div class="panel-body">
+		  	<div class = "col-md-3 text-center">
+				<img src = "#{resource['/images/funding/Andrea-Hevener.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+					<strong>Andrea Hevener</strong><br/>
+					UCLA<br/>
+					<strong>The ERα transcriptome and inter-tissue communication in the regulation of metabolic homeostasis </strong><h:link outcome = "/funding/AndreaHevener" value= "more"/>
+				</div>
+			</div>
+			<div class = "col-md-3 text-center">
+				<img src = "#{resource['/images/funding/joel-elmquist.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+					<strong>Joel Elmquist</strong><br/>
+					UT Southwestern<br/>
+					<strong>PPARγ in vagal sensory neurons and the untoward effects of thiazolidinediones </strong><h:link outcome = "/funding/JoelElmquist" value= "more"/>
+				</div>
+			</div>
+			<div class = "col-md-3 text-center">
+				<img src = "#{resource['/images/funding/Holly-Ingraham.gif']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+					<strong>Holly Ingraham</strong><br/>
+					UCSF<br/>
+					<strong>Integrating hypothalamic ERα signaling with peripheral metabolic and reproductive tissues </strong><h:link outcome = "/funding/HollyIngraham" value= "more"/>
+				</div>
+			</div>
+			<div class = "col-md-3 text-center">
+				<img src = "#{resource['/images/funding/Sang-Jun-Han.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+					<strong>Sang Jun Han</strong><br/>
+					Baylor College of Medicine<br/>
+					<strong>Identification of nuclear receptor genomic networks that link endometriosis to birth defects </strong><h:link outcome = "/funding/SangJunHan" value= "more"/>
+				</div>
+			</div>
+		  </div>
+		</div>
+		<div class="panel panel-default">
+		  <div class="panel-heading">NDSP Cycle 2 Funded Awardees</div>
+		  <div class="panel-body">
+		  	<div class = "col-md-4 text-center">
+				<img src = "#{resource['/images/funding/mangelsdorf.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+					<strong>David Mangelsdorf</strong><br/>
+					UT Southwestern<br/>
+					<strong>Identification of novel host-derived ligands for nuclear receptors in parasitic nematodes </strong><h:link outcome = "/funding/mangelsdorf" value= "more"/>
+				</div>
+			</div>
+			<div class = "col-md-4 text-center">
+				<img src = "#{resource['/images/funding/Repa.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+					<strong>Joyce Repa</strong><br/>
+					UT Southwestern<br/>
+					<strong>Defining Lipidomic Signatures of Nuclear Receptor Activity Using MS/MSALL </strong><h:link outcome = "/funding/repa" value= "more"/>
+				</div>
+			</div>
+			<div class = "col-md-4 text-center">
+				<img src = "#{resource['/images/funding/rawls.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+					<strong>John Rawls</strong><br/>
+					Duke University<br/>
+					<strong>Microbial Regulation of Nuclear Receptor Activity in the Intestinal Epithelium </strong><h:link outcome = "/funding/rawls" value= "more"/>
+				</div>
+			</div>
+		  </div>
+		</div>
+		<div class="panel panel-default">
+		  <div class="panel-heading">NDSP Cycle 1 Funded Awardees</div>
+		  <div class="panel-body">
+		    <div class = "col-md-3 text-center">
+				<img src = "#{resource['/images/funding/rosenfeld.gif']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+				<strong>Michael G. Rosenfeld</strong><br/>
+				University of California San Diego<br/>
+				<strong>InRNAs in nuclear receptor-mediated gene transcription programs </strong>
+				 <h:link outcome = "/funding/rosenfeld" value= "more"/>
+				</div>
+			</div>
+			<div class = "col-md-3 text-center">
+				<img src = "#{resource['/images/funding/myles-brown.gif']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+				<strong>Myles Brown</strong><br/>
+				Dana Farber Cancer Institute<br/>
+				<strong>Epigenetics of diet and menopause in non-human primates </strong>
+				<h:link outcome = "/funding/brown" value= "more"/>
+				</div>
+			</div>
+			<div class = "col-md-3 text-center">
+				<img src = "#{resource['/images/funding/defranco.gif']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+				<strong>Don DeFranco</strong><br/>
+				University of Pittsburgh<br/>
+				<strong>Chromatin dynamics of fetal hypothalamic neural stem cells </strong>
+				<h:link outcome = "/funding/defranco" value= "more"/>
+				</div>
+			</div>
+			<div class = "col-md-3 text-center">
+				<img src = "#{resource['/images/funding/moore.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class = "image-caption small">
+				<strong>David Moore</strong><br/>
+				Baylor College of Medicine<br/>
+				<strong>FXR and the chromatin landscape in the human liver </strong>
+				<h:link outcome = "/funding/moore" value= "more"/>
+				</div>
+			</div>
+		  </div>
+		</div>
+		<div class = "spacer"/>
+	</ui:define>
+</ui:composition>

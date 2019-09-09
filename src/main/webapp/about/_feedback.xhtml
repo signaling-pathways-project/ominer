@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">Signaling Pathways Project - Feedback</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="About" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="About" outcome="/about/index.jsf" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Feedback</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<ui:remove>
+		<p>The development of the NURSA 3.0 website has been intimately tied to input emerging directly from the research community that the NURSA Hub serves.  The NURSA Beta Testing Group has been instrumental in shaping the look and feel of the site, determining what data are displayed, how they are displayed, and identifying additional data resources that should be included.  We thank our beta testers, acknowledged individually below, who attended monthly webinars where new features were demonstrated, navigated the <a href="https://beta.nursa.org/nursa/index.jsf" target="_blank">beta site</a>, and provided feedback. </p>
+ 
+		<p>If you are interested in becoming a part of the NURSA Beta Testing Group or would like to provide feedback as we continue to develop new tools and add new data resources, please email <a href="mailto:support@nursa.org">support@nursa.org</a>.  Also, if you would like to have a sneak peak at what may be coming soon, you can check out our <a href="https://beta.nursa.org/nursa/index.jsf" target="_blank">beta site</a>.</p>
+
+		<h6>NURSA Beta Testing Group:</h6>
+		<ul>
+			<li>Balint L. Balint, Ph.D.</li>
+			<li>Myles Brown, M.D. </li>
+			<li>Jonathan Dean, Ph.D.</li>
+			<li>Don DeFranco, Ph.D. </li>
+			<li>Ana Carolina Figueira, Ph.D. </li>
+			<li>Ana G Hernandez, Ph.D.</li>
+			<li>Shuanggang Hu, Ph.D.</li>
+			<li>Chin-Yo Lin, Ph.D.</li>
+			<li>Jean-Marc Lobaccaro, Ph.D.</li>
+			<li>David Moore, Ph.D.</li>
+			<li>Fred Pereira, M.D., Ph.D.</li>
+			<li>Gianpaolo Rando, Ph.D.</li>
+			<li>Michael G Rosenfeld, Ph.D. </li>
+			<li>Thomas Shaak, Ph.D.</li>
+			<li>Ashutosh Yende, Ph.D.</li>
+		</ul>
+		</ui:remove>
+	</ui:define>
+
+</ui:composition>

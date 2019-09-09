@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value ="NURSA-funded Research Projects" outcome = "/funding/nursa_projects"/></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>lnRNAs in nuclear receptor-mediated gene transcription programs</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/rosenfeld.gif']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>Michael G. Rosenfeld</strong><br/>
+					University of California San Diego<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			Overview and significance: Our appreciation of the vast number of ncRNAs in the mammalian/human genome has emerged in an explosive fashion since 2005, and an understanding of their apparent biological importance is rapidly being recognized. Long non-coding RNAs (lncRNAs) are a type of ncRNA that are more than 200 nucleotides in length, and can exert functions either in cis or in trans. In contrast to small non-coding RNAs, such as miRNAs, lncRNAs are much less characterized and their roles are only now beginning to be defined. From initial studies that have attributed functions to specific lncRNAs, it has become apparent that regulation of transcription may be significantly regulated by lncRNAs, to which our laboratory has made several contributions. lncRNAs have been found to be associated with specific complexes, including bithorax and trithorax components. Further, many lncRNAs are over-expressed in specific developmental and regulatory conditions and may alter transcription through divergent mechanisms. SRA, associated with nuclear receptors, was one of the first lncRNAs identified and we consider it likely that many lncRNAs are functionally important for transcriptional regulation by nuclear receptors. The studies proposed here are ideally suited for both NURSA and the current Topic1 (ncRNAs, three dimensional interactions) focus of the ENCODE project. Providing global insights into gene transcriptional effects using GRO-seq, providing data poorly represented in the current databases, as well as new insights into “relocation” of ligand-regulated transcription units between distinct subnuclear architectural structures. Together, we will provide new mechanistic insights for understanding ligand-regulated programs of gene transcription.<br /><br />
+
+			<strong>Specific Aims</strong>	<br />
+			To investigate the roles of lncRNAs in actions of nuclear receptors, we propose to initially focus on three lncRNAs as models of lncRNAs in regulated gene transcription. Two lncRNAs that we propose are functional regulators of androgen receptor and which have exhibited wide fluctuations in levels, will be the focus of our approach employing global genomic technologies. These will include the use of ChIPseq, GRO-seq, RNA-seq, 3D-DSL, and ChIRP-seq technologies, as well as new assays linking subnuclear architecture to nuclear receptor function, as described below. Using these approaches, as well as massspectrometry of lncRNA-associated complex, we will pursue these lncRNAs and a more general functional lncRNA (TUG1), as models of platforms that assemble machinery required for ligand-dependent transcriptional regulation by nuclear receptors. We will investigate the molecular mechanisms by which two of the lncRNAs that bind to the androgen receptor actually mediate alterations in the transcriptional program. These data would license open-ended approaches to investigate the roles of lncRNAs.<br /><br />
+
+			<ol>
+				<li><strong>Develop a global sequencing strategy to complement immunoFISH approaches to determine regulation by nuclear receptors of gene regulatory regions (enhancers), and interactions with specific subnuclear architectural structures as determinants of transcriptional programs. The roles of several lncRNAs, including TUG1, in these events will be investigated.</strong>
+				</li>
+				<li><strong>Investigate the molecular mechanisms underlying interactions between specific lncRNAs and nuclear receptors using the androgen receptor as an initial model; we will explore the roles of covalent AR post-transcriptional modification and ligands on these interactions.</strong></li>
+				<li><strong>Discover the roles of these lncRNAs in transcriptional regulatory programs contributed by AR, employing siRNA, LNA and GRO-seq approaches.</strong></li>
+				<li><strong>Determine the functional roles of protein complexes associated with nuclear receptor associated lncRNAs in coding gene activation and enhancer:promoter activation events, including roles of components of the Wnt pathway.</strong></li>
+			</ol>
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,52 @@
+<HTML>
+<HEAD>
+<TITLE>Flash Detector</TITLE>
+<META HTTP-EQUIV="Refresh" CONTENT="20; URL=../share/flash_detector/getting_flash.html">
+<style type="text/css">
+<!--
+.mainbody {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt; font-weight: normal}
+.heading {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt; font-weight: bold; text-transform: none}
+-->
+</style>
+<script language="javascript" type="text/javascript" src="../share/source_code.js">
+</script>
+<script language="javascript">
+
+// ** SET THE LAUNCHING FILE HERE **
+
+var startFile = 'start.html';
+
+// ** DO NOT CHANGE ANYTHING BELOW THIS LINE **
+
+
+var flashDetectorUrl = '../share/flash_detector/flash_detector.swf';
+
+// The various replace commands do a pseudo-URLencode to get around a Flash 5 netscape problem.
+var loadUrl = flashDetectorUrl + '?get_url=' + startFile.replace(/\//g,'%2F').replace(/\./g,'%2E').replace(/\_/g,'%5F');
+
+var cValue = queryString('c');
+if (cValue) {
+	loadUrl = loadUrl + '&c=' + cValue;
+}
+
+// Note: The document.write() call must contain the whole <object> tag or else IE will hang.
+var paramMovieUrl = '<param name=movie value="' + loadUrl + '">';
+var embedUrl = '<embed src="' + loadUrl + '" quality=high bgcolor=#FFFFFF  WIDTH=18 HEIGHT=18 TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" border="0" vspace="0" hspace="0" name="check"></embed>';
+var objectTag = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width=18 height=18 border="NO" vspace="0" hspace="0" name="check">' + paramMovieUrl + embedUrl + '</object>';
+</script>
+</HEAD>
+<BODY bgcolor="#FFFFFF" text="#000000" link="#FFFFFF" vlink="#FFFFFF" alink="#FFFFFF">
+
+<br><br><br><br>
+
+<div align="center">
+<p class="mainbody">Checking for the correct Flash version.
+<p class="mainbody">Please wait 20 seconds...
+</div>
+
+<script language="javascript">
+document.write(objectTag);
+</script>
+
+</BODY>
+</HTML>

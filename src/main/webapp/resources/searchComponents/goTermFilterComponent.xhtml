@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface>
+		<composite:attribute name="bean" required="true" />
+		<composite:attribute name="property" required="true" />
+		<composite:attribute name="addProperty" required="true" />
+		<composite:attribute name="removeProperty" required="true" />
+		<composite:attribute name="updateArea" required="true" />
+		<composite:attribute name="blockArea" required="true" />	
+	</composite:interface>
+	<composite:implementation>
+
+		<h6>
+			<span class="label label-info">GO Terms</span>
+		</h6>
+
+		<!-- not using flat styles here
+						it's moderately complex to get the styles working with JSF and involves
+						manipulating the DOM a bit
+						more importantly, it interferes with onclick events and possibly submitting the data
+						and I don't have a few days to troubleshoot and fix it, sadly. 
+						this effect v1.2.2 of the Flat UI Kit-->
+		<p:dataList styleClass="tags-wrap" value="#{cc.attrs.bean[cc.attrs.property]}" var="goTerm" type="none" itemType="none" id="goTermFilterComponent" emptyMessage="">
+			<p:commandLink styleClass="filter-tag" update="goTermFilterComponent, #{cc.attrs.updateArea}" rendered="#{goTerm != null}"
+				onstart="PF('#{cc.attrs.blockArea}').show()" oncomplete="PF('#{cc.attrs.blockArea}').hide()">
+	        	<f:setPropertyActionListener value="#{goTerm}" target="#{cc.attrs.bean[cc.attrs.removeProperty]}"/>
+	        	<span title="Click to remove this from the filter" class="tag">
+	        		<span class="glyphicon glyphicon-remove-circle"></span> <span class="go-term-text">#{goTerm.termName}</span>
+	        	</span>
+    		</p:commandLink> 
+		</p:dataList>
+		<p:autoComplete
+			id="goTermAC"
+			value="#{cc.attrs.bean[cc.attrs.addProperty]}"
+			completeMethod="#{goTermListProducer.completeGOTerm}"
+			minQueryLength="2" var="searchGOTerm" itemValue="#{searchGOTerm}"
+			converter="goTermConverter" forceSelection="true"
+			styleClass="molAuto,input-sm" panelStyleClass="panelGoTermAuto"
+			emptyMessage="No results found for your query"
+			placeholder="Filter by GO term" 
+			maxResults="5"
+			itemLabel="#{empty searchGOTerm?'':searchGOTerm.termName.concat(' (').concat(searchGOTerm.goTermID).concat(')')}" >
+			<p:ajax event="itemSelect" update="goTermFilterComponent, #{cc.attrs.updateArea}, goTermAC" onstart="PF('#{cc.attrs.blockArea}').show()" oncomplete="PF('#{cc.attrs.blockArea}').hide()"/>
+		</p:autoComplete>
+		</composite:implementation>
+</ui:composition>

@@ -1,0 +1,113 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:func="http://bcm.edu.dldcc.big/nursa/functions">
+	<composite:interface>
+		<composite:attribute name="annotation"
+			type="edu.bcm.dldcc.big.nursa.model.moleculeAnnotations.MRNAAnnotation"
+			required="true" />
+
+	</composite:interface>
+	<composite:implementation>
+		<h:form>
+			<p:panel header="RNA" collapsed="true" toggleable="true">
+				<p:ajax event="toggle"
+					listener="#{ajaxPanelController.alternateComponentState(cc.attrs.annotation.id.toString())}"
+					update="rnaPnlContent" onstart="$.blockUI()"
+					oncomplete="$.unblockUI()" />
+				<p:outputPanel id="rnaPnlContent">
+					<p:outputPanel
+						rendered="#{ajaxPanelController.renderComponent(cc.attrs.annotation.id.toString())}">
+
+						<p class="curated">Manually annotated records for this gene's mRNA transcripts at selected external databases.</p>
+
+						<p:accordionPanel dynamic="true" cache="true" styleClass="noPadding">
+							<p:ajax event="tabChange" onstart="$.blockUI()" oncomplete = "$.unblockUI()"/>
+	        				<p:tab title="NCBI">
+								<p:dataTable id="mrnaTable" var="mrna"
+									value="#{moleculeService.lazyLoaders.get(cc.attrs.annotation.id.toString())}"
+									emptyMessage="No data are available for this ortholog."
+									paginator="true" paginatorPosition="bottom"
+									paginatorTemplate="Show {RowsPerPageDropdown} per page {CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+									{PageLinks} {NextPageLink} {LastPageLink}"
+									currentPageReportTemplate="Showing {startRecord} - {endRecord} of {totalRecords}"
+									rowsPerPageTemplate="10,20,50" styleClass="listTable" rows="10"
+									lazy="true" sortBy="#{mrna.rnaAccessionVersion}">
+									<!-- 				adding empty header to get round top  -->
+									<!-- 				solely for L&F. May go away -->
+									<f:facet name="header">NCBI</f:facet>
+									<p:column width="100" sortBy="#{mrna.rnaAccessionVersion}">
+										<f:facet name="header">
+											<h:outputText value="Transcript ID" />
+										</f:facet>
+										<a
+											href="#{fn:replace('http://www.ncbi.nlm.nih.gov/nuccore/${ID}','\\$\\{ID\\}',mrna.rnaAccessionVersion)}"
+											target="_blank"> #{mrna.rnaAccessionVersion}</a>
+									</p:column>
+
+									<!-- RefSeq Browser  View -->
+									<p:column width="100" >
+										<f:facet name="header">
+											<h:outputText value="View" />
+										</f:facet>
+										<a
+											href="#{fn:replace('http://www.ncbi.nlm.nih.gov/nuccore/${ID}?report=graph&amp;log$=seqview','\\$\\{ID\\}',mrna.rnaAccessionVersion)}"
+											target="_blank"> #{mrna.rnaAccessionVersion}</a>
+										</p:column>
+
+										<p:column width="250" sortBy="#{mrna.description}">
+										<f:facet name="header">
+											<h:outputText value="Transcript Description" />
+										</f:facet>
+										#{mrna.description}
+										</p:column>
+										
+										<p:column width="40" sortBy="#{mrna.length}">
+										<f:facet name="header">
+											<h:outputText value="Length (bp)" />
+										</f:facet>
+										#{mrna.length}
+										</p:column>
+										
+									<!--encoded protein -->
+									<p:column width="100" sortBy="#{mrna.polypeptide.refseqId}">
+										<f:facet name="header">
+											<h:outputText value="Protein ID" />
+										</f:facet>
+										<a href="#{fn:replace('http://www.ncbi.nlm.nih.gov/protein/${ID}','\\$\\{ID\\}',mrna.polypeptide.refseqId)}"
+											target="_blank"> #{mrna.polypeptide.refseqId}</a>
+									</p:column>
+									
+									<p:column width="40" sortBy="#{mrna.polypeptide.sequenceSize}">
+										<f:facet name="header">
+											<h:outputText value="Length (aa)" />
+										</f:facet>
+										#{mrna.polypeptide.sequenceSize}
+									</p:column>
+									
+								</p:dataTable>
+								<p:blockUI trigger="mrnaTable" block="mrnaTable">
+									Loading content...
+									<div class="ajaxSpinner">
+										<div class="dot1"></div>
+										<div class="dot2"></div>
+									</div>
+								</p:blockUI>
+							</p:tab>
+						</p:accordionPanel>
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:panel>
+
+		</h:form>
+
+	</composite:implementation>
+</ui:composition>

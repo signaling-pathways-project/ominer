@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface>
+		<composite:attribute name="bean" required="true" />
+		<composite:attribute name="property" required="true" />
+		<composite:attribute name="updateArea" required="true" />
+		<composite:attribute name="blockArea" required="true" />	
+	</composite:interface>
+	<composite:implementation>
+
+		<h6>
+			<span class="label label-info">Dataset Type</span>
+		</h6>
+
+		 <p:selectManyCheckbox value="#{cc.attrs.bean[cc.attrs.property]}" layout="pageDirection">
+			<f:selectItem itemLabel="Affinity Purification ( &lt;span id = &quot;affinityPurificationTotal&quot;&gt;&lt;/span&gt; )" itemEscaped="false"  itemValue="Affinity Purification" />
+			<f:selectItem itemLabel="ChIP-ChIP ( &lt;span id = &quot;cHIPCHIPTotal&quot;&gt;&lt;/span&gt; )" itemEscaped="false"  itemValue="ChIP-ChIP" />
+			<f:selectItem itemLabel="Q-PCR ( &lt;span id = &quot;qPCRTotal&quot;&gt;&lt;/span&gt; )" itemEscaped="false" itemValue="Q-PCR" />
+			<f:selectItem itemLabel="Transcriptomic ( &lt;span id = &quot;transcriptomicTotal&quot;&gt;&lt;/span&gt; )" itemEscaped="false"  itemValue="Transcriptomic" />
+			<p:ajax update="#{cc.attrs.updateArea}" onstart="PF('#{cc.attrs.blockArea}').show()" oncomplete="PF('#{cc.attrs.blockArea}').hide()" />
+		</p:selectManyCheckbox>
+ 
+	</composite:implementation>
+</ui:composition>

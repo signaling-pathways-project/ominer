@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:func="http://bcm.edu.dldcc.big/nursa/functions">
+	<composite:interface>
+		<composite:attribute name="annotation"
+			type="edu.bcm.dldcc.big.nursa.model.moleculeAnnotations.DrugAnnotation"
+			required="true" />
+
+	</composite:interface>
+	<composite:implementation>
+		<h:form>
+			<p:panel header="Drugs" toggleable="true" collapsed="true">
+				<p:ajax event="toggle"
+					listener="#{ajaxPanelController.alternateComponentState(cc.attrs.annotation.id.toString())}"
+					update="drugPnlContent" onstart="$.blockUI()"
+					oncomplete="$.unblockUI()" />
+				<p:outputPanel id="drugPnlContent">
+					<p:outputPanel
+						rendered="#{ajaxPanelController.renderComponent(cc.attrs.annotation.id.toString())}">
+						<p class="curated">Manually curated drugs targeting this bsm from selected external databases. Note that many ligands are drugs, but not all drugs are NR-relevant ligands.</p>
+
+						<p:dataTable id="drugTable" var="drug"
+							value="#{moleculeService.lazyLoaders.get(cc.attrs.annotation.id.toString())}"
+							emptyMessage="No data are currently available."
+							paginator="true" paginatorPosition="bottom"
+							paginatorTemplate="Show {RowsPerPageDropdown} per page {CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+							{PageLinks} {NextPageLink} {LastPageLink}"
+							currentPageReportTemplate="Showing {startRecord} - {endRecord} of {totalRecords}"
+							rowsPerPageTemplate="10,20,50" styleClass="listTable" rows="10"
+							lazy="true">
+							<f:facet name="header">DrugBank</f:facet>
+							<p:column styleClass="col-md-2" sortBy="#{drug.name.name}">
+								<f:facet name="header">
+									<h:outputText value="Name" />
+								</f:facet>
+								<a href="../#{drug.doi.url}">#{drug.name.name}</a>
+							</p:column>
+							<p:column styleClass="col-md-10">
+								<f:facet name="header">
+									<h:outputText value="Description" />
+								</f:facet>
+								<h:outputText title="#{drug.description}" value="#{func:truncateToWord(drug.description,120)}" />
+							</p:column>
+						</p:dataTable>
+						<p:blockUI trigger="drugTable" block="drugTable">
+							Loading content...
+							<div class="ajaxSpinner">
+								<div class="dot1"></div>
+								<div class="dot2"></div>
+							</div>
+						</p:blockUI>
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:panel>
+		</h:form>
+	</composite:implementation>
+</ui:composition>

@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<!-- generalized view for ortholog data
+	this isn't a long term solution, but a way to quickly display what's in the box. I mean, database. 
+	Keeping the existing components for when each section requires
+	customization
+	CMW 1/10/14 -->
+	<composite:interface>
+		<composite:attribute name="annotation"
+			displayName="the annotation to process" required="true" />
+		<composite:attribute name="title" displayName="title of the section"
+			required="false" />
+		<composite:attribute name="comment"
+			displayName="comment to display at top of section" required="false" />
+		<composite:attribute name="annotationPath"
+			displayName="path to annotation item" required="false" />
+	</composite:interface>
+	<composite:implementation>
+		<p:panel header="#{cc.attrs.title}" collapsed="true" toggleable="true">
+			<p class="curated">#{cc.attrs.comment}</p>
+			
+			<!-- the next line is what's causing autocomplete to fail-
+
+the next line causes the autocomplete to fail. things I've tried:
+
+using ui:repeat with a simple array (SiteVariables.ORTHOLOGS) - autocomplete works
+tried c:forEach - didn't get any data (in all fairness, I'm a bit frazzled, so getting a second opinion)
+took this out of a CC and put it in the calling CC - autocomplete failed
+tried mo:geneView - autocomplete failed
+
+it seems to be a combination of both ui:repeat and the value that makes the autocomplete fail
+
+there will be a wonderful celebration when this is fixed :)
+
+-->
+			 <ui:repeat value="#{cc.attrs.annotation[cc.attrs.annotationPath]}"
+				var="item">
+					<ui:repeat value="#{item.dataResources}" var="dataResource"
+						varStatus="status">
+						<div class="dataDisplay">
+							<layout:dataRow label="#{dataResource.organization.name}"
+								collection="#{dataResource.synonyms}" displayPath="name"
+								baseURL="#{dataResource.organization.baseURL}" layout="vertical" />
+						</div>
+						<h:panelGroup rendered="#{!status.last}">
+							<hr />
+						</h:panelGroup>
+					</ui:repeat>
+			</ui:repeat>
+
+		</p:panel>
+
+	</composite:implementation>
+</ui:composition>

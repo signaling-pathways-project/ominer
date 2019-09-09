@@ -1,0 +1,217 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<!-- cmw 3/24/14
+	
+	CC that embeds a dialog box to display a Jmol HTML5 object on a page.
+	
+	It's important to define the ID of this CC in the calling page in order to reference the 
+	dialog box and Jmol object, as these are namespaced with the CC's ID in order to prevent
+	any collisions between multiple instances of this CC on the calling page.
+	
+	Usage: put this component on a page and call the dialog box to be opened and loaded with 
+	the following javascript command:
+	
+	showJmolDialog('#{COMPONENT_ID}JmolBox','#{ACCESSION_NUMBER_OF_MOLECULE}')
+	
+	right now, data are being loaded from www.rcsb.org/pdb/files/. That can be adjusted by
+	changing the prefix of the accession number from = to another symbol. Jmol documentation at 
+	wiki.jmol.org is okay; a sample page here (http://chemapps.stolaf.edu/jmol/jsmol/test2.htm) 
+	is a better reference
+	
+	other dependencies:
+	-Jmol must be downloaded and available to the web application. This assumes it's in the root, NOT under
+	resources.
+	There are more notes below where one of the	scripts is referenced
+	
+	-as of this writing, jsmol.php (part of Jmol) is required to enable MSIE to load files from remote servers, and it must be
+	reachable via the same subdomain as the page using this component
+	
+	USAGE NOTE:
+	the ID is used as the name of the widgetVar for the PF dialog box, as well as the seed for 
+	uniquely identifying Jmol objects and other JS scripts. As such, it must be unique AND 
+	referenceable by other components when they call the JS to open and load the Jmol object.
+	 You will need to specify the ID when you embed this component
+	and you will need to enforce its uniqueness, particularly if it's in a ui:repeat or other
+	iterating parent component. See how it's used in the crystalStructuresView component in moleculeOntology.
+	I hope there's a better and easier way to do this; consider it for refactoring. 
+	
+	-->
+
+	<composite:interface displayName="Jmol viewer">
+	</composite:interface>
+		<composite:implementation>
+
+			<!-- jsmol javascript -->
+			<!-- using the nojq version because the regular version with jQuery conflicts with primefaces -->
+			<!-- not using it as a JSF resource because the javascript uses strings in an init object
+		to identify directories where other javascript resources are, and JSF resource references must 
+		be to an actual file, not just a directory. 
+		I'm using request.contextPath because it's less convoluted than the resources map and still
+		portable
+		
+		5/6/14 cmw
+		IMPORTANT: references to rcsb.com have been prefixed with https in jsmol/JSmol.min.nojq.js
+		This is to get around Firefox's default blocking of mixed active content. If NURSA3 is SSL, then 
+		when JSmol requests from http://www.rcsb.com, FF will block the request and JSmol will fail.
+		
+		However, when the above https change is made, it seems that FF falls back on the .php script
+		supplied with JSmol that acts as a proxy, with the end result being that all browsers work 
+		whether or not the content is mixed. 
+		
+		 7.10.2014 apollo: to test in http mode, simply change https://www.rcsb.. to http://www.rcsb 
+		-->
+		
+		<!--  IMPORTANT : serverURL 
+		
+		this is the proxy PHP script used by JSmol. It's listed as a relative URL here to facilitate it running
+		on dev, stage, and prod without making any changes. This functionality assumes that you can access those site
+		without specifying a port number. e.g., beta.nursa.org. https://nursa3-stg.dldcc.bcm.edu/nursa.
+		If you are testing things in a different environment, feel free to use a full URL there, but it's best
+		to turn it back into a relative URL before checking in code to avoid breaking any other envs. -->
+		
+			<script src="#{request.contextPath}/jsmol/JSmol.min.nojq.js"></script>
+
+			<!-- apolo: 7.11.2014 
+			If apache webserver does not front-ends jboss, to enable true relative path, strip out port, thereby invoking the apache URL 
+			This Bad losses : in http://-->
+			<ui:param name="basePath" value="#{fn:replace(fn:substring(request.requestURL,0, request.requestURL.length() - request.requestURI.length()),':{1}\\d*','')}" />
+			
+			<script>
+					//object that contains init params for the Jmol object
+					var #{cc.id}Info = {
+							  color: "#FFFFFF",  // white background (note this changes legacy default which was black)
+							  height: 300,      // pixels (but it may be in percent)
+							  width: 300,
+							  use: "HTML5",         // "HTML5" or "Java" (case-insensitive)
+							  j2sPath: "#{request.contextPath}/jsmol/j2s",           // only used in the HTML5 modality
+							serverURL: "/jsmol/jsmol.php", //see docs above 
+								script: "set antialiasDisplay true",
+							  readyFunction: prepJmol
+							  
+							};
+
+					//initialize the Jmol viewer and related form elements
+					function prepJmol(applet) {
+
+						$('##{cc.id}JmolForm [data-toggle="checkbox"]').each(function () {
+							  $(this).checkbox();
+							  $(this).on('toggle', function(){
+								  toggleJmolAA(this.checked);
+								  })
+							});
+
+						$('##{cc.id}JmolForm [data-toggle="radio"]').each(function () {
+							  $(this).radio();
+							  $(this).on('toggle', function(){
+								  toggleJmolStyle(this.value);
+								  })
+							});
+						
+						
+						Jmol._getElement(applet, "appletdiv").style.border = "3px solid #2980B9";
+							Jmol._getElement(applet, "appletdiv").style.borderRadius = "6px";
+							Jmol._getElement(applet, "appletdiv").style.padding = "4px";	
+						}
+					
+						
+					
+					//supporting functions
+					//turn anti-aliasing on/off
+					function toggleJmolAA(checkStatus) {
+						if(checkStatus) {
+							Jmol.script(#{cc.id}JmolViewer,"set antialiasDisplay true");
+							} else {
+								Jmol.script(#{cc.id}JmolViewer,"set antialiasDisplay false");
+								}
+						}
+
+					//change style of Jmol viewer
+					function toggleJmolStyle(theStyle) {
+						switch(theStyle) {
+
+						//cartoons
+						case "1":
+							Jmol.script(#{cc.id}JmolViewer,'select *;cartoons only; color structure');				
+							break;
+
+						//spacefill
+						case "2":
+							Jmol.script(#{cc.id}JmolViewer,'select *;cartoons off; spacefill only');
+							break;
+
+						//wire
+						case "3":
+							Jmol.script(#{cc.id}JmolViewer,'select *;cartoons off; wireframe -0.1');
+							break;
+
+						//ball and stick
+						case "4":
+							Jmol.script(#{cc.id}JmolViewer,'select *;cartoons off; spacefill 23%; wireframe 0.15');
+							break;
+
+
+						}
+						}
+
+			//show the encapsulating dialog and load the requested bsm
+			function showJmolDialog(boxWidget,molId) {
+
+				//fill in mol title
+				$("##{cc.id}jmolTitle").html(molId);
+				
+				PF("#{cc.id}").show();
+
+				//load data
+				Jmol.loadFile(#{cc.id}JmolViewer,'='+molId,'select *;cartoons only; color structure')
+				
+					}
+
+			//call the Jmol object and populate the dialog with the appropriate HTML when the
+			//document is ready
+			$(function() {
+				
+			$("##{cc.id}jmolDiv").html(Jmol.getAppletHtml("#{cc.id}JmolViewer", #{cc.id}Info));
+			
+			});
+			</script>
+			
+			<!--  here's the dialog and form -->
+<!-- 			<p:dialog widgetVar="#{cc.id}JmolBox" modal="true" -->
+	<p:dialog widgetVar="#{cc.id}" modal="true"
+				header="Jmol Viewer">
+				<div id="#{cc.id}jmolDiv" />
+						Interactive rendering for <strong><span
+					id="#{cc.id}jmolTitle"></span></strong>
+				<br />
+	Use mouse to rotate and scroll to zoom<br />
+				<form id="#{cc.id}JmolForm">
+					<label class="checkbox" for="#{cc.id}jmolCheckbox"> <input
+						type="checkbox" id="#{cc.id}jmolCheckbox" data-toggle="checkbox"
+						checked="true" /> High Res
+					</label>
+					<hr />
+					<label class="radio"> <input type="radio"
+						name="#{cc.id}jmolRadio" value="1" data-toggle="radio"
+						checked="true" /> Cartoon
+					</label> <label class="radio"> <input type="radio"
+						name="#{cc.id}jmolRadio" value="2" data-toggle="radio" />
+						Spacefill
+					</label> <label class="radio"> <input type="radio"
+						name="#{cc.id}jmolRadio" value="3" data-toggle="radio" /> Wire
+					</label> <label class="radio"> <input type="radio"
+						name="#{cc.id}jmolRadio" value="4" data-toggle="radio" /> Ball
+						and Stick
+					</label>
+					
+				</form>
+			</p:dialog>
+
+
+		</composite:implementation>
+</ui:composition>

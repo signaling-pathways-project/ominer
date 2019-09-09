@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:mo="http://java.sun.com/jsf/composite/moleculeOntology"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+	<composite:interface>
+		<composite:attribute name="speciesAnnotation"
+			type="edu.bcm.dldcc.big.nursa.model.moleculeAnnotations.SpeciesAnnotation"
+			required="true" />
+
+	</composite:interface>
+	<composite:implementation>
+		<mo:geneView geneAnnotation="#{cc.attrs.speciesAnnotation.getAnnotationFromString('GeneAnnotation')}" />
+		<mo:rnaView mRNAAnnotation="#{cc.attrs.speciesAnnotation.getAnnotationFromString('MRNAAnnotation')}" />
+		<mo:polypeptidesView polypeptideAnnotation="#{cc.attrs.speciesAnnotation.getAnnotationFromString('PolypeptideAnnotation')}" />
+		<mo:goTermsView goTermAnnotation="#{cc.attrs.speciesAnnotation.getAnnotationFromString('GGOTermAnnotation')}" />
+		<mo:polypeptideModificationsView polypeptideModificationAnnotation="#{cc.attrs.speciesAnnotation.getAnnotationFromString('PolypeptideModification')}" />
+		<mo:crystalStructuresView crystalStructureAnnotation="#{cc.attrs.speciesAnnotation.getAnnotationFromString('CrystalStructureAnnotation')}" />
+		<mo:polypeptideInteractionsView proteinInteractionAnnotation="#{cc.attrs.speciesAnnotation.getAnnotationFromString('ProteinInteraction')}" />
+		<mo:miRNAView miRNAAnnotation="#{cc.attrs.speciesAnnotation.getAnnotationFromString('MIRNAAnnotation')}" />
+	</composite:implementation>
+</ui:composition>

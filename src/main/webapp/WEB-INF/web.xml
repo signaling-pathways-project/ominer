@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>NURSA 3</display-name>
+	<session-config>
+		<session-timeout>120</session-timeout>
+		<!-- Disables URL-based sessions (no more 'jsessionid' in the URL using Tomcat) -->
+  		<!--  Apollo. Has issues  on PC 
+  		<tracking-mode>COOKIE</tracking-mode>
+  		-->
+  	</session-config>
+	
+   	<context-param>
+		<param-name>com.sun.faces.writeStateAtFormEnd</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.push.jms.enable</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>org.richfaces.enableControlSkinning</param-name>
+		<param-value>false</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>nursa-flat</param-value>
+	</context-param>
+	<!-- custom tag library -->
+	<context-param>
+    <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+    	<param-value>/WEB-INF/functions.taglib.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+		<param-value>6LeNbe0SAAAAAO-nmRg8hInV1n62M2kxQEPo8BO7</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+		<param-value>6LeNbe0SAAAAAIOviajo9LRPflv0T2c3u_oK2mb3</param-value>
+	</context-param>
+	
+	<!-- this undos the slow pretty faces during app startup -->
+	<context-param>
+		<param-name>com.ocpsoft.pretty.BASE_PACKAGES</param-name>
+		<param-value>none</param-value>
+	</context-param>
+
+	<!-- for resteasy API security -->
+	  <context-param>
+    <param-name>resteasy.providers</param-name>
+    <param-value>edu.bcm.dldcc.big.nursa.util.filter.ApiAccessSecurityInterceptor
+    </param-value>
+	</context-param>
+	
+	<!-- To generate swagger.json documentation
+	1) pom dependencies
+	2) RestEasy AutoScan 
+	3) A BeanConfig Servlet
+	4) Setup swagger-ui docs
+	-->
+	<!-- if use auto scan, (this instead on JaxRsActivator.java) AND must also use BeanConfig servlet below. Note the simple DefaultJaxrsConfig servlet is not enough  -->
+	<!--  undo scna for now  10.14.16-->
+	<context-param>
+	    <param-name>resteasy.scan</param-name>
+	    <param-value>true</param-value>
+  	</context-param>
+  	<servlet>
+        <servlet-name>SwaggerBootstrap</servlet-name>
+        <servlet-class>edu.bcm.dldcc.big.nursa.services.rest.BootStrapSwaggerScanning</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    
+    
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/index.jsf</location>
+	</error-page>
+    <error-page>
+        <error-code>400</error-code>
+        <location>/errorPages/400.jsf</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/errorPages/404.jsf</location>
+    </error-page>
+    <error-page>
+        <error-code>408</error-code>
+        <location>/errorPages/408.jsf</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/errorPages/500.jsf</location>
+    </error-page>
+    
+	<filter>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>PrimeFaces FileUpload Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- don't cache .cs and .js files, at least for dev. Can change the param-value to a higher
+	number to employ caching. See the filter class for more info -->
+ 	<filter>
+        <filter-name>NoCacheFilter</filter-name>
+        <filter-class>edu.bcm.dldcc.big.nursa.util.filter.CacheFilter</filter-class>
+        <init-param>
+            <param-name>CacheTime</param-name>
+            <param-value>0</param-value>
+        </init-param>
+    </filter>
+	<filter-mapping>
+        <filter-name>NoCacheFilter</filter-name>
+        <url-pattern>*.js</url-pattern>
+    </filter-mapping>
+	<filter-mapping>
+		<filter-name>NoCacheFilter</filter-name>
+		<url-pattern>*.jsf</url-pattern>
+	</filter-mapping>
+    <filter-mapping>
+        <filter-name>NoCacheFilter</filter-name>
+        <url-pattern>*.css</url-pattern>
+    </filter-mapping>
+	<security-constraint>
+		<display-name>Restrict raw XHTML Documents</display-name>
+		<web-resource-collection>
+			<web-resource-name>XHTML</web-resource-name>
+			<url-pattern>*.xhtml</url-pattern>
+		</web-resource-collection>
+		<auth-constraint />
+	</security-constraint>
+
+	<!-- mime mappings for fonts and icon-->
+	<mime-mapping>
+	    <extension>eot</extension>
+	    <mime-type>application/vnd.ms-fontobject</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+	    <extension>otf</extension>
+	    <mime-type>font/opentype</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+	    <extension>svg</extension>
+	    <mime-type>image/svg+xml</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+	    <extension>ttf</extension>
+	    <mime-type>application/x-font-ttf</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+	    <extension>woff</extension>
+	    <mime-type>application/x-font-woff</mime-type>
+	</mime-mapping>
+	<mime-mapping>
+	    <extension>woff2</extension>
+	    <mime-type>application/x-font-woff2</mime-type>
+	</mime-mapping>	
+	<!-- end fonts -->
+	<!-- mime mappings icons-->
+	<mime-mapping>
+		<extension>crx</extension>
+	<mime-type>application/x-chrome-extension</mime-type>
+	</mime-mapping> 
+	<mime-mapping>
+		<extension>xpi</extension>
+	<mime-type>application/x-xpinstall</mime-type>
+	</mime-mapping> 
+	<mime-mapping>
+		<extension>safariextz</extension>
+	</mime-mapping>  
+	<mime-mapping>
+		<extension>ico</extension>
+	<mime-type>image/x-icon</mime-type>
+	</mime-mapping>
+</web-app>

@@ -1,0 +1,10 @@
+.mainbody { font-family: Arial, Helvetica, sans-serif; font-size: x-small; font-weight: normal}
+.mainbodywhite { font-family: Arial, Helvetica, sans-serif; font-size: x-small; font-weight: normal; color: #FFFFFF}
+.heading { font-family: Arial, Helvetica, sans-serif; font-size: small; font-weight: bold; text-transform: none}
+.heading_blue { font-family: Arial, Helvetica, sans-serif; font-size: small; font-weight: bold; text-transform: none ; color: #006699}
+.heading_big_blue { font-family: Arial, Helvetica, sans-serif; font-size: medium; font-weight: bold; color: #006699}
+.heading_white { font-family: Arial, Helvetica, sans-serif; font-size: small; font-weight: bold; color: #FFFFFF; text-transform: none}
+.subheading { font-family: Arial, Helvetica, sans-serif; font-size: x-small; font-weight: bold; text-transform: none }
+.subheading_blue { font-family: Arial, Helvetica, sans-serif; font-size: x-small; font-weight: bold; text-transform: none ; color: #004080}
+.xsmall { font-family: Arial, Helvetica, sans-serif; font-size: xx-small}
+.xsmallbold { font-family: Arial, Helvetica, sans-serif; font-size: xx-small; font-weight: bold}

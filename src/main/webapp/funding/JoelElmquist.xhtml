@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value ="NURSA-funded Research Projects" outcome = "/funding/nursa_projects"/></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>PPARγ in vagal sensory neurons and the untoward effects of thiazolidinediones</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/joel-elmquist.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>Joel Elmquist</strong><br/>
+					UT Southwestern<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			Thiazolidinediones (TZDs) are anti-diabetic agents that are potent activators of peroxisome proliferatoractivated
+receptor-γ (PPARγ). Despite their robust insulin-sensitizing effect, chronic use of TZDs can cause
+untoward side effects including excessive weight gain, fluid retention, edema, and heart failure. These issues
+have significantly limited the clinical use of this class of anti-diabetic drugs. Emerging evidence suggests that
+these untoward side effects may involve actions of PPARγ agonists on the nervous system. However, the
+mechanisms underlying putative neuron-specific PPARγ activation and side effects remains poorly understood.
+Insights into this relationship may provide opportunities to develop novel PPARγ agonists with fewer adverse
+effects.<br /><br />
+
+			The vagus nerve (including both the parasympathetic motor and sensory input) innervates the heart
+and is a critical modulator of cardiovascular function. Recently, we systematically profiled the expression
+patterns of all known murine nuclear receptors (NRs) in laser-captured vagal sensory neurons (VSNs). We
+found that several NRs, including PPARγ, were expressed at moderate to high levels in VSNs. Notably, these
+include neurons that innervate the carotid body and aortic arch and convey information regarding blood oxygen
+and arterial pressure to the brain for the regulation of the baroreceptor reflex. Furthermore, we found that
+PPARγ expression in VSNs is nutritionally regulated and regulates diet-induced thermogenesis by modulating
+parasympathetic (vagal) activities.<br /><br />
+
+			Activation of vagal afferents affects both sympathetic and parasympathetic output to key target organs.
+However, the role of NRs in vagal sensory neurons (including PPARγ activation) on cardiovascular function
+following chronic TZD treatment has not been studied. We hypothesize that chronic PPARγ activation in vagal
+neurons contributes to the adverse body weight and cardiovascular effects associated with TZD treatment. We
+will directly test this with the following Specific Aims: <br /><br />
+
+			Specific Aim 1. To determine whether PPARγ activation in vagal neurons contributes to excessive
+			weight gain following chronic TZD treatment.<br /><br />
+
+			We have recently found that the loss of PPARγ in Phox2b neurons leads to a decrease in body weight due to
+due to an increase in diet-induced thermogenesis that involves an active reprograming of the body’s white
+adipocytes towards a thermogenic, brown adipocyte cell fate. We hypothesize that PPARγ activation in Phox2b
+neurons by chronic TZD treatment (rosiglitazone or pioglitazone) contributes to excessive weight gain, and that
+	this increase in weight will be blunted in the mice that lack PPARγ in Phox2b neurons.<br /><br />
+
+			Specific Aim 2. To determine whether PPARγ activation in vagal neurons contributes to the adverse
+			cardiovascular effects of Rosiglitazone.<br /><br />
+
+			We have found that the loss of PPARγ in Phox2b neurons alters vagal-mediated behaviors. Given the
+important role for the parasympathetic vagus nerve in the regulation of cardiovascular function, we hypothesize
+that chronic activation of PPARγ in VSNs will affect cardiac physiology. To this end, we will investigate
+parameters known to be clinically associated with heart failure in wildtype mice and in mice that lack PPARγ in
+Phox2b neurons following chronic TZD treatment.
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:sm="http://java.sun.com/jsf/composite/submenubars"
+	xmlns:p="http://primefaces.org/ui">
+
+<div class="modal" id="query-result-errors" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog modal-lg">
+		    	<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="btn btn-sm btn-default pull-right" data-dismiss="modal">Close</button>
+
+						<h4 class="modal-title error-00">No Results</h4>
+						<h4 class="modal-title error-02 error-03 error-01">Too Many Results</h4>
+						<h4 class="modal-title 500-error">Error</h4>
+					</div>
+					<div class="modal-body">
+						<div class="errors clearfix" id="error-00">
+							<p>Your query returned 0 results. Please modify your query and resubmit the form.</p>
+							<div class="pull-right">
+								<button type="button" class="btn btn-sm btn-primary reset-upload" data-dismiss="modal">Modify Query</button>
+							</div>
+						</div>
+						<div class="errors clearfix" id="error-01">
+							<p>Your query will return <b><span class="num-of-results">> 1000</span></b> data points, which exceeds the cap on the number that can be currently browsed in Transcriptomine (1000).</p>
+							<p>To reduce the number of data points, please increase the stringency of the p-value from its default setting (e.g. Select “Other”, then enter 0.01, 0.001, etc), or narrow your search to a specific biosample category (e.g. Metabolic…Liver).</p>
+							<p>Alternatively the data points can be downloaded in Excel.</p>
+							<div class="pull-right">
+								<button type="button" class="btn btn-sm btn-primary reset-upload" data-dismiss="modal">Modify Query</button> 
+								<a id="download-results-01" href="#" target="_blank" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>&#160;Download Results</a>
+							</div>
+						</div>
+						<div class="errors clearfix" id="error-03">
+							<p>There are <b><span class="num-of-results">> 1000</span></b> data points for the selected fold change values. Currently there is a 1000 point limit to the graph.</p>
+						</div>
+						<div class="errors clearfix" id="error-02">
+							<p>Your query will return <b><span class="num-of-results">> 66,000</span></b> data points, which exceeds the cap on the number that can be currently browsed in Transcriptomine (1000) or which can be downloaded in Excel (approx. 66,000).</p>
+							<p>To reduce the number of data points, please increase the stringency of the p-value cut-off from its default setting (e.g. Select “Other”, then enter 0.01, 0.001, etc), or narrow your search to a specific biosample category (e.g. Metabolic…Liver).</p>
+							<p>If you still require assistance with obtaining a large set of results, e-mail us at <a href="mailto:support@nursa.org">support@nursa.org</a></p>
+							<div class="pull-right">
+								<button type="button" class="btn btn-sm btn-primary reset-upload" data-dismiss="modal">Modify Query</button>
+							</div>
+						</div>
+						<div class="errors clearfix">
+							<p>There was an error while processing your request. Please refresh the page and try again. If you continue to experience this please e-mail us at <a href="mailto:support@nursa.org">support@nursa.org</a></p>
+						</div>
+						<div class="errors clearfix" id="500-error">
+							<p>There was an error while processing your request. Please refresh the page and try again. If you continue to experience this please e-mail us at <a href="mailto:support@nursa.org">support@nursa.org</a></p>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-sm btn-default pull-right" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+</ui:composition>

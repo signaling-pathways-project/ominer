@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>NURSA Funding Opportunities Overview</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<p>To ensure an influx of new, novel, and important data, the NURSA Hub is dedicated to soliciting NURSA Data Source Projects (NDSPs) to serve as the development and research arm of NURSA, and to provide a source for new and unique concepts and data. The NURSA Bioinformatics Hub facilitates the solicitation, submission, peer review, and funding of the NDSPs through its web portal (<a href="http://www.nursa.org" target="_blank">www.nursa.org</a>). Each NDSP funding cycle (approximately one per year) will have one or two focus areas, which are determined by NIDDK and NICHD staff with input from the NURSA external advisory committee and PIs. </p>
+		<p><strong>Total award:</strong> While direct costs vary, the total cost of an NDSP is approximately $150,000.</p>
+
+		<p><strong>Term of NDSP:</strong> Each award is for one year, with an optional second year of funding dependent on progress and milestones met in the first year. </p>
+		
+		<p><strong>Number of awards:</strong> The number of NDSP awards varies for each funding cycle depending upon availability of funds. Typically 2-4 awards are funded per year. </p>
+		
+		<p><strong>NDSP announcements:</strong> Please view our <h:link value = "NDSP announcement" 
+			outcome = "/funding/ndsp_rfp.jsf"/> page to learn more about upcoming, current and past announcements. To learn more about funded NDSP projects, please see our <h:link outcome="/funding/nursa_projects.jsf" 
+			value = "NURSA-funded Projects"/> page. </p>
+		
+		<p><strong>PI Eligibility:</strong> Due to the nature of this award, all PI applicants must be able to show that they have other sources of funding to support their research (does not have to be NIH funding). NURSA encourages investigators who have not previously participated to submit proposals as well as those proposing a collaborative, multi-disciplinary approach. </p>
+		
+		<p><strong>Requirements of Funded Projects:</strong> NDSP investigators must utilize the Hub for submitting proposals, distributing information about NURSA-funded <h:link outcome = "/reagents/index.jsf" value = "reagents"/> and sharing NURSA-funded <h:link outcome = "/datasets/index.jsf" value = "datasets"/>. It is expected that funded investigators must freely share NURSA-funded reagents with other researchers upon request, but NDSP investigators may charge a nominal fee for reimbursing their expenses for reagent processing and shipping. Further, NDSP PIs will serve as members of the NURSA Steering Committee, with bimonthly meetings.</p>
+	</ui:define>
+
+
+</ui:composition>

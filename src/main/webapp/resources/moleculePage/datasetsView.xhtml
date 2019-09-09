@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+	<composite:interface>
+		<composite:attribute name="bsm"
+			type="edu.bcm.dldcc.big.nursa.model.Molecule" required="false" />
+
+	</composite:interface>
+	<composite:implementation>
+		<p:panel header="Datasets" toggleable="true" collapsed="true">
+			<p class="curated">
+				<h:link styleClass="pull-right" outcome="/transcriptomine/index.jsf"><h:graphicImage width="85" library="images" name="signaling-pathways-logo.svg" /></h:link>Find genes regulated by this bsm using <h:link outcome="/transcriptomine/index.jsf">Transcriptomine</h:link>, a tool created by NURSA for mining tissue-specific NR, NR ligand, and coregulator transcriptomes based on published genome wide transcriptional profiling experiments in the field of nuclear receptor signaling.<br /><br />
+				Note: This link will take you to a Transcriptomine query page. For website performance, only results containing 500 fold changes or fewer can be viewed in your browser. If these preset parameters retrieve more than 500 fold changes, you will have the option to download the results as an Excel file or adjust the query parameters (e.g. fold change size, tissue/cell line) to reduce the number of results so that you can view them in your web browser.
+			</p>
+
+		</p:panel>
+
+	</composite:implementation>
+</ui:composition>

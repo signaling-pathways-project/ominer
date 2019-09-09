@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value="NURSA-funded Research Projects"
+					outcome="/funding/nursa_projects" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>FXR and the chromatin landscape in human liver</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/moore.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>David Moore</strong><br/>
+					Baylor College of Medicine<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			Liver metabolic nuclear receptors (e.g. PPARs, LXRs, FXR) are promising pharmaceutical targets for a variety of human disorders, including type 2 diabetes, non-alcoholic fatty liver disease and atherosclerosis. New technologies to identify binding sites at the whole genome level for these NRs have significantly deepened our understanding of their range of action. However, recent studies have also revealed that NR binding sites and regulated genes are not consistently retained across species and, importantly, that metabolic background can profoundly affect binding profiles. This presents a significant obstacle to efforts to translate basic nuclear receptor functional studies in cell lines and mice into targeted and effective therapeutic approaches. FXR (NR1H4) is a promising NR target in current clinical trials, and the overall goal of this proposal is to generate the first global “omics” level profile of FXR function in human liver tissue in clinically relevant settings. More specifically, this project will determine the hepatic FXR cistrome and transcriptome in normal and morbidly obese human subjects enrolled in clinical trials with the semi-synthetic FXR agonist INT-747/6α-ethylchenodeoxycholic acid (6-ECDCA)/obeticholic acid. The outcome of these studies will be matched to the metabolic profile of those patients. In addition to these landmark studies in patients we will define FXR interactions with the chromatin landscape in primary human hepatocytes treated with the FXR ligand. This represents an unprecedented systems biology approach to understanding the role of FXR in human disease.<br /><br />
+
+			<strong>Specific Aims</strong><br />
+
+			<ol>
+				<li><strong>Determine the FXR cistrome and transcriptome in liver tissue of normal and morbidly obese patients treated with and without the FXR ligand 6-ECDCA.</strong> Liver tissue will be obtained from the clinical trial <a href="http://clinicaltrials.gov/ct2/show/NCT01625026" target="_blank">http://clinicaltrials.gov/ct2/show/NCT01625026</a> in which normal patients scheduled for elective cholecystectomy or morbidly obese patients scheduled for bariatric surgery receive either placebo or 6-ECDCA acid for 3 weeks prior to surgery. During surgery, a wedge liver biopsy will be obtained and further processed for the FXR cistrome by FXR ChIP-Seq and for transcriptomic profiling by RNA-Seq. The genetic profile will be matched to the metabolic profile of those patients defined by routine clinical parameters of insulin sensitivity, and also comprehensive bile acid and lipid profiles using mass spectrometry-based methods.</li>
+
+				<li><strong>Define the chromatin landscape of FXR binding and match it to transcriptional activity.</strong> We will apply a range of genome wide approaches, as practical with available resources. Ideally, this will include high-resolution histone methylome Seq for H3K4me2, H3K4me3 and H3K9me2 to determine epigenetic histone modifications that positively and negatively affect FXR dependent enhancer and promoter regions. For detection of long-range chromatin contacts and chromatin looping between specific FXR bound DNA regulatory elements we plan to perform ChIA-PET. Additionally, to get insights how these specific chromatin modifications affect real time transcription we aim to determine the total transcriptional impact of FXR in primary human hepatocytes via Gro-Seq with and without 6-ECDCA.</li>
+
+				<li><strong>Correlate and integrate the outputs of aims 1 and 2 and compare them to the published FXR mouse liver cistrome and other relevant datasets.</strong> Correlating potential direct FXR targets identified via the human FXR cistrome and the RNA-Seq profiling will be an important initial focus and the first step toward the major overall goal of this project, namely, to combine the different studies and to compare the human -omics data with available murine FXR cistromes and datasets, as well as other relevant NURSA and ENCODE datasets.</li>
+			</ol>
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

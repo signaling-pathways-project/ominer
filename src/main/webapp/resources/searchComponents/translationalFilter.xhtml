@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:sc="http://java.sun.com/jsf/composite/searchComponents"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface />
+
+	<composite:implementation>
+		<h:form id="translationalFilterForm" styleClass="translationalFilterForm formFlterWrap">
+			<div class="filter">
+				<p:panel styleClass="primary" toggleable="true" collapsed="false">
+					<f:facet name="header" >
+						<span id="translationalTotal"></span> Clinical Trials Found. <em>Use the Filter to narrow the listing.</em>
+					</f:facet>
+					<div class="row no-border-data-list">
+						<div class="col-md-3">
+							<sc:translationalTypeFilterComponent bean="#{translationalSearchService.translationalSearch}" property="translationalTypes" updateArea=":translationalListing:translationalResults" blockArea="translationalBlock" />
+						</div>
+						<div class="col-md-3">
+							<sc:moleculeFilterComponent bean="#{translationalSearchService.translationalSearch}" property="molecules" updateArea=":translationalListing:translationalResults" blockArea="translationalBlock" addProperty="addMolecule" removeProperty="removeMolecule"/>
+						</div>
+						<div class="col-md-3">
+							<sc:diseaseFilterComponent bean="#{translationalSearchService.translationalSearch}" property="diseases" updateArea=":translationalListing:translationalResults" blockArea="translationalBlock" addProperty="addDisease" removeProperty="removeDisease"/>
+						</div>
+						<div class="col-md-3">
+							<sc:drugFilterComponent bean="#{translationalSearchService.translationalSearch}" property="drugs" updateArea=":translationalListing:translationalResults" blockArea="translationalBlock" addProperty="addDrug" removeProperty="removeDrug"/>
+						</div>
+					</div>
+				</p:panel>
+			</div>
+		</h:form>
+	</composite:implementation>
+</ui:composition>

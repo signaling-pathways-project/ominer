@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">Signaling Pathways - Collaborations</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Collaborations" />
+		</ui:include>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Signaling Pathways Project - Collaborations</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<p>The Signaling Pathways Project has developed a unique ‘omics dataset biocuration pipeline, involving mapping of experimental perturbations to cellular signaling pathway nodes, creation of richly annotated secondary versions of the datasets, and incorporation into consensomes. Our biocuration efforts supports a number of strategic collaborations with societies, databases, consortia and professional societies who share SPP’s commitment to re-use of discovery-scale cellular signaling datasets. To obtain more information on any of these collaborations, or if you are a representative of a publisher, database, consortium or professional society seeking to collaborate with the Signaling Pathways project, please contact <a href="mailto:collaborate@signalingpathways.org">collaborate@signalingpathways.org</a>.</p>
+		<b>Publishers</b><br />
+		<div class="row">
+			<div class="col-md-3">
+				<a href="#" class="thumbnail">	
+					<h:graphicImage library="images" name="/partners/plos.png" />
+				</a>
+			</div>
+			<div class="col-md-9">
+				<p>The Public Library of Science (PLOS) has a long-standing commitment to open data access and, in a unique collaboration, has partnered with the Signaling Pathways Project to launch a new “’Omics of Cellular Signaling Pathway” PLOS Collection. In this collaboration, SPP biocurators identify articles from PLOS titles that contain publically archived transcriptomic and ChIP-Seq datasets, which are in turn committed to the SPP biocuration pipeline. The PLOS Collection lists the articles alongside links that point directly to the SPP version of the dataset, giving PLOS readers one-click access to a universe of information through a single Collection dataset.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<a href="#" class="thumbnail">	
+					<h:graphicImage library="images" name="/partners/Elsevier.png" />
+				</a>
+			</div>
+			<div class="col-md-9">
+				<p>Elsevier is one of the largest biomedical science publishers in the world and has recently devoted effort to increasing access to the datasets underlying many of its research articles. Under its previous incarnation as NURSA, SPP was accredited as an Elsevier Supported Data Repository. As with the PLOS collaboration, SPP biocurators identify articles from Elsevier titles that contain publically archived transcriptomic and ChIP-Seq datasets and commit these to the SPP biocuration pipeline. Elsevier displays banners on the electronic journal version of the associated article that link directly to the SPP version of the dataset, offering Elsevier readers the opportunity to explore data connections far beyond those envisaged by the original authors.</p>
+			</div>
+		</div>
+		 
+		<b>Databases</b><br />
+		
+		<div class="row">
+			<div class="col-md-3">
+				<a target="_blank" href="http://www.guidetopharmacology.org/" class="thumbnail">	
+					<h:graphicImage library="images" name="/partners/IUPHAR-GtoP.png" />
+				</a>
+			</div>
+			<div class="col-md-9">
+				<p>The International Union of Basic and Clinical Pharmacology Guide To Pharmacology (IUPHAR GtOP) is the most mature and comprehensive actively-curated authority on pharmacologically relevant interactions of receptors and enzymes with bioactive small molecules (BSMs). To ensure that SPP data is fully aligned with this prominent community resource, we have incorporated IUPHAR GtoP ligand-receptor and ligand-enzyme mappings into our database. These mappings, along with our own biocuration efforts, define the BSM-node relationships that underlie the SPP Regulation Reports and consensomes.</p>	
+			</div>
+		</div> 
+		<div class="row">
+			<div class="col-md-3">
+				<a href="#" class="thumbnail">	
+					<h:graphicImage library="images" name="/partners/reactome.png" />
+				</a>
+			</div>
+			<div class="col-md-9">
+				<p>Reactome is an open-source, open access pathway database, based on manual biocuration and peer-review of molecular events from the published research literature. As such, it is a natural complement to SPP’s inference of cellular signaling events and relationships from archived transcriptomic and ChIP-Seq datasets. Reactome and SPP are exploring ways to integrate their content to provide users with mutually validating sources of evidence for events accompanying cellular signaling pathways.</p>	
+			</div>
+		</div>
+		<div class="row"> 
+			<div class="col-md-3">
+				<a href="#" class="thumbnail">	
+					<h:graphicImage library="images" name="/partners/nihlincs.png" />
+				</a>
+			</div>
+			<div class="col-md-9">
+				<p>Avi Ma’ayan’s group in Mount Sinai University applies machine learning and other statistical mining techniques to study how intracellular regulatory systems function as networks to control cellular processes. Their highly computational approach to cellular systems biology is naturally orthogonal to SPP’s strong biocurational principles. SPP and the Ma’ayan laboratory are collaborating to , with a particular interest in leveraging the universe of small molecule omics information generated by the Library of Integrated Network-Based Cellular Signaling (LINCS) Consortium.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<a href="#" class="thumbnail">	
+					<h:graphicImage library="images" name="/partners/PharmGKB.png" />
+				</a>
+			</div>
+			<div class="col-md-9">
+				<p>PharmGKB is a comprehensive compendium documenting the effect of variations in the sequences of human genes on the response to drugs and is widely used by both clinicians and basic researchers. Given that many drugs are BSM regulators of cellular signaling pathway node function, and SPP curates datasets in which these BSMs are experimental perturbants, SPP and PharmGKB have established connections that enhance each other’s website content and the research experience of their respective user bases.</p>
+			</div>
+		</div>
+		
+		<b>Consortia</b><br />
+		<div class="row">
+			<div class="col-md-3">
+				<a href="#" class="thumbnail">
+					<h:graphicImage library="images" name="/partners/dknet.png" />
+				</a>
+			</div>
+			<div class="col-md-9">
+				<p>The NIDDK Information Network (DKNET) is a search portal for researchers to locate community-vetted materials, datasets and tools relevant to the National Institute of Diabetes, Digestive and Kidney Diseases (NIDDK). Given its long history of support from NIDDK through the NURSA Consortium, SPP continues to place an emphasis on biocuration of datasets of relevance to the metabolism and metabolic disease research communities. DKNET and SPP have collaborated to expose SPP-biocurated datasets to users of the DKNET search engine, giving them access to a wealth of information on the transcriptomics and cistromics of cellular signaling pathway nodes.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<a href="#" class="thumbnail">	
+					<h:graphicImage library="images" name="/partners/HIRN.png" />
+				</a>
+			</div>
+			<div class="col-md-9">
+				<p>The mission of the Human Islet Research Network (HIRN) is to better understand how human beta cells are lost in Type 1 Diabetes and to find innovative strategies to protect or replace functional beta cell mass in diabetic patients. SPP and the HIRN Bioinformatics Center are collaborating to apply SPP biocuration principles to ‘omics datasets of relevance to islet cells and signaling nodes with known relevance to islet cell biology, with the aim of identifying previously uncharacterized signaling pathways of relevance to type 1 diabetes.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<a href="#" class="thumbnail">
+					<h:graphicImage library="images" name="/partners/biocaddie.png" />
+				</a>
+			</div>
+			<div class="col-md-9">
+				<p>DataMed is an NIH Big Data To Knowledge (BD2K) program-supported prototype biomedical data search engine that seeks to establish a “PubMed for datasets”. Its goal is to allow researchers to discover data sets across data repositories or data aggregators with the same ease that they access research literature abstracts. As an early adopter of the FAIR principles of Findability, Accessibility, Interoperability and Reusability (FAIR) Principles, SPP in its previous incarnation as NURSA was one of the first databases to be indexed by bioCADDIE, and continues to maintain services that makes its dataset content visible through bioCADDIE searches.</p>
+			</div>
+		</div>
+
+		<b>Professional Societies</b><br />
+		<div class="row">
+			<div class="col-md-3">
+				<a href="#" class="thumbnail">
+					<h:graphicImage library="images" name="/partners/ata.png" />
+				</a>
+			</div>
+			<div class="col-md-9">
+				<p>The thyroid gland and thyroid hormone signaling research communities have produced a significant number of transcriptomic datasets documenting the impact of perturbations of important signaling nodes in the thyroid gland, as well as thyroid hormone signaling pathway nodes in other physiological systems. Unfortunately , many of these datasets exist in a state in which they are not easily re-useable by members of these signaling communities. A partnership between the American Thyroid Association (ATA) and the Signaling Pathways Project supports the addition of these datasets to the SPP database, allowing researchers to identify previously unexplored aspects of thyroid hormone and thyroid gland signaling.</p>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

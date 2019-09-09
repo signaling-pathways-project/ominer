@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:mp="http://java.sun.com/jsf/composite/moleculePage"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:mo="http://java.sun.com/jsf/composite/moleculeOntology"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+	
+	<composite:interface>
+		<composite:attribute name="mol" type="edu.bcm.dldcc.big.nursa.model.Molecule" required="true" />
+		<composite:attribute name="notOther" displayName="Wheather this is other mol or not" required="false" default="true" />
+	</composite:interface>
+
+	<composite:implementation>
+		<!-- the referenced list of ortholog ids is pre sorted according to how we want to display them on the site -->
+		<o:importConstants type="edu.bcm.dldcc.big.nursa.util.SiteVariables" />
+		<h6>Ortholog</h6>
+		<div id="ortho-tabs">
+			<p:tabView styleClass="ortho-tabs">
+
+				<!--  loop through the above list of orthologs -->
+				<c:forEach items = "${SiteVariables.ORTHOLOGS}" var = "taxonId">
+					<ui:param name = "species" value = "${speciesListProducer.getSpeciesFromId(taxonId)}"/>
+					<!-- <ui:param name="speciesAnnot" value="#{cc.attrs.mol.getSpeciesAnnotations[species]()}" /> -->
+					<ui:param name="speciesAnnot" value="#{cc.attrs.mol.getSpeciesAnnotations()[species]}" />
+					<p:tab title="#{species.commonName}" rendered = '#{speciesAnnot != null}'>
+						<!-- <h6 style = "text-align: center;">#{species.commonName}</h6> -->
+						<mo:geneView annotation="#{speciesAnnot.getAnnotationFromString('GeneAnnotation')}"/>
+						<mo:rnaView annotation = "#{speciesAnnot.getAnnotationFromString('MRNAAnnotation')}"/>
+						<mo:polypeptidesView annotation="#{speciesAnnot.getAnnotationFromString('PolypeptideAnnotation')}" />
+						<mo:goTermsView annotation="#{speciesAnnot.getAnnotationFromString('GOTermAnnotation')}" />
+
+						<!-- <mo:ontologyView annotation="" title="GO Terms" comment="Functional terms for this bsm from the Gene Ontology project" annotationPath="goTerms" /> -->
+
+						<mo:crystalStructuresView annotation = "#{speciesAnnot.getAnnotationFromString('CrystalStructureAnnotation')}"/>
+
+						<!-- <mo:ontologyView annotation="#{speciesAnnot.getAnnotationFromString('ProteinInteractionAnnotation')}" 
+										title="Protein-Protein Interactions" 
+										comment="Published protein-protein interactions for this bsm" annotationPath="polypetideInteractions" /> -->
+
+						<c:if test="#{cc.attrs.notOther}">
+							<mo:polypeptideModificationsView annotation="#{speciesAnnot.getAnnotationFromString('PTMAnnotation')}"/>
+							<mo:polypeptideInteractionsView annotation="#{speciesAnnot.getAnnotationFromString('ProteinInteractionAnnotation')}" />
+						</c:if>
+						<mo:miRNAView annotation = "#{speciesAnnot.getAnnotationFromString('MIRNAAnnotation')}"/> 
+					</p:tab>
+				</c:forEach>
+			</p:tabView>
+		</div>
+	</composite:implementation>
+
+</ui:composition>

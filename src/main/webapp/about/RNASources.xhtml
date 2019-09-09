@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - RNA sources currently curated within Transcriptomine</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="About" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="About" outcome="/about/index.jsf" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>RNA sources currently curated within Transcriptomine</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<table class="table table-striped">
+		  <tr>
+		    <th>Physiological System</th>
+		    <th>Organ</th>
+		    <th>Tissue/Cell Line</th>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Blood</td>
+		    <td>erythrocytes</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>aorta, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>APL, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>APL, HL-60 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>APL, NB4 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>B lymphocytes, GM07019 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>B lymphocytes, GM07348 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>B lymphocytes, GM10854 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>B lymphocytes, GM10855 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>B lymphocytes, GM10861 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>B lymphocytes, GM12878 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>CCRF-CEM-C7H2 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>CML, K562 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>CUTLL1 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>dendritic cells, monocyte-derived</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>endometrial microvascular cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>heart, atrium, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>heart, cardiomyocytes</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>heart, endothelium, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>heart, ventricle</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>heart, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>HUVEC cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>HUVS-112D cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>macrophages, monocyte-derived</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>monocytes, CD14+, blood</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>NALM6 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>stem cells, hematopoietic, bone marrow</td>
+		  </tr>
+		  <tr>
+		    <td>Cardiovascular</td>
+		    <td>Cardiovascular</td>
+		    <td>VSMCs, T/G HA-VSMC cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Cervix</td>
+		    <td>cervix, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Cervix</td>
+		    <td>HeLa cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Endometrium</td>
+		    <td>ECC-1 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Endometrium</td>
+		    <td>Ishikawa cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Endometrium</td>
+		    <td>Ishikawa PRAB-36 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Endometrium</td>
+		    <td>stroma, stromal cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Endometrium</td>
+		    <td>stroma, stromal cells, decidualizing</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>7438 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>BT-474 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>epithelium, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>epithelium, mammospheres</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>epithelium, NAFA cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>epithelium, organoid cultures</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>HCC1428 LTED cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>Hs578T cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>M14 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>mammary gland, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MCF-10A cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MCF-10A-Myc cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MCF-10F cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MCF-7 AKT cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MCF-7 aro cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MCF-7 BUS cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MCF-7 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MCF-7 LTED cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MCF-7 LY2 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MDA-MB-134VI cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MDA-MB-321 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MDA-MB-321-PR cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MDA-MB-453 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>MLET5 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>stroma</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>SUM44PE cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mammary gland</td>
+		    <td>T47D cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Mullerian Duct</td>
+		    <td>EMTOKA cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Ovary</td>
+		    <td>granulosa, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Ovary</td>
+		    <td>OSEC2 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Ovary</td>
+		    <td>ovary, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Ovary</td>
+		    <td>OVCAR3 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Ovary</td>
+		    <td>PEO1 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Placenta</td>
+		    <td>chorionic villus, extravillus cytotrophoblasts</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Uterus</td>
+		    <td>epithelium, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Uterus</td>
+		    <td>myometrium</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Uterus</td>
+		    <td>uterus, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Female reproductive</td>
+		    <td>Vagina</td>
+		    <td>vagina, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Gastrointestinal</td>
+		    <td>colon, mucosa, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Gastrointestinal</td>
+		    <td>duodenum, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Gastrointestinal</td>
+		    <td>HCT116 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Gastrointestinal</td>
+		    <td>ileum, mucosa, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Gastrointestinal</td>
+		    <td>KATO II cells</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Gastrointestinal</td>
+		    <td>LS180 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Gastrointestinal</td>
+		    <td>MKN45 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Gastrointestinal</td>
+		    <td>OKAJIMA cells</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Gastrointestinal</td>
+		    <td>rectum, mucosa, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Gastrointestinal</td>
+		    <td>Snu-5 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Gastrointestinal</td>
+		    <td>Jejunum</td>
+		    <td>jejunum, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Immune</td>
+		    <td>Leukocytes</td>
+		    <td>B lymphocytes, MML, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Immune</td>
+		    <td>Leukocytes</td>
+		    <td>T lymphocytes, regulatory, colon, lamina propria</td>
+		  </tr>
+		  <tr>
+		    <td>Immune</td>
+		    <td>Leukocytes</td>
+		    <td>T lymphocytes, regulatory, spleen</td>
+		  </tr>
+		  <tr>
+		    <td>Immune</td>
+		    <td>Leukocytes</td>
+		    <td>T lymphocytes, regulatory, thymus</td>
+		  </tr>
+		  <tr>
+		    <td>Immune</td>
+		    <td>Thymus</td>
+		    <td>epithelium, medullary cells</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Prostate</td>
+		    <td>CWR22Rv1 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Prostate</td>
+		    <td>DU145 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Prostate</td>
+		    <td>LNCaP cells</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Prostate</td>
+		    <td>LNCaP-abl cells</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Prostate</td>
+		    <td>LNCaP-LP50 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Prostate</td>
+		    <td>LuCaP 35V xenograft</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Prostate</td>
+		    <td>PC3 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Prostate</td>
+		    <td>PC3-M cells</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Prostate</td>
+		    <td>RWPE1 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Prostate</td>
+		    <td>VCaP cells</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Testis</td>
+		    <td>efferent ductules, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Testis</td>
+		    <td>epididymis, initial segment-caput, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Testis</td>
+		    <td>testis, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Male reproductive</td>
+		    <td>Testis</td>
+		    <td>TTE3 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>adipocytes, immortalized</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>BAT</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, 3T3-L1 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, adipocytes, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, C3H/10T1/2 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, epididymal</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, inguinal</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, inguinal, preadipocytes, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, omental</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, retroperitoneal</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, stem cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, subcutaneous</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Adipose tissue</td>
+		    <td>WAT, unspecified</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Kidney</td>
+		    <td>HEK293 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Kidney</td>
+		    <td>kidney, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Liver</td>
+		    <td>Hepa-1c1c7 c35-3 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Liver</td>
+		    <td>Hepa-1c1c7 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Liver</td>
+		    <td>HepaRG cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Liver</td>
+		    <td>hepatocytes, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Liver</td>
+		    <td>HepG2 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Liver</td>
+		    <td>liver, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Pancreas</td>
+		    <td>INS1 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Pancreas</td>
+		    <td>islets, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Pancreas</td>
+		    <td>LTC-7 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Pancreas</td>
+		    <td>MIN6 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Skeletal muscle</td>
+		    <td>, soleus, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Skeletal muscle</td>
+		    <td>LASC cells</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Skeletal muscle</td>
+		    <td>levator ani, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Metabolic</td>
+		    <td>Thyroid gland</td>
+		    <td>DRO cells</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Bone</td>
+		    <td>fibroblasts, synovial</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Bone</td>
+		    <td>hFOB cells</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Bone</td>
+		    <td>leukocytes, macrophages, bone marrow-derived</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Bone</td>
+		    <td>SaOS2 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Bone</td>
+		    <td>tibia, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Bone</td>
+		    <td>U2OS cells</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Bone</td>
+		    <td>U2OS-ERα cells</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Bone</td>
+		    <td>U2OS-ERβ cells</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Cartilage</td>
+		    <td>JW0111 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Muscle</td>
+		    <td>quadriceps, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Muscle</td>
+		    <td>gastrocnemius, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Muscle</td>
+		    <td>limb, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Musculoskeletal</td>
+		    <td>Muscle</td>
+		    <td>vastus lateralis, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>cerebellum, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>cerebral cortex, astrocytes</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>cerebral cortex, cortical progenitor cells</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>cerebral cortex, frontal lobe</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>cerebral cortex, neurospheres</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>cerebral cortex, temporal lobe</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>cerebral cortex, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>GH3 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>GT1-7 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>hippocampus, pyramidal neurons</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>hippocampus, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>hippocampus, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>neural crest, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>neuroglia, oligodendrocytes, Oli-neu cells</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>pituitary, prolactinoma</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>striatum, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>T8-L4 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>CNS</td>
+		    <td>trigeminal ganglia, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>Ear</td>
+		    <td>inner ear</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>Eye</td>
+		    <td>ARPE-19 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>Eye</td>
+		    <td>HLE B-3 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Neurosensory</td>
+		    <td>PNS</td>
+		    <td>nodose ganglion, neuronal cell bodies</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Bladder</td>
+		    <td>SCaBER cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Bladder</td>
+		    <td>UM-UC-14 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Bladder</td>
+		    <td>UM-UC-7 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Embryo</td>
+		    <td>embryo, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Embryo</td>
+		    <td>NT2/D1 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Embryonal</td>
+		    <td>F9 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Embryonal</td>
+		    <td>P19 A404 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Embryonic</td>
+		    <td>E14 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Embryonic</td>
+		    <td>E14Tg2A cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Embryonic</td>
+		    <td>fibroblasts, embryonic</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Lung</td>
+		    <td>A549 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Lung</td>
+		    <td>bronchus, smooth muscle, 1° cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Lung</td>
+		    <td>lung, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Mesenchyme</td>
+		    <td>C3H 10T1/2 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Peritoneal cavity, macrophage</td>
+		    <td>macrophages, peritoneal cavity-derived</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Skin</td>
+		    <td>A375P cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Skin</td>
+		    <td>Ag09309 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Skin</td>
+		    <td>Ag09319 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Skin</td>
+		    <td>fibroblasts</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Skin</td>
+		    <td>fibroblasts, keloid</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Skin</td>
+		    <td>skin, whole</td>
+		  </tr>
+		  <tr>
+		    <td>Other</td>
+		    <td>Stem cells</td>
+		    <td>embryonic, embryoid bodies</td>
+		  </tr>
+		  <tr>
+		    <td>Skeletal</td>
+		    <td>Bone</td>
+		    <td>MC3T3-E1 cells</td>
+		  </tr>
+		  <tr>
+		    <td>Skeletal</td>
+		    <td>Cartilage</td>
+		    <td>chondrocytes, growth plate</td>
+		  </tr>
+		</table>
+	</ui:define>
+</ui:composition>

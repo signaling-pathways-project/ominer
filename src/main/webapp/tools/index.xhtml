@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">Tools</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Tools" />
+		</ui:include>
+	</ui:define>
+
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Tools</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<p:panel id="tm-section" header="Transcriptomine" toggleable="true" collapsed="false">
+			<div class="row">
+				<div class="col-md-12">
+					<h:link styleClass="pull-right" outcome="/transcriptomine/index.jsf"><h:graphicImage width="80" library="images" name="signaling-pathways-logo.svg" /></h:link>
+					<h:link name="signaling-pathways-logo.svg" />
+					<h:link outcome="/transcriptomine/index.jsf">Transcriptomine</h:link>is a tool for mining tissue-specific nuclear receptor transcriptomes based on annotated published genome wide transcriptional profiling experiments in the field of nuclear receptor signaling. 
+					<p></p>
+					Please cite the following publication when using Transcriptomine for research: 
+					Ochsner SA, Watkins CM, McOwiti A, Xu X, Darlington YF, Dehart MD, Cooney AJ, Steffen DL, Becnel LB and McKenna NJ (2012) Transcriptomine, a web resource for nuclear receptor signaling transcriptomes. Physiol Genomics 44, 853-63 <a href="#" class="view-abstract">View Abstract</a> | <a href="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&amp;db=PubMed&amp;list_uids=22786849" target="_blank">View PubMed</a>
+					
+					<div class="abstract">
+						<br />
+						<b>Abstract</b><br /><br />
+						<p>The nuclear receptor (NR) superfamily of ligand-regulated transcription factors directs ligand- and tissue-specific transcriptomes in myriad developmental, metabolic, immunological, and reproductive processes. The NR signaling field has generated a wealth of genome-wide expression data points, but due to deficits in their accessibility, annotation, and integration, the full potential of these studies has not yet been realized. We searched public gene expression databases and MEDLINE for global transcriptomic datasets relevant to NRs, their ligands, and coregulators. We carried out extensive, deep reannotation of the datasets using controlled vocabularies for RNA Source and regulating bsm and resolved disparate gene identifiers to official gene symbols to facilitate comparison of fold changes and their significance across multiple datasets. We assembled these data points into a database, Transcriptomine (http://www.nursa.org/transcriptomine), that allows for multiple, menu-driven querying strategies of this transcriptomic "superdataset," including single and multiple genes, Gene Ontology terms, disease terms, and uploaded custom gene lists. Experimental variables such as regulating bsm, RNA Source, as well as fold-change and P value cutoff values can be modified, and full data records can be either browsed or downloaded for downstream analysis. We demonstrate the utility of Transcriptomine as a hypothesis generation and validation tool using in silico and experimental use cases. Our resource empowers users to instantly and routinely mine the collective biology of millions of previously disparate transcriptomic data points. By incorporating future transcriptome-wide datasets in the NR signaling field, we anticipate Transcriptomine developing into a powerful resource for the NR- and other signal transduction research communities.</p>
+					</div>
+				</div>
+			</div>
+		</p:panel>
+		<p:panel header="External Tools" id="externaltools" toggleable="true" collapsed="false">
+			<div class="row">
+				<ul>
+					<li><a href="http://string-db.org/" target="_blank">String DB</a></li>
+					<li><a href="http://cistrome.org/NR_Cistrome/Cistrome.html" target="_blank">Nuclear Receptor Cistrome</a></li>
+				</ul>
+			</div>
+		</p:panel>
+	</ui:define>
+</ui:composition>

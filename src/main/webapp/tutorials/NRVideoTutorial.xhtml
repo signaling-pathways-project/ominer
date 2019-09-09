@@ -1,0 +1,56 @@
+<html>
+<!--
+HTML LAUNCH PAGE FOR LOCAL AND TESTING
+//-->
+<head>
+<title>NURSA</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<script language="JavaScript">
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+
+
+</script>
+
+<script src="config_info.js"></script>
+
+<!-- Use aspen.js if serving from Aspen; use local.js and Cookie.js if
+running locally. -->
+<script src="share/Cookie.js"></script>
+<script src="share/local.js"></script>
+<style type="text/css">
+   body {
+   	background-color: #FFFFFF;
+   	font-family: helvetica,sans-serif;
+   }
+</style>
+</head>
+
+<body topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" onUnload="scormStop()">
+
+<script>
+
+
+// Unfortunately, getBookmark() and getCompletedSlides() return
+// different formats.
+
+var src = "controller.swf?" + getBookmark() +
+      "&amp;completedSlides=" + getCompletedSlides();
+
+var objectBeginTag = '<object id="movie" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%">';
+
+var objectEndTag = '</object>';
+
+var paramTags = '<param name="SRC" value="' + src + '"/>' + '<param name="salign" value="LT"/><param name="QUALITY" value="high"/><param name="LOOP" value="false"/>';
+
+var embedTag = '<embed src="' + src + '" pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="100%" height="100%" salign="LT" quality="high" loop="false" name="movie"></embed>';
+
+// Now write the whole thing out
+document.write(objectBeginTag + paramTags + embedTag + objectEndTag);
+
+</script>
+
+</body>
+</html>

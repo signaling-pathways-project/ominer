@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:layout = "http://java.sun.com/jsf/composite/layout"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+	
+	<!-- 
+	
+	TODO: some of the paths are nested, e.g., label might be dataResource["organization"]["name"]
+	I don't have time to make this work right now, so come back and think about it later if this component
+	still merits development (I think it does). It's close to needing a backing bean for some of the logic
+	
+	this makes a few assumptions:
+	-the data are homogeneous (i.e., each item in the collection has the same structure and same layout needs)
+	-each item has data as a collection
+	
+	it's more of a wrapper for dataRow after I realized I was writing the same boilerplate code
+	multiple times. In an effort to be flexible, some of the syntax of the arguments is a bit Byzantine.
+	 It may be extended and improved down the road, but for now, enjoy it.
+	
+	CMW 1/10/14
+	
+	 -->
+	
+	<composite:interface
+		displayName="displays a series of data using dataRow for rows - relies on Bootstrap 3">
+
+		<composite:attribute name="collection"
+			displayName="the collection to iterate over" required="false" />
+
+		<composite:attribute name="labelWidth"
+			displayName="width of the label in Bootstrap grid units - the data width will be calculated from here"
+			type="String" required="false" default="2" />
+			
+			<composite:attribute name = "dataPath" 
+			displayName = "path to the data point in each item in the collection"
+			type = "String" required = "false"/>
+			
+			<composite:attribute name = "collectionPath"
+			displayName = "path to the collection of data inside of each data point"
+			type = "String" required = "false"/>
+			
+		<composite:attribute name="labelPath"
+			displayName="path to the label in the collection" type="String"
+			required="false" />
+
+		<composite:attribute name="baseURLPath"
+			displayName="path to the base URL in the collection" type="String"
+			required="false" />
+
+		<composite:attribute name="displayPath"
+			displayName="path to the display name/URL ID value in the collection"
+			type="String" required="false" />
+
+		<composite:attribute name="layout"
+			displayName="default is in two columns; vertical puts label on top"
+			type="String" default="horizontal" required="false" />
+
+		<!-- TODO add an attribute to truncate the list after a certain number of items
+			this will rely on a backing bean and will also render a "more..." link to the full list -->
+	</composite:interface>
+	<composite:implementation>
+
+		<div class="dataDisplay">
+
+			<ui:repeat value="#{cc.attrs.collection}" var="data">
+
+				<ui:repeat value="#{data[cc.attrs.dataPath]}" var="dataResource"
+					varStatus="status">
+
+					<layout:dataRow label="#{dataResource[cc.attrs.labelPath]}"
+						collection="#{dataResource[cc.attrs.collectionPath]}" 
+						displayPath = "#{cc.attrs.displayPath}"
+						baseURL="#{dataResource[cc.attrs.baseURLPath]}"
+						 layout="#{cc.attrs.layout}" />
+
+					<h:panelGroup rendered="#{!status.last and cc.attrs.layout == 'vertical'}">
+						<hr />
+					</h:panelGroup>
+				</ui:repeat>
+			</ui:repeat>
+
+		</div>
+
+	</composite:implementation>
+</ui:composition>

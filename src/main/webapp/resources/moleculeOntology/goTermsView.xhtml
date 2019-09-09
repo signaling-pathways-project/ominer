@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+	<composite:interface>
+		<composite:attribute name="annotation"
+			type="edu.bcm.dldcc.big.nursa.model.moleculeAnnotations.GOTermAnnotation"
+			required="true" />
+	</composite:interface>
+	<composite:implementation>
+		<h:form>
+			<p:panel header="GO Terms" toggleable="true" collapsed="true">
+				<p:ajax event="toggle"
+					listener="#{ajaxPanelController.alternateComponentState(cc.attrs.annotation.id.toString())}"
+					update="goTermPnlContent" onstart="$.blockUI()"
+					oncomplete="$.unblockUI()" />
+				<p:outputPanel id="goTermPnlContent">
+					<p:outputPanel
+						rendered="#{ajaxPanelController.renderComponent(cc.attrs.annotation.id.toString())}">
+
+						<p class="curated">Functional terms for this bsm from the Gene Ontology project.</p>
+						<p:dataTable id="goTermTable" var="goTerm_"
+							value="#{moleculeService.lazyLoaders.get(cc.attrs.annotation.id.toString())}"
+							emptyMessage="No data are available for this ortholog."
+							paginator="true" paginatorPosition="bottom"
+							paginatorTemplate="Show {RowsPerPageDropdown} per page {CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+							{PageLinks} {NextPageLink} {LastPageLink}"
+							currentPageReportTemplate="Showing {startRecord} - {endRecord} of {totalRecords}"
+							rowsPerPageTemplate="10,20,50" styleClass="listTable" rows="10"
+							sortBy="#{goTerm_.termName}" lazy="true">
+
+							<!-- 				adding empty header to get round top  -->
+							<!-- 				solely for L&F. May go away -->
+							<f:facet name="header">Gene Ontology</f:facet>
+							<!-- Go -->
+							<p:column width="100" sortBy="#{goTerm_.goTermID}">
+								<f:facet name="header">
+									<h:outputText value="GO Term ID" />
+								</f:facet>
+						
+								<p:dataList styleClass="no-border-data-list" value="#{goTerm_.dataResources}" var="dataResource" type="none">
+									<h:panelGroup rendered="#{dataResource.organization.orgType eq 'GENE' and dataResource.organization.abbreviation eq 'GOTERM'}">
+									<layout:dataRow staticUrlDisplayPath="#{goTerm_.goTermID}" 
+										collection="#{dataResource.synonyms}" displayPath="name"
+										baseURL="#{dataResource.organization.baseURL}"
+										layout="horizontal" />
+									</h:panelGroup>
+								</p:dataList>
+									
+							</p:column>
+								<!-- TERM NAME -->
+								<p:column width="100" sortBy="#{goTerm_.termName}">
+									<f:facet name="header">
+										<h:outputText value="Term Name" />
+									</f:facet>
+							#{goTerm_.termName}
+							</p:column>
+							<p:column width="100" sortBy="#{goTerm_.references}">
+									<f:facet name="header">
+										<h:outputText value="Evidence" />
+									</f:facet>
+								<layout:pubmedDataRow 
+								collection="#{goTerm_.references}" listPubmedIds="true"
+								pubmed="pubmedId" citation="citation" volume="volume" pagination="pagination" />
+							</p:column>
+						</p:dataTable>
+						<p:blockUI trigger="goTermTable" block="goTermTable">
+							Loading content...
+							<div class="ajaxSpinner">
+								<div class="dot1"></div>
+								<div class="dot2"></div>
+							</div>
+						</p:blockUI>
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:panel>
+		</h:form>
+	</composite:implementation>
+</ui:composition>

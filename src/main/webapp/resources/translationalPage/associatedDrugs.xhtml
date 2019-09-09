@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:func="http://bcm.edu.dldcc.big/nursa/functions"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+
+	<composite:interface>
+		<composite:attribute name="annotation"
+			type="edu.bcm.dldcc.big.nursa.model.translationalAnnotations.AssociatedDrugsAnnotation"
+			required="true" />
+		<composite:attribute name="curated" type="java.lang.String"
+			displayName="The text at the top" required="true" />
+	</composite:interface>
+	<composite:implementation>
+		<h:form>
+			<p:panel header="Drugs" toggleable="true" collapsed="true">
+				<p:ajax event="toggle"
+					listener="#{ajaxPanelController.alternateComponentState(cc.attrs.annotation.id.toString())}"
+					update="drugPnlContent" onstart="$.blockUI()"
+					oncomplete="$.unblockUI()" />
+				<p:outputPanel id="drugPnlContent">
+					<p:outputPanel
+						rendered="#{ajaxPanelController.renderComponent(cc.attrs.annotation.id.toString())}">
+						<p class="curated">
+							<h:outputText value="#{cc.attrs.curated}" />
+						</p>
+
+						<p:dataTable id="drugTable" var="drug"
+							value="#{translationalService.lazyLoaders.get(cc.attrs.annotation.id.toString())}" rows="10" emptyMessage="No data are currently available" paginator="true"
+							paginatorPosition="bottom"
+							paginatorTemplate="Show {RowsPerPageDropdown} per page {CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+							currentPageReportTemplate="Showing {startRecord} - {endRecord} of {totalRecords}"
+							rowsPerPageTemplate="10,20,50"
+							lazy="true" sortBy="#{drug.name.name}">
+							<f:facet name="header">DrugBank</f:facet>
+							<p:ajax event="page" onstart="$.blockUI()"
+								oncomplete="$.unblockUI()" />
+							<p:column sortBy="#{drug.name.name}" headerText="Name">
+								<h:link value="#{drug.name.name}" outcome="./index.jsf">
+									<f:param name="doi" value="#{drug.doi.doi}" />
+								</h:link>
+							</p:column>
+							<p:column headerText="Description">
+								<h:outputText
+									value="#{func:truncateToWord(drug.description,100)}" />
+							</p:column>
+						</p:dataTable>
+						<p:blockUI trigger="drugTable" block="drugTable">
+							Loading content...
+							<div class="ajaxSpinner">
+								<div class="dot1"></div>
+								<div class="dot2"></div>
+							</div>
+						</p:blockUI>
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:panel>
+		</h:form>
+	</composite:implementation>
+
+</ui:composition>

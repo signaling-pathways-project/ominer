@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<facelet-taglib 
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_2.xsd"
+    version="2.2">
+    <namespace>http://bcm.edu.dldcc.big/nursa/functions</namespace>
+
+    <function>
+        <function-name>highlightByRegex</function-name>
+        <function-class>edu.bcm.dldcc.big.nursa.el.functions.Functions</function-class>
+        <function-signature>String highlightByRegex(java.lang.String, java.lang.String)</function-signature>
+    </function>
+    <function>
+        <function-name>highlightByIndex</function-name>
+        <function-class>edu.bcm.dldcc.big.nursa.el.functions.Functions</function-class>
+        <function-signature>String highlightByIndex(java.lang.String, int)</function-signature>
+    </function>
+    <function>
+        <function-name>truncateToWord</function-name>
+        <function-class>edu.bcm.dldcc.big.nursa.el.functions.Functions</function-class>
+        <function-signature>String truncateToWord(java.lang.String, int)</function-signature>
+    </function>
+</facelet-taglib>

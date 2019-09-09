@@ -1,0 +1,16 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:sm="http://java.sun.com/jsf/composite/submenubars"
+	xmlns:p="http://primefaces.org/ui">
+	<p:outputPanel>
+		<sm:datasets submenu="#{navigationSubmenu}"/>
+		<sm:molecules submenu="#{navigationSubmenu}"/>
+		<sm:reagents submenu="#{navigationSubmenu}"/>
+		<sm:tools submenu="#{navigationSubmenu}"/>
+		<sm:translational submenu="#{navigationSubmenu}"/>
+	</p:outputPanel>
+</ui:composition>

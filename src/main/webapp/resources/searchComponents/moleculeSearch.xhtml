@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:func="http://bcm.edu.dldcc.big/nursa/functions"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface />
+
+	<composite:implementation>
+		<div class="pull-right">
+			<h:form id="molSearchForm" styleClass="searchForm">
+				<p:autoComplete
+					value="#{moleculeSynonymListProducer.selectedMolecule}"
+					completeMethod="#{moleculeSynonymListProducer.completeSymbol}"
+					minQueryLength="2" 
+					var="searchMol" 
+					itemValue="#{searchMol}"
+					converter="moleculeAutoSuggestConverter" 
+					forceSelection="true"
+					styleClass="molAuto" 
+					panelStyleClass="panelMolAuto"
+					emptyMessage="No results found for your query"
+					placeholder="Search by bsm name or symbol"
+					maxResults="5"
+					title="Search by bsm name or symbol"
+					itemLabel="#{searchMol.toString()}">
+					
+					<p:ajax event="itemSelect" listener="#{moleculeSynonymListProducer.redirect}" />
+				</p:autoComplete>
+				<span class="fui-search"></span>
+			</h:form>
+			<h:panelGroup rendered = "#{!empty flash and !empty flash.searchTerm and !empty moleculeService.selectedMolecule.official.name}"
+			 layout = "block" styleClass = "searchTerm" >
+				"#{func:truncateToWord(flash.searchTerm,75)}" is a synonym for #{moleculeService.selectedMolecule.official.name}
+			</h:panelGroup>
+		</div>
+	</composite:implementation>
+</ui:composition>

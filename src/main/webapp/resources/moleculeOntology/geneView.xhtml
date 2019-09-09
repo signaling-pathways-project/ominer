@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:rich="http://richfaces.org/rich">
+	<composite:interface>
+		<composite:attribute name="annotation"
+			type="edu.bcm.dldcc.big.nursa.model.moleculeAnnotations.GeneAnnotation"
+			required="true" />
+	</composite:interface>
+	<composite:implementation>
+		<h:form>
+			<p:panel header="Gene" collapsed="true" toggleable="true">
+				<p:ajax event="toggle"
+					listener="#{ajaxPanelController.alternateComponentState(cc.attrs.annotation.id.toString())}"
+					update="genePnlContent" onstart="$.blockUI()" oncomplete = "$.unblockUI()"/>
+				<p:outputPanel id="genePnlContent">
+					<p:outputPanel rendered="#{ajaxPanelController.renderComponent(cc.attrs.annotation.id.toString())}">
+					<p class="curated">Manually annotated records for this gene at selected external databases.</p>
+
+
+					<p:dataList value="#{cc.attrs.annotation.genes}" var="gene"
+						styleClass="noDecorate" type="definition">
+						<layout:dataRow label="Official Symbol"
+							data="#{gene.official.name}" layout="vertical" />
+
+						<hr style = "margin: 0px;"/>
+						<ui:repeat value="#{gene.dataResourcesAsList}" var="dataResource"
+							varStatus="status">
+							<div class="dataDisplay">
+								<layout:dataRow label="#{dataResource.organization.name}" 
+								geneOfficialSymbol="#{gene.official.name}"
+									collection="#{dataResource.synonyms}" displayPath="name"
+									baseURL="#{dataResource.organization.baseURL}"
+									layout="vertical" />
+							</div>
+ 							<p:outputPanel rendered="#{!status.last}">
+ 								<hr style = "margin: 0px;"/>
+ 							</p:outputPanel>
+						</ui:repeat>
+					</p:dataList>
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:panel>
+			
+		</h:form>
+	</composite:implementation>
+</ui:composition>

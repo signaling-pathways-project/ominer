@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+
+	<composite:interface>
+		<composite:attribute name="antibody"
+			type="edu.bcm.dldcc.big.nursa.model.reagents.Antibody"
+			displayName="An Antibody object" required="true" />
+	</composite:interface>
+	<composite:implementation>
+		<h:form>
+		<div id="#{cc.clientId}">
+			<p:panel header="Overview" toggleable="false"><ui:remove><!-- will be true once have dataset below --></ui:remove>
+				<div class="dataDisplay">
+						<layout:dataRow label="Reagent Type" data="#{cc.attrs.antibody.type}" />
+						<layout:dataRow label="Name" data="#{cc.attrs.antibody.name.name}" />
+						<layout:dataRow label="Description" data="#{cc.attrs.antibody.description}" />
+						<layout:dataRow label="Molecule" layout="horizontal" nursaUrlLabel="#{cc.attrs.antibody.mol.official.name}" 
+						urlParam="#{cc.attrs.antibody.mol.doi.doi}"/>
+						
+						<layout:dataRow label="Catalog No." layout="horizontal" data="#{cc.attrs.antibody.catalogNumber.name}" 
+						staticURL="#{cc.attrs.antibody.catalogLink}"/>
+						
+						<layout:dataRow label="Cross-Reactivity Species" data="#{cc.attrs.antibody.species.commonName}" />
+						<layout:dataRow label="Applications" data="#{cc.attrs.antibody.applications}" />
+						<layout:dataRow label="Host Species" data="#{cc.attrs.antibody.hostSpecies.commonName}" />
+						<layout:dataRow label="Antibody Type" data="#{cc.attrs.antibody.abType}" />
+						<layout:dataRow label="Source" data="#{cc.attrs.antibody.source}" />
+						
+					</div>
+			</p:panel>
+		</div>
+		</h:form>
+	</composite:implementation>
+
+</ui:composition>

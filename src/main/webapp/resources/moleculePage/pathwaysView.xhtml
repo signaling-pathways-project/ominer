@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+
+	<composite:interface
+		displayName="overview section for receptors and coregs">
+		<composite:attribute name="mol" displayName="a bsm object"
+			type="edu.bcm.dldcc.big.nursa.model.Molecule" required="true" />
+
+	</composite:interface>
+	<composite:implementation>
+		<p:panel header="Pathways" toggleable="true" collapsed="true">
+			<p:ajax event="toggle" oncomplete="getPathways()" />
+			<p:outputPanel>
+				<div id="pathways-container">
+					<!-- <div id="#{cc.attrs.mol.official.name}">Pathways for #{cc.attrs.mol.official.name}</div> -->
+					<table id="pathways-table" class="pathway-table display"  cellspacing="0" width="100%">
+				        <thead>
+				            <tr>
+				                <th class="col-md-8">Name</th>
+				                <th class="col-md-4">Source</th>
+				            </tr>
+				        </thead>
+				        <tfoot>
+				            <tr>
+				                <th class="col-md-8">Name</th>
+				                <th class="col-md-4">Source</th>
+				            </tr>
+				        </tfoot>
+				        <tbody id="pathways-body">
+				        </tbody>
+				    </table>
+				</div>
+			    <script type="text/template" id="pathways-table-row">
+				<tr>
+					<th><a target="_blank" href="{{rc.url}}">{{rc.name}}</a></th>
+	                <th>{{rc.source}}</th>
+				</tr>
+				</script>
+			</p:outputPanel>
+		</p:panel>
+	</composite:implementation>
+</ui:composition>

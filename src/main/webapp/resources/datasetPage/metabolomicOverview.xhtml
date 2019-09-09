@@ -1,0 +1,328 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:func="http://bcm.edu.dldcc.big/nursa/functions"
+	xmlns:c="http://java.sun.com/jsp/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+
+	<composite:interface>
+		<composite:attribute name="dataset"
+			type="edu.bcm.dldcc.big.nursa.model.omics.NURSADataset"
+			displayName="A Dataset object" required="true" />
+		
+	</composite:interface>
+	<composite:implementation>
+	<c:set var="end" valur="${fn:length(request.contextPath)}" />
+	<h:form styleClass="form-inline">
+		<div id="#{cc.clientId}">
+        		<p:panel header="Overview" toggleable="false" collapsed="false">
+        			<p:ajax event="toggle" onstart="$.blockUI()" oncomplete = "$.unblockUI()"/>
+					<div class="dataDisplay">
+						<layout:dataRow label="Dataset Name :" data="#{cc.attrs.dataset.name}" />
+						<layout:dataRow label="Description :" data="#{cc.attrs.dataset.description}" />
+						<layout:dataRow label="Dataset Type :" data="Metabolomic" />
+						<div class="row">
+							<div class="col-md-2"><strong>Release Date :</strong></div>
+							<div class="col-md-10">
+								<h:outputText value="#{cc.attrs.dataset.releaseDate}">
+									<f:convertDateTime type="date" pattern="MMMM dd, yyyy"/>
+								</h:outputText>
+							</div>
+						</div>
+						<layout:dataRow label="DOI :" data="#{cc.attrs.dataset.doi.doi}" />
+						<div class="row">
+							<div class="col-md-2"><strong>Version :</strong></div>
+							<div class="col-md-10">
+								<ui:fragment rendered="#{cc.attrs.dataset.hasUrl()}">
+								This is Version 1.0 of an annotated derivative of the original dataset, which can be found in <a href="#{cc.attrs.dataset.baseUrl}" target="_blank">${cc.attrs.dataset.repo}</a>
+								</ui:fragment>
+								<ui:fragment rendered="#{!cc.attrs.dataset.hasUrl() and not empty cc.attrs.dataset.reference.pubmedId}">
+								This is Version 1.0 of an annotated derivative of the original dataset, which can be found in <a href=" http://www.ncbi.nlm.nih.gov/pubmed/?term=${cc.attrs.dataset.reference.pubmedId}" target="_blank">${cc.attrs.dataset.reference.pubmedId}</a>
+								</ui:fragment>
+								<ui:fragment rendered="#{!cc.attrs.dataset.hasUrl() and empty cc.attrs.dataset.reference.pubmedId}">Not Available</ui:fragment>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-2"><strong>Dataset Citation :<sup><span data-toggle="tooltip" title="This is the citation for this dataset. Click the icon below to download the citation directly to your reference manager. See FAQs for additional information on formatting your reference manager so that the citation is displayed properly in your document's list of references." class="glyphicon glyphicon-question-sign"></span></sup></strong></div>
+							<div class="col-md-10">
+								#{referenceUtil.getDatasetCitation(cc.attrs.dataset)}
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2"><strong>Download Citation :</strong></div>
+							<div class="col-md-10">
+
+								<a target="_blank" href="#{request.contextPath}/rest/omics/citations/download/dataset/#{cc.attrs.dataset.id}">
+									<h:graphicImage library="images" styleClass="image-left" name="endnote-icon.png" />
+									<h:graphicImage library="images" styleClass="image-left" name="Mendeley.png" />
+									<h:graphicImage library="images" styleClass="image-left" name="Papers3.png" />
+									<h:graphicImage library="images" styleClass="image-left" name="zoterologo.png" />
+								</a>
+							</div>
+						</div>
+						<hr />
+						<layout:pubmedDataRow label="Associated Article" title="This is the primary research article with which this dataset is associated." collection="#{cc.attrs.dataset.references}" 
+						pubmed="pubmedId" citation="citation" elsevierUrl="#{datasetService.elsevierUrl}" volume="volume" pagination="pagination"/>
+						<hr />
+						<div class="row">
+							<div class="col-md-12">
+							
+								<a target="_blank" class="btn btn-default" href="#{fn:substring(request.contextPath, 0, end)}/datasetfiles/download/#{cc.attrs.dataset.id}"><span class="glyphicon glyphicon-download-alt"></span> Download Dataset</a>
+							</div>
+						</div>	
+					</div>
+					
+						
+					<p:panel rendered="#{not empty cc.attrs.dataset.fileID}">
+					NURSA and its funded NDSP PIs have chosen to share their data with NURSA bioinformatics hub end users without restriction. By clicking “Download” below, you agree to reference both the dataset’s publication listed on this webpage, or if not applicable to acknowledge the PI, and the NURSA website within any publications that include results or secondary analyses of these data.
+						<br/><br/>
+						
+						<div style="margin: 0 auto; width: 50%;">
+							<a href="#{fn:substring(request.contextPath, 0, end)}/datasetfiles/downloadExtra?name=#{cc.attrs.dataset.fileID}" download="#{cc.attrs.dataset.fileID}"> Download #{cc.attrs.dataset.fileName}</a>
+						</div>
+					</p:panel>
+			</p:panel>
+			
+			<p:panel header="Experiments" toggleable="true" collapsed="false" rendered="#{not empty cc.attrs.dataset.activeExperiments}">
+				<p:ajax event="toggle"  onstart="$.blockUI()" oncomplete = "$.unblockUI()"/>
+				<div class="row" id="exp-dropdown">
+					<div class="col-md-4">
+						<p class="pull-left">There are #{cc.attrs.dataset.activeExperiments.size()} Experiments for this dataset</p>
+					</div>
+					<div class="col-md-8">
+						<p:selectOneMenu id="experiment" value="#{datasetService.selectedExperiment}" styleClass="pull-right" >
+					        <f:selectItems value="#{cc.attrs.dataset.activeExperiments}" var="exp_" itemvalue="#{exp_.id}" itemLabel="#{exp_.experimentNumber} | #{exp_.longName} 222"/>
+							<f:converter converterId = "expConverter"/>
+							<p:ajax update="experimentContainer" oncomplete="displayExpInfo()" />
+						</p:selectOneMenu>
+					</div>
+				</div>
+
+				<p:outputPanel id="experimentContainer">
+					<div id="experiment-content">
+						<!-- Nav tabs -->
+						<h6 class="metobolite-text">Metabolite List</h6>
+						<ul id="result-tabs" class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active"><a href="#graph-view-tab" aria-controls="graph-view-tab" role="tab" data-toggle="tab">Scatter Plot</a></li>
+							<li role="presentation" id="show-results-table"><a href="#results-table-tab" aria-controls="results-table-tab" role="tab" data-toggle="tab">Table View</a></li>
+							<li role="presentation"><a href="#conditions-tab" aria-controls="conditions-tab" role="tab" data-toggle="tab">Conditions</a></li>
+						</ul>
+						<div class="tab-content" id="datasets-fc-table-wrap">
+							<div role="tabpanel" class="tab-pane active" id="graph-view-tab">
+								<div class="row">
+									<div class="col-md-2" id="up-down-checkboxes">
+										<div class="row">
+											<div class="col-md-6">
+												<input type="checkbox" value="up" name="up-filter" checked="checked" /> Up
+											</div>
+											<div class="col-md-6">
+												<input type="checkbox" value="down" name="down-filter" checked="checked" /> Down
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 cutoff-label">
+										<span class="pull-right">Fold Change Cutoffs:</span>
+									</div>
+									<div class="col-md-4" id="ui-slider-wrap">
+										<div id="ui-slider" style="margin-bottom: 50px"></div>
+									</div>
+									<div class="selected-amount col-md-4" id="selected-amount">
+										<small class="pull-right">Currently displaying <span id="currently-displaying">0</span> out of <span id="display-total">0</span> data points.</small>
+									</div>
+								</div>
+								<div id="data-by-graph"></div>
+							</div>
+							<script type="text/template" class="datasets-no-data">
+								The metabolite list for this experiment returns 0 results with a fold change cutoff of &#8805;1.5 and p-value &#8804; 0.05.  To view results for this experiment please download the dataset which is available in the Overview section.
+							</script>
+							<script type="text/template" class="datasets-too-many-data-points">
+								<p>There are more than<b><span class="num-of-results">> 1000</span></b> data points for the selected fold change values. Currently there is a 1000 point limit to the graph.</p>
+							</script>
+							<div role="tabpanel" class="tab-pane" id="results-table-tab">
+								<p class="metobolite-text">
+									Below is the metabolite list for this experiment with a lower fold change cutoff of &#8805; <span id="min-fold-change-text">10</span>  and p-value of &#8804; 0.05.<br />
+									Please adjust the FC slider on the scatterplot to update the gene list. To discover regulation of any gene by other nuclear receptor signaling pathways, click on the data point and click the query link in the pop-up window.<br /><br />
+									To discover regulation of any metabolite by other nuclear receptor signaling pathways, click on the query link.
+								</p>
+								<div class="datasets-fc-table-wrap" id="datasets-fc-table-wrap">
+									<table id="datasets-fc-table" class="datasets-fc-table display"  cellspacing="0" width="100%">
+								        <thead>
+								            <tr>
+								                <th class="col-md-6">Symbol</th>
+								                <th class="col-md-3">Fold Change</th>
+								                <th class="col-md-3">P-Value</th>
+								            </tr>
+								        </thead>
+								        <tfoot>
+								            <tr>
+								                <th>Symbol</th>
+								                <th>Fold Change</th>
+								                <th>P-Value</th>
+								            </tr>
+								        </tfoot>
+								        <tbody id="datasets-fc-table-body">
+								        </tbody>
+								    </table>
+								    <script type="text/template" id="datasets-fc-table-row" class="datasets-fc-table-row">
+									<tr>
+										<th>{{rc.symbolSynonym}}</th>
+						                <th>{{rc.foldChange}}</th>
+						                <th>{{rc.pValue}}</th>
+									</tr>
+									</script>
+									<script type="text/template" class="datasets-fc-change-form">
+									<div class="datasets-fc-form">
+										<div class="form-group">
+											<label for="fold-change" class="datasets-fc-form-label">Fold Change:</label>
+											<div class="input-group">
+												<input id="get-fc-info-input" type="number" step="0.1" min="0" max="50" class="form-control input-sm" name="foldChangeOther" placeholder="{{rc.fc}}" />
+												<div class="input-group-addon">-fold</div>
+											</div>
+										</div>
+										<button type="button" id="get-fc-info-form" class="btn btn-primary input-sm">Submit</button>
+									</div>
+									</script>
+									<script type="text/template" class="402-error">
+									<tr>
+										<td colspan="4">
+											<div class="alert alert-warning" role="alert"><h6>Your request timed out. Please try refreshing the page again.</h6></div>
+										</td>
+									</tr>
+									</script>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="conditions-tab">
+								<h6>Experiment Information</h6>
+								<table class="table table-no-border table-hover">
+									<tbody>
+										<tr>
+											<td width="20%"><b>Name :</b></td>
+											<td>#{datasetService.selectedExperiment.longName}</td>
+										</tr>
+										<tr>
+											<td><b>Description :</b></td>
+											<td><p>#{datasetService.selectedExperiment.description}</p></td>
+										</tr>
+										<tr>
+											<td><b>Tissue/Cell line :</b></td>
+											<td>#{datasetService.selectedExperiment.tissueSource.name}</td>
+										</tr>
+										<tr>
+											<td><b>Species :</b></td>
+											<td>#{datasetService.selectedExperiment.species.commonName}</td>
+										</tr>
+									</tbody>
+									<input name="expId" type="hidden" id="expId" value="#{datasetService.selectedExperiment.id}" />
+									<input name="ovtype" type="hidden" id="ovtype" value="Metabolites" />
+								</table>
+								<p:outputPanel rendered="#{not empty datasetService.selectedExperiment.annotations}" id="moleculeAnnotation">
+									<h6>Regulatory Information</h6>
+									<!-- We need to iterate through the Regulatory Information list here -->
+									<h:dataTable value="#{datasetService.selectedExperiment.annotations}" 
+												var="annot" styleClass="table table-no-border table-hover">
+										<h:column>
+											<f:facet name="header">Name</f:facet>
+											<h:outputText value="#{annot.bsm.name.name}" rendered="#{!annot.bsm.name.name.contains('fake')}"	/>
+										</h:column>
+										<h:column>
+											<f:facet name="header">Duration of Treatment</f:facet>
+											#{annot.timeHours} #{annot.timeUnit}
+										</h:column>
+										<h:column>
+											<f:facet name="header">Concentration</f:facet>
+											#{annot.quantity} #{annot.quantityUnit.unit}
+										</h:column>
+									</h:dataTable>
+								</p:outputPanel>
+							</div>
+						</div>
+						<script type="text/template" class="graphFoldChangeInformation">
+							<div><span><b>Symbol:</b>{{rc.symbolSynonym}}</span></div>
+							<div><span><b>Fold Change:</b>{{rc.foldChange}}</span></div>
+							<div><span><b>p value:</b>{{rc.pValue}}</span></div><br />
+							<div class="text-center">
+								<a target="_blank" href="#{request.contextPath}/transcriptomine/index.jsf?geneSearchType=gene&amp;gene={{rc.symbol}}"><h:graphicImage library="images" width="25" name="/signaling-pathways-logo.svg" /> Query</a><br />
+							</div>
+							<!-- <div><span><b>Tissue:</b>{{rc.tissueName}}</span></div>
+							<div><span><b>Experiment:</b>{{rc.experimentName}}</span></div>
+							<div><span><b>Species:</b>{{rc.speciesCommonName}}</span></div>
+							<div class="text-center"><span class="btn btn-link fc-details" rel="{{rc.fcid}}" data-toggle="modal" data-target="#fc-details">More Information</span></div> -->
+						</script>
+						<div id="graph-more-info" class="popover top" role="tooltip">
+							<div class="arrow"></div>
+							<div class="arrow-bg"></div>
+							<h3 class="popover-title">Fold Change Information <span id="close-graph-more-info" class="pull-right"><span class="badge">x</span></span></h3>
+							<div id="graph-more-info-content" class="popover-content">
+							</div>
+						</div>
+					</div>
+				</p:outputPanel>
+			</p:panel>
+			
+			
+			<p:panel header="Related Datasets" toggleable="true" collapsed="false">
+				<p:ajax event="toggle"  onstart="$.blockUI()" oncomplete = "$.unblockUI()"/>
+				<div class="clearfix" id="exp-dropdown">
+					<div class="row">
+						<span class="col-md-offset-7 col-md-2 related-by"> Datasets related by: </span>
+						
+						<p:selectOneMenu id="relatedDatasetBy" value="#{datasetService.selectedRelatedBy}" styleClass="col-md-3" style="width:250px" >
+					        <f:selectItems value="#{datasetService.relatedDatasetBy}" style="width: 100%" var="relatedBy_" itemvalue="#{relatedBy_}" itemLabel="#{relatedBy_.desc} "/>
+							<!-- <f:converter converterId = "objectConverter"/> -->
+							<p:ajax update="relatedDatasetContainer relatedDatasetsList" />
+						</p:selectOneMenu>
+					</div>
+					<br />
+					<p:outputPanel id="relatedDatasetContainer">
+						
+						<p:dataTable id="relatedDatasetsList" 
+							var="rDataset" paginator="true"
+							value="#{datasetService.relatedDatasets}"
+							emptyMessage="No Related datasets found based on the matching criteria"
+							paginatorTemplate="Show {RowsPerPageDropdown} per page {CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+							{PageLinks} {NextPageLink} {LastPageLink}"
+							currentPageReportTemplate="Showing {startRecord} - {endRecord} of {totalRecords}"
+							rowsPerPageTemplate="10,20,50" styleClass="listTable" rows="10"
+							>
+							<p:column>
+								<f:facet name="header">Name</f:facet>
+								#{rDataset.name}
+							</p:column>
+							<p:column>
+								<f:facet name="header">DOI</f:facet>
+								<h:link value="#{rDataset.doi}" outcome="./index.jsf">
+									<f:param name="doi" value="#{rDataset.doi}" />
+								</h:link>
+							</p:column>
+						</p:dataTable>
+					</p:outputPanel>
+				</div>
+			</p:panel>
+			
+				
+			<p:panel header="Additional Information" toggleable="true" collapsed="true">
+				<p:ajax event="toggle" onstart="$.blockUI()" oncomplete = "$.unblockUI()"/>
+				<div class="row">
+					<div class="col-md-2"><strong>Annotation :</strong></div>
+					<div class="col-md-10">
+						<p>Note that the fold changes in NURSA transcriptomic datasets may differ from those in the associated published article. This is because published articles rarely contain a description of how the fold changes were calculated from the normalized intensity values. As a result, NURSA curators are unable to exactly recapitulate this step. In the absence of this information, and in the interests of transparency and consistency, <b><i>NURSA curator-calculated gene fold changes are generated <u>solely</u> by applying an industry standard procedure to the investigator-provided normalized array feature expression intensities in the original dataset deposition. </i></b>While we do our best to minimize differences, and always cross-check the fold changes we generate with those of selected genes reported in the associated article, some small discrepancies are inevitable. For more information on the NURSA transcriptomic dataset processing pipeline, <a target="_blank" href="#{request.contextPath}/about/faqs.jsf#Transcriptomine3">click here</a>.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-2"><strong>Licensing :</strong></div>
+					<div class="col-md-10"><p>Use of this dataset is governed by a <a href="https://creativecommons.org/licenses/by/3.0/us/legalcode" target="_blank">Creative Commons Attribution 3.0 license</a>, which provides for sharing, adaptation and both non-commercial and commercial re-use, as long as this dataset is cited.</p></div>
+				</div>
+				<div class="row">
+					<div class="col-md-2"><strong>Persistence :</strong></div>
+					<div class="col-md-10"><p>The Nuclear Receptor Signaling Atlas is committed to maintaining persistent identifiers that will continue to resolve to a landing page providing metadata describing the data, including elements of stewardship, provenance, and availability.</p></div>
+				</div>
+			</p:panel>
+		</div>
+		</h:form>
+	</composite:implementation>
+</ui:composition>

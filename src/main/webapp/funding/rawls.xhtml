@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value ="NURSA-funded Research Projects" outcome = "/funding/nursa_projects"/></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Microbial Regulation of Nuclear Receptor Activity in the Intestinal Epithelium</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/rawls.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>John Rawls</strong><br/>
+					Duke University<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			Gut microbiota contribute to obesity and undernutrition by controlling gene expression in the intestinal epithelium, and by modifying the host’s efficiency of dietary energy harvest. It remains unclear how microbiota control gene expression in the intestinal epithelium, and how these interactions are altered by diet. We used DNase-seq and RNA-seq in gnotobiotic mice to define the impact of microbiota colonization on chromatin accessibility and transcriptional profiles in intestinal epithelial cells (IECs). We find that microbiota-induced alterations to gene expression in IECs are not associated with significant changes to chromatin accessibility. Instead, we find that accessible chromatin near host genes that are down regulated by microbiota are enriched for DNA motifs recognized by multiple nuclear receptors (NR). We also discovered that microbiota promote intestinal absorption of dietary fatty acids that can serve as NR ligands. The objective of this project is to define the impact of microbiota and diet on the DNA binding activity of selected NRs in IECs. We are addressing the central hypothesis that microbiota regulate NR DNA binding activity in IECs under normal conditions and in response to dietary challenge. First, we will isolate IECs from mice raised germ-free (GF) or colonized with a conventional mouse microbiota (CONVD), and evaluate genome-wide DNA binding of seven prioritized NRs. Second, we will subject GF and CONVD mice to acute high-fat feeding or starvation, and evaluate chromatin accessibility and genome-wide DNA binding of two selected NRs. The expected outcomes include identification of NRs and their genomic targets that are regulated by microbiota and diet challenges in IECs. This is expected to lead to new strategies for reducing obesity and undernutrition by manipulating interactions between microbiota, diet, and host NR regulatory pathways.
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

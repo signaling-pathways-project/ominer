@@ -1,0 +1,8 @@
+backGroundColor=0x669966
+&stripeColor=0x669966
+&lessonBarColor=0x006699
+&lessonColor=0x9acc99
+&arrowColor=0xffffff
+&activeLessonColor=0x7fbccc
+&activeLessonColorDown=0xaaaaaa
+&textColorChange=true&linkLogo=http://www.nursa.org/

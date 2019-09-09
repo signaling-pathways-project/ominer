@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:sm="http://java.sun.com/jsf/composite/submenubars"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:panelGrid styleClass="stack" columns="1">
+		<p:outputPanel>
+			<div class="identityArea">
+				<h:form>
+					<!-- LOGGED IN -->
+					<h:outputText id="loginWelcomeId"
+						value="Welcome #{credentials.username}"
+						rendered="#{identity.loggedIn}" />
+					<p:menuButton value="Options" rendered="#{identity.loggedIn}"
+						styleClass="menuText">
+						<p:menuitem value="NURSA Admin" outcome="/admin/admin"
+							rendered="#{identity.hasRole('admin', 'NURSA', 'GROUP')}" />
+						<p:menuitem value="NURSA Resources" outcome="/editor/resources"
+							rendered="#{identity.hasRole('editor', 'NURSA', 'GROUP')}" />
+						<p:separator />
+						<p:menuitem value="My Nursa" outcome="/account/myNursa" />
+						<p:menuitem value="My Subscriptions"
+							outcome="/account/mySubscription" />
+						<p:separator />
+						<p:menuitem value="Log Out"
+							action="#{commonProjectController.logout}" ajax="false"
+							icon="ui-icon-extlink" />
+					</p:menuButton>
+
+					<!-- LOG IN -->
+					<p:commandLink id="signInId" value="Sign In "
+						rendered="#{!identity.loggedIn}" onclick="loginWidget.show()" />
+					<!-- REGISTER -->
+					<h:link outcome="/register" id="registerLinkId" value="New Guest?"
+						rendered="#{!identity.loggedIn}" />
+				</h:form>
+			</div>
+		</p:outputPanel>
+		<p:outputPanel>
+			SEARCH HERE
+		</p:outputPanel>
+	</h:panelGrid>
+	<div id="Navigation">
+		<div class="NavigationMenu">
+			<h:link outcome="/index">
+				<h:outputText value="WELCOME"
+					styleClass="#{navigationTop eq 'WELCOME' ? 'selected-top-menu' : 'not-selected-top-menu'}" />
+			</h:link>
+			<h:link outcome="/molecules/index" onmouseover="document.getElementById('moleculesSubMenu').style.display = 'block';" onmouseout="document.getElementById('moleculesSubMenu').style.display = 'none';">
+				<h:outputText value="MOLECULES"
+					styleClass="#{navigationTop eq 'MOLECULES' ? 'selected-top-menu' : 'not-selected-top-menu'}" />
+			</h:link>
+			<h:link outcome="/datasets/index" onmouseover="document.getElementById('datasetsSubMenu').style.display = 'block';" onmouseout="document.getElementById('datasetsSubMenu').style.display = 'none';">
+				<h:outputText value="DATASETS"  
+					styleClass="#{navigationTop eq 'DATASETS' ? 'selected-top-menu' : 'not-selected-top-menu'}" />
+			</h:link>
+			<h:link outcome="/tools/index" onmouseover="document.getElementById('toolsSubMenu').style.display = 'block';" onmouseout="document.getElementById('toolsSubMenu').style.display = 'none';">
+				<h:outputText value="TOOLS"
+					styleClass="#{navigationTop eq 'TOOLS' ? 'selected-top-menu' : 'not-selected-top-menu'}" />
+			</h:link>
+			<h:link outcome="/reagents/index" onmouseover="document.getElementById('reagentsSubMenu').style.display = 'block';" onmouseout="document.getElementById('reagentsSubMenu').style.display = 'none';">
+				<h:outputText value="REAGENTS"
+					styleClass="#{navigationTop eq 'REAGENTS' ? 'selected-top-menu' : 'not-selected-top-menu'}" />
+			</h:link>
+			<h:link outcome="/clinical/index" onmouseover="document.getElementById('translationalSubMenu').style.display = 'block';" onmouseout="document.getElementById('translationalSubMenu').style.display = 'none';">
+				<h:outputText value="TRANSLATIONAL"
+					styleClass="#{navigationTop eq 'TRANSLATIONAL' ? 'selected-top-menu' : 'not-selected-top-menu'}" />
+			</h:link>
+			<h:link outcome="/literature/index">
+				<h:outputText value="LITERATURE"
+					styleClass="#{navigationTop eq 'LITERATURE' ? 'selected-top-menu' : 'not-selected-top-menu'}" />
+			</h:link>
+			<h:link outcome="/help">
+				<h:outputText value="HELP"
+					styleClass="#{navigationTop eq 'HELP' ? 'selected-top-menu' : 'not-selected-top-menu'}" />
+			</h:link>
+		</div>
+	</div>
+
+	<p:dialog id="login" header="Login" widgetVar="loginWidget"
+		resizable="false" modal="true">
+
+		<h:form id="loginForm">
+			<p>Please login here</p>
+			<h:panelGrid columns="2" rowClasses="prop" columnClasses="name,value">
+				<h:outputLabel for="username">Username</h:outputLabel>
+				<p:inputText id="username" value="#{credentials.username}" />
+				<h:outputLabel for="password">Password</h:outputLabel>
+				<p:password id="password" value="#{credentials.password}" />
+			</h:panelGrid>
+			<div class="buttonRight">
+				<p:commandButton id="login" value="Login" action="#{identity.login}"
+					ajax="false" />
+			</div>
+		</h:form>
+	</p:dialog>
+
+</ui:composition>

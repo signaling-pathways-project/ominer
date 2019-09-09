@@ -1,0 +1,152 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="en"
+	template="/WEB-INF/templates/template.xhtml">
+
+
+	<ui:define name="header">
+
+		<ui:include src="/WEB-INF/templates/header.xhtml" />
+				
+	</ui:define>
+
+	<ui:define name="body">
+		<div class="jumbotron">
+			<h2>Welcome to the Signaling Pathways Project</h2>
+			<p>The Signaling Pathways Project is a multi-omics knowledgemine based upon public, manually curated transcriptomic and cistromic (ChIP-Seq) datasets involving genetic and small molecule manipulations of cellular receptors, enzymes and transcription factors. Our goal is to create a resource where scientists can routinely generate research hypotheses or validate bench relevant to cellular signaling pathways. <a class="btn btn-primary btn-lg pull-right" href="about" role="button">Learn more »</a></p>
+	    </div>
+	    <div class="row home-page-panels">
+	    	<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading"><h5 style="margin: 0">Datasets</h5></div>
+					<div class="panel-body">
+						<p>Browse, cite or download from the SPP archive of biocurated transcriptomic and ChiP-Seq datasets.</p>
+						<p><a class="btn btn-info pull-right" href="datasets" role="button">Browse »</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading"><h5 style="margin: 0">Ominer</h5></div>
+					<div class="panel-body">
+						<p>Ask sophisticated questions of the SPP knowledgebase with a few clicks of a mouse: single gene targets, frequent gene targets of receptors, enzyme or transcription factors, GO terms and custom gene lists.</p>
+						<p><a class="btn btn-info pull-right" href="/ominer/query.jsf" role="button">Discover »</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading"><h5 style="margin: 0">News</h5></div>
+					<div class="panel-body">
+						<p>Here is the latest tweets from Signaling Pathways Project, letting users know about the latest developments and a <a href="/news.jsf"> link to the page of interest.</a></p>
+						<!-- <p:scrollPanel mode="native" style="height:100px">
+							<a class="twitter-timeline" href="https://twitter.com/sigpathproject?ref_src=twsrc%5Etfw">Tweets by sigpathproject</a> <script async="async" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+						</p:scrollPanel> -->
+						<!-- <a class="more-tweets" id="toMoreTweets" href="#" onclick="PF('tweetDlg').show();">more ...</a> -->
+					</div>
+				</div>
+			</div>
+			<hr />
+		</div>
+
+		<div class="homePage hide" id="home-page">
+			<div class="row carousel-outer">
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div class="carousel slide" data-ride="carousel">
+								<!-- Indicators -->
+								<!-- <ol class="carousel-indicators">
+									<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+									<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+								</ol> -->
+
+								<!-- Wrapper for slides -->
+								<div class="carousel-inner" role="listbox">
+									<div class="item active">
+										<!-- <h:graphicImage library="images" name="/slides/1.png" /> -->
+
+										<h5 class="">NURSA is now Signaling Pathways</h5>
+										<p>Space for NURSA is now Signaling Pathway text</p>
+										<a class="text-right" href="news.jsf">Click here for more</a>
+									</div>
+									<div class="item">
+										<h5 class="">News Item 2</h5>
+										<a class="text-right" href="#">Click here for more</a>
+									</div>
+									<div class="item">
+
+										<h5 class="">News Item 3</h5>
+										<a class="text-right" href="#">Click here for more</a>
+									</div>
+								</div>
+
+								<!-- Controls -->
+								<!-- <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+
+						<div class="panel-heading">
+							<a href="about">
+								<h5 class="panel-title">About Signaling Pathways</h5>
+							</a>
+						</div>
+						<div class="panel-body">
+							<!-- <h:graphicImage library="images" name="/icons/bulb.svg" /> -->
+							<!-- <a href="about/tutorial.jsf"> NR Video Tutorial</a><br /> 
+							<a href="about/faqs.jsf">FAQs</a><br />
+							<a href="about/index.jsf">PI Welcome</a><br />
+							<h:link value="NIDDK Welcome" outcome="./about/NIDDKWelcome.jsf"></h:link> -->
+							<p>Signaling Pathways is an 'omics dataset re-use platform developed and maintained by a biocuration and analysis tool development team based in Baylor College of Medicine.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a href="ominer">
+							<span class="clickableDiv"></span>
+								<h5 class="panel-title">Ominer</h5>
+							</a>
+						</div>
+						<div class="panel-body">
+							<!-- <h:graphicImage library="images" name="/tm-logo.svg" /> -->
+							<p>Mine our universe of biocurated 'omics data points to generate hypotheses, validate data and test models</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<a href="datasets">
+								<span class="clickableDiv"></span>
+								<h5 class="panel-title">Datasets</h5>
+							</a>
+						</div>
+						<div class="panel-body">
+							<!-- <h:graphicImage library="images" name="/icons/pc.svg" /> -->
+							<p>Browse and filter our biocurated datasets</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

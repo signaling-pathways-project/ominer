@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	>
+	<composite:interface
+		displayName="overview section for receptors and coregs">
+		<composite:attribute name="mol" displayName="a bsm object"
+			type="edu.bcm.dldcc.big.nursa.model.Molecule" required="true" />
+
+	</composite:interface>
+	<composite:implementation>
+
+		<div id="#{cc.clientId}">
+
+			<p:panel header="Overview" toggleable="false">
+				<div class="dataDisplay">
+					<div class="row">
+						<div class="col-md-2"><strong>Official Symbol</strong></div>
+						<div class="col-md-10">#{cc.attrs.mol.official.name}</div>
+						<input type="hidden" name="gene-symbol" value="#{cc.attrs.mol.official.name}" />
+					</div>
+					<layout:dataRow label="Official Name" data="#{cc.attrs.mol.nursaSymbol.name}" />
+					<layout:dataRow label="Synonyms" collection="#{cc.attrs.mol.synonymsAsList}" displayPath = "name"/>
+				</div>
+			</p:panel>
+
+		</div>
+	</composite:implementation>
+</ui:composition>

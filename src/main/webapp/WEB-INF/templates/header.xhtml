@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+<!--  large page header -->
+<ui:composition>
+	<!--  page header -->
+		<div class="header">
+
+			<div class="row">
+				<div class="col-md-9">
+					<a href="#{request.contextPath}/index.jsf">
+						<h:graphicImage name="images/signaling-pathways-logo.svg" width="100" class="nursa-logo pull-left" />
+						<span class="title">The Signaling Pathways Project</span><br />
+						<span class="mission">A multi-omics knowledgebase for cellular signaling pathways</span>
+					</a>
+				</div>
+				<div class="col-md-3">
+					<div class="socialButtons">
+						<a class="btn btn-social-twitter" href="https://twitter.com/@sigpathproject" target="_blank">
+							<i class="fui-twitter"></i>
+						</a>
+						<a class="btn btn-social-facebook" href="https://www.facebook.com/sigpathproject" target="_blank">
+							<i class="fui-facebook"></i>
+						</a>
+						<!-- <a class="btn btn-social-google-plus" href="#" target="_blank">
+							<i class="fui-google-plus"></i>
+						</a> -->
+						<a class="btn btn-social-linkedin" href="#" target="_blank">
+							<i class="fui-linkedin"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end page header -->
+</ui:composition> 
+</html>

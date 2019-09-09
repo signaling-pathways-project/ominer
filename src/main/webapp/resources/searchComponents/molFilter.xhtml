@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:sc="http://java.sun.com/jsf/composite/searchComponents"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface />
+
+	<composite:implementation>
+
+		<h:form id="molFilterForm" styleClass="formFlterWrap">
+			<div class="filter">
+				<p:panel styleClass="primary" toggleable="true" collapsed="false">
+					<f:facet name="header" >
+						<span id="molTotal"></span> Molecules Found. <em>Use the Filter to narrow the listing.</em>
+					</f:facet>
+					<div class="row no-border-data-list">
+						<div class="col-md-4">
+							<sc:moleculeTypeFilterComponent
+								bean="#{moleculeSearchService.moleculeSearch}"
+								property="moleculeTypes" updateArea=":molListing:moleculeResults"
+								blockArea="molBlock" />
+						</div>
+						<div class="col-md-4">
+							<sc:goTermFilterComponent
+								bean="#{moleculeSearchService.moleculeSearch}" property="goTerms"
+								updateArea=":molListing:moleculeResults" blockArea="molBlock"
+								addProperty="addGOTerm" removeProperty="removeGOTerm" />
+						</div>
+						<div class="col-md-4">
+							<sc:diseaseFilterComponent
+								bean="#{moleculeSearchService.moleculeSearch}"
+								property="diseases" updateArea=":molListing:moleculeResults"
+								blockArea="molBlock" addProperty="addDisease"
+								removeProperty="removeDisease" />
+						</div>
+					</div>
+				</p:panel>
+			</div>
+		</h:form>
+
+	</composite:implementation>
+</ui:composition>

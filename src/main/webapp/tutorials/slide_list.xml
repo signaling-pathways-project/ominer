@@ -1,0 +1,26 @@
+<contents>
+	<heading title='INTRODUCTION' menuLines='one'>	
+		<slide title='1. Course Information' src='courseInformation.swf' flagActive='true' menuLines='one' flagAudio='true' resUrl='nra_r.html' transUrl='courseInformation_t.html'/>
+		<slide title='2. Interface Tour' src='interface_tour.swf' flagActive='true' menuLines='one' flagAudio='true' resUrl='nra_r.html' transUrl='interface_tour_t.html'/>
+		</heading>
+        <heading title='NR SIGNALING' menuLines='one'>
+		<slide title='3. Introduction' src='nrIntro.swf' flagActive='true' menuLines='one' flagAudio='true' resUrl='nra_r.html' transUrl='nrIntro_t.html'/>
+		<slide title='4. Identification and Cloning of Nuclear Receptors' src='nrIDclone.swf' flagActive='true' menuLines='two' flagAudio='true' resUrl='nra_r.html' transUrl='nrIDclone_t.html'/>
+		<slide title='5. The Nuclear Receptor Superfamily' src='nrSuperfamily.swf' flagActive='true' menuLines='two' flagAudio='true' resUrl='nra_r.html' transUrl='nrSuperfamily_t.html'/>
+		<slide title='6. Functional Domains of Nuclear Receptors' src='nrFuncDomain.swf' flagActive='true' menuLines='two' flagAudio='true' resUrl='nra_r.html' transUrl='nrFuncDomain_t.html'/>
+		<slide title='7. Coregulators' src='nrCoregul.swf' flagActive='true' menuLines='one' flagAudio='true' resUrl='nra_r.html' transUrl='nrCoregul_t.html'/>
+		<slide title='8. Cloning and Characterization of Coactivators' src='nrCloneChar.swf' flagActive='true' menuLines='two' flagAudio='true' resUrl='nra_r.html' transUrl='nrCloneChar_t.html'/>
+		<slide title='9. Corepressors' src='nrCorepress.swf' flagActive='true' menuLines='one' flagAudio='true' resUrl='nra_r.html' transUrl='nrCorepress_t.html'/>
+		<slide title='10. Coregulators in vivo' src='nrCoregInVivo.swf' flagActive='true' menuLines='one' flagAudio='true' resUrl='nra_r.html' transUrl='nrCoregInVivo_t.html'/>
+        	<slide title='11. Regulating Coregulators' src='nrRegCoreg.swf' flagActive='true' menuLines='one' flagAudio='true' resUrl='nra_r.html' transUrl='nrRegCoreg_t.html'/>
+        	<slide title='12. Nuclear Receptor Action Model' src='nrModelNRA.swf' flagActive='true' menuLines='two' flagAudio='true' resUrl='nra_r.html' transUrl='nrModelNRA_t.html'/>
+        	<slide title='13. Rational Drug Design' src='nrR_drugDesign.swf' flagActive='true' menuLines='one' flagAudio='true' resUrl='nra_r.html' transUrl='nrR_drugDesign_t.html'/>
+		<slide title='14. Self Test Quiz' src='nr_selfTestQuiz.swf' flagActive='true' menuLines='one' flagAudio='true' resUrl='nra_r.html' transUrl='nr_selfTestQuiz_t.html'/>
+		</heading>
+	<heading title='RESOURCES' menuLines='one'>
+		<slide title='15. Glossary' menuLines='one'/>
+		<slide title='16. Further Reading' menuLines='one'/>
+		</heading>
+</contents>
+		
+	

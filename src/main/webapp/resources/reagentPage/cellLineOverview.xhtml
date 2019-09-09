@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+
+	<composite:interface>
+		<composite:attribute name="cellLine"
+			type="edu.bcm.dldcc.big.nursa.model.reagents.CellLine"
+			displayName="An Cell Line object" required="true" />
+	</composite:interface>
+	<composite:implementation>
+		<h:form>
+		<div id="#{cc.clientId}">
+			<p:panel header="Overview" toggleable="true">
+				<div class="dataDisplay">
+					<layout:dataRow label="Reagent Type" data="#{cc.attrs.cellLine.type}" />
+					<layout:dataRow label="Molecule" layout="horizontal" nursaUrlLabel="#{cc.attrs.cellLine.mol.official.name}"  urlParam="#{cc.attrs.cellLine.mol.doi.doi}"/>
+					<layout:dataRow label="Species" data="#{cc.attrs.cellLine.species.commonName}" />
+					<layout:dataRow label="Technique" data="#{cc.attrs.cellLine.technique}" />
+					<layout:dataRow label="Source" data="#{cc.attrs.cellLine.source}" />
+					<div class="row">
+						<div class="col-md-2"><strong>Contact</strong></div>
+						<div class="col-md-10"><a href="mailto:#{cc.attrs.cellLine.contact}">#{cc.attrs.cellLine.contact}</a></div>
+					</div>
+					<div class="row">
+						<div class="col-md-2"><strong>Protocol</strong></div>
+						<div class="col-md-10">
+							<a href="http://www.nursa.org/data/reagents/#{cc.attrs.cellLine.protocolLink}" download="#{cc.attrs.cellLine.protocolLink}">#{cc.attrs.cellLine.protocolLink}</a>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</div>
+		</h:form>
+	</composite:implementation>
+
+</ui:composition>

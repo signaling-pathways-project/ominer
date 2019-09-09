@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:sc="http://java.sun.com/jsf/composite/searchComponents"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface />
+
+	<composite:implementation>
+		<h:form id="datasetFilterForm" styleClass="formFlterWrap">
+			<div class="filter">
+				<p:panel styleClass="primary" toggleable="true" collapsed="false">
+					<f:facet name="header" >
+						<span id="datasetTotal"></span> Datasets Found. <em>Use the Filter to narrow the listing.</em>
+					</f:facet>
+					<div class="row no-border-data-list">
+						<div class="col-md-4">
+							<sc:datasetTypeFilterComponent bean="#{datasetSearchService.datasetSearch}" property="type" updateArea=":datasetListing:datasetResults" blockArea="datasetBlock" />
+						</div>
+						<div class="col-md-4">
+							<sc:moleculeFilterComponent bean="#{datasetSearchService.datasetSearch}" property="molecules" updateArea=":datasetListing:datasetResults" blockArea="datasetBlock" addProperty="addMolecule" removeProperty="removeMolecule"/>
+						</div>
+						<div class="col-md-4">
+							<sc:speciesFilterComponent bean="#{datasetSearchService.datasetSearch}" property="species" updateArea=":datasetListing:datasetResults" ignoreFly="true" blockArea="datasetBlock" />
+						</div>
+					</div>
+				</p:panel>
+			</div>
+		</h:form>
+	</composite:implementation>
+</ui:composition>

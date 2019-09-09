@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+	<composite:interface>
+		<composite:attribute name="annotation"
+			type="edu.bcm.dldcc.big.nursa.model.moleculeAnnotations.ClinicalTrialAnnotation"
+			required="true" />
+
+	</composite:interface>
+	<composite:implementation>
+		<h:form>
+			<p:panel header="Clinical Trials" toggleable="true" collapsed="true">
+				<p:ajax event="toggle"
+					listener="#{ajaxPanelController.alternateComponentState(cc.attrs.annotation.id.toString())}"
+					update="clinicalTrialPnlContent" onstart="$.blockUI()"
+					oncomplete="$.unblockUI()" />
+				<p:outputPanel id="clinicalTrialPnlContent">
+					<p:outputPanel
+						rendered="#{ajaxPanelController.renderComponent(cc.attrs.annotation.id.toString())}">
+						<p class="curated">Manually curated clinical trials for this bsm from selected external databases.</p>
+						
+						<p:dataTable id="clinicalTrialTable" var="clinicalTrial"
+							value="#{moleculeService.lazyLoaders.get(cc.attrs.annotation.id.toString())}" 
+							emptyMessage="No data are currently available." 
+							paginator="true" paginatorPosition="bottom"
+							paginatorTemplate="Show {RowsPerPageDropdown} per page {CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" 
+							currentPageReportTemplate="Showing {startRecord} - {endRecord} of {totalRecords}"
+							rowsPerPageTemplate="10,20,50" 
+						 	sortBy="#{clinicalTrial.studyType.name}"
+							styleClass="listTable" rows="10"
+							lazy="true">
+							<f:facet name="header">ClinicalTrials.gov</f:facet>
+							<p:column styleClass="col-md-1">
+								<f:facet name="header" sortBy="#{clinicalTrial.studyType.name}">
+									<h:outputText value="Type" />
+								</f:facet>
+								<h:outputText value="#{clinicalTrial.studyType.name}" />
+							</p:column>
+							<p:column styleClass="col-md-1">
+								<f:facet name="header" sortBy="#{clinicalTrial.phase.name}">
+									<h:outputText value="Phase" />
+								</f:facet>
+								<h:outputText value="#{clinicalTrial.phase.name}" />
+							</p:column>
+							<p:column styleClass="col-md-8">
+								<f:facet name="header">
+									<h:outputText value="Title" />
+								</f:facet>
+								<div>
+									<a href="../#{clinicalTrial.doi.url}">#{clinicalTrial.name}</a>
+								</div>
+							</p:column>
+							<p:column styleClass="col-md-2">
+								<f:facet name="header">
+									<h:outputText value="Condition" />
+								</f:facet>
+								<layout:dataRow collection="#{clinicalTrial.condition}" displayPath = "name" />
+							</p:column>
+						</p:dataTable>
+						<p:blockUI trigger="clinicalTrialTable" block="clinicalTrialTable">
+							Loading content...
+							<div class="ajaxSpinner">
+								<div class="dot1"></div>
+								<div class="dot2"></div>
+							</div>
+						</p:blockUI>
+					</p:outputPanel>
+				</p:outputPanel>
+			</p:panel>
+		</h:form>
+	</composite:implementation>
+</ui:composition>

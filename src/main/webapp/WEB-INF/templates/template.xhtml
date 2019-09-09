@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets" lang="en">
+
+<h:head>
+
+	<!-- cmw parent template for the site 
+loads needed CSS and JS
+defines sections like title, breadcrumb, &c., but these are left to extending templates to implement
+as of 1/21/14, most of the site will be running off of detail and masterList
+-->
+
+	<!-- this should get rid of compatibility mode in IE, which kills the site (and many others)
+more info here: 
+http://tesmond.blogspot.com/2011/10/ie9-intranet-compatibility-mode-in.html 
+also, NB the "first" facet of head. This is a PrimeFaces feature, not standard, as of 1/21/14-->
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	</f:facet>
+	<meta charset="utf-8" />
+	<title><ui:insert name="title">Signalling Pathways</ui:insert></title>
+	<meta name="viewport" content="initial-scale=1" />
+
+	<!-- Loading Bootstrap -->
+	<link href="#{resource['bootstrap/css/bootstrap.css']}" rel="stylesheet" />
+
+	<!-- Loading Flat UI -->
+	<link href="#{resource['css/flat-ui.css']}" rel="stylesheet" />
+
+	<!-- NURSA styles -->
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" />
+
+	<!-- Page Specific CSS -->
+	<ui:insert name="pageSpecificCss" />
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet" />
+	<!-- load these last to help overwrite some of the styles in flat-ui -->
+	<link href="#{resource['css/main.css']}" rel="stylesheet" />
+	
+
+	<link rel="shortcut icon" href="#{resource['images/favicon.ico']}" />
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	<!--[if lt IE 9]>
+      <script src="#{resource['js/html5shiv.js']}"></script>
+    <![endif]-->
+
+	<!-- GA only for beta/prod  -->
+
+
+	
+</h:head>
+<h:body id="wholePage">
+
+<o:importConstants
+			type="org.apache.deltaspike.core.api.projectstage.ProjectStage"
+			var="stage" />
+
+	<!-- here is a dummy PF tag that will ensure that jQuery is called on this page
+both Bootstrap 3/Flat UI (BS) and PrimeFaces (PF) use jQuery
+it's not recommended to have multiple versions on the same 
+I've removed the calls made by BS and let them
+rely on PF's version
+I also commented out a few lines in application.js (search for CMW)
+Not doing so caused a few conflicts. Now, the main
+issue may be a problem with BS spinner component, and should be 
+able to use the PF spinner instead (or not use it at all) -->
+	<p:inputText value="" rendered="false" />
+	
+	<!-- PF dialog box to notify user when an AJAX request has triggered an expired view exception
+	works with nursa.js -->
+	<p:dialog modal = "true" header="Error" closeOnEscape="true" widgetVar="expiredView">
+	Your session has expired. Please click "Refresh" to refresh the page.<br/>
+	<button class="btn btn-primary" onClick = "location.reload(true);">Refresh</button>
+	</p:dialog>
+
+
+	<div class="container">
+		<!-- header -->
+		<ui:insert name="header" />
+
+		<!--  nav menu -->
+		<ui:insert name="nav" />
+		<div class="row breadcumbs-search-wrap">
+			<div class="col-md-8">
+				<!-- breadcrumb -->
+				<ui:insert name="breadcrumb" />
+			</div>
+			<div class="col-md-4 autocomplete-wrap">
+				<!-- autocomplete -->
+				<ui:insert name = "autocomplete"/>
+			</div>
+		</div>
+
+		<!-- page title -->
+		<ui:insert name="pageTitle" />
+
+		<!--  page content -->
+		<ui:insert name="body" />
+
+		<!--  end page content -->
+
+		<!-- page footer -->
+		<div class=" bottom-menu footer">
+			<div class="row">
+				<div class="col-xs-12">
+					Copyright &#169; Signaling Pathways Project 2017-2019 |
+						<!-- <h:outputText value="#{now}">
+							<f:convertDateTime pattern="yyyy" type="date" />
+						</h:outputText> |  -->
+					<a href="mailto:support@signalingpathways.org">Contact Us</a>
+					<h:outputLabel styleClass="pull-right" rendered="#{currentProjectStage ne stage.Production}" value="  #{currentProjectStage} (r4.0.17-SNAPSHOT)" />
+					<br />
+					Compatible Browsers: Firefox 24+, Chrome 30+, IE 9+ &amp; Safari 5.1.9+
+				</div>
+			</div>
+		</div>
+		<!-- end page footer -->
+		<!-- HTML for blockUI content -->
+		<div id="nursaBlockUI" style = "display:none;">
+			<div
+				class="ui-blockui-content ui-widget ui-widget-content ui-corner-all ui-shadow">
+				Loading content...
+				<div class="ajaxSpinner">
+					<div class="dot1"></div>
+					<div class="dot2"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--  end top container -->
+
+	<!-- Load JS here for greater good =============================-->
+	<!-- see earlier note in this file about PrimeFaces/Bootstrap conflict -->
+	<!-- 	<script src="#{resource['js/jquery-1.8.3.min.js']}"></script> -->
+	<!-- 	<script src="#{resource['js/jquery-ui-1.10.3.custom.min.js']}"></script> -->
+	<script src="#{resource['js/jquery.ui.touch-punch.min.js']}"></script>
+	<script src="#{resource['js/bootstrap.min.js']}"></script>
+	<script src="#{resource['js/bootstrap-select.js']}"></script>
+	<script src="#{resource['js/bootstrap-switch.js']}"></script>
+	<script src="#{resource['js/flatui-checkbox.js']}"></script>
+	<script src="#{resource['js/flatui-radio.js']}"></script>
+	<script src="#{resource['js/jquery.tagsinput.js']}"></script>
+	<script src="#{resource['js/jquery.placeholder.js']}"></script>
+	<script src="#{resource['js/jquery.typeahead.js']}"></script>
+	<script src="#{resource['js/blockUI.js']}"></script>
+	<script src="#{resource['js/nursa.js']}"></script>
+	<script src="#{resource['bootstrap/js/google-code-prettify/prettify.js']}"></script>
+	<script src="#{resource['js/application.js']}"></script>
+	<ui:insert name="tmjs"></ui:insert>
+	<ui:insert name="datasetsjs"></ui:insert>
+	<ui:insert name="pharmGKB"></ui:insert>
+	<!-- CTCT Sign-Up Form-->
+	<ui:include src="emailSignup.xhtml" />
+	<script src="#{resource['js/signup-form.js']}"></script>
+</h:body>
+</html>

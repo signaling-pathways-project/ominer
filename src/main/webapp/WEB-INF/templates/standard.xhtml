@@ -1,0 +1,19 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/WEB-INF/templates/template.xhtml">
+<!-- standard template for pages
+includes:
+small header
+
+1/21/14 cmw so far in development, other pages have used detail and masterList templates, which will most
+likely be mostly used on the site. This is a catchall template for the rest of the site. You'll more than likely
+need to specify an "active" param for the navBar to show which section is active.
+ -->
+	<ui:define name="header">
+		<ui:include src = "/WEB-INF/templates/header.xhtml"/>
+	</ui:define>
+
+	<!-- moved nav from here to actual pages to allow for selecting current menu item -->
+	
+	
+</ui:composition>

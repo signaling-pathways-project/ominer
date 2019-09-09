@@ -1,0 +1,134 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui" lang="en"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+	<composite:interface displayName="overview section for a ligand">
+		<composite:attribute name="bsm"
+			type="edu.bcm.dldcc.big.nursa.model.Molecule" required="true"
+			displayName="a bsm object that should be a ligand" />
+		<composite:attribute name="ligand"
+			type="edu.bcm.dldcc.big.nursa.model.Ligand" required="true"
+			displayName="Ligand Pubchem Data object" />
+	</composite:interface>
+	<composite:implementation>
+		<div id="#{cc.clientId}">
+			<o:importConstants type="edu.bcm.dldcc.big.nursa.model.rest.APIS" var="api" />
+			<p:panel header="Overview" toggleable="false">
+				<div class="row">
+					<div class="col-md-10">
+						<div class="row">
+							<div class="col-md-2"><strong>Name</strong></div>
+							<div class="col-md-10">#{cc.attrs.bsm.name.name}</div>
+						</div>
+						<div class="dataDisplay">
+							<c:if  test="#{not cc.attrs.ligand.hasPubchemData}">
+								<layout:dataRow label="Synonyms" collection="#{cc.attrs.bsm.synonymsAsList}" maxItems="25" displayPath = "name"/>
+							</c:if >
+							<c:if  test="#{cc.attrs.ligand.hasPubchemData and cc.attrs.ligand.pubchemData ne null}">
+								<layout:dataRow label="Synonyms" collection="#{cc.attrs.ligand.pubchemData.synonyms}" maxItems="25" />
+							</c:if>
+						</div>
+						<!-- Do not remove this, this provide the input values for the PharmGKB services -->
+						<p:dataList styleClass="no-border-data-list" value="#{cc.attrs.bsm.datasources}" var="dataResource" type="none">
+							<input type="hidden" name="#{dataResource.organization.abbreviation}" value="#{dataResource.synonyms}" />
+						</p:dataList>
+						<!-- End PharmGKB inputs -->
+						
+						<ui:remove>
+						<!--  temporary disable ligand 37400 
+						why is this still here? Was set here ~2014 when there was a data issue, i think
+						--></ui:remove>
+						<h:panelGroup rendered="#{cc.attrs.bsm.id ne 37400}">
+							<c:if test="#{cc.attrs.ligand.hasPubchemData and cc.attrs.ligand.pubchemData ne null}">
+									<div class="row">
+												<div class="col-md-2"><strong>PubChem ID</strong></div>
+												<div class="col-md-10">
+													<layout:dataRow staticURL="#{apiUrls.calcLink(api.ncbi_pubchem_link,cc.attrs.ligand.pubchemData.pubchemId)}" data="#{cc.attrs.ligand.pubchemData.pubchemId}" layout="vertical" />
+												</div>
+									</div>
+									<div class="row">
+												<div class="col-md-2"><strong>ChEBI ID</strong></div>
+												<div class="col-md-10">
+													<layout:dataRow staticURL="#{apiUrls.calcLink(api.chebi_link,cc.attrs.ligand.pubchemData.chebi)}" data="#{cc.attrs.ligand.pubchemData.chebi}" layout="vertical" />
+												</div>
+									</div>
+									<div class="row">
+												<div class="col-md-2"><strong>IUPHAR ID</strong></div>
+												<div class="col-md-10">
+													<layout:dataRow staticURL="#{apiUrls.calcLink(api.iuphar_link,cc.attrs.ligand.pubchemData.iuphar)}" data="#{cc.attrs.ligand.pubchemData.iuphar}" layout="vertical" />
+												</div>
+									</div>	
+							</c:if >
+							<c:if  test="#{not cc.attrs.ligand.hasPubchemData}">
+								<p:dataList  styleClass="no-border-data-list" value="#{cc.attrs.bsm.datasources}" var="dataResource" type="none">
+									<h:panelGroup rendered="#{dataResource.organization.orgType eq 'LIGAND'}">
+										<h:panelGroup rendered="#{dataResource.organization.abbreviation eq 'PubChem'}">
+											<div class="row">
+												<div class="col-md-2"><strong>PubChem ID</strong></div>
+												<div class="col-md-10">
+													<layout:dataRow staticUrlDisplayPath="" collection="#{dataResource.synonyms}" displayPath="name" baseURL="#{dataResource.organization.baseURL}" layout="vertical" />
+												</div>
+											</div>
+										</h:panelGroup>
+										<h:panelGroup rendered="#{dataResource.organization.abbreviation eq 'Chebi'}">
+											<div class="row">
+												<div class="col-md-2"><strong>ChEBI ID</strong></div>
+												<div class="col-md-10">
+													<layout:dataRow staticUrlDisplayPath="" collection="#{dataResource.synonyms}" displayPath="name" baseURL="#{dataResource.organization.baseURL}" layout="vertical" />
+												</div>
+											</div>
+										</h:panelGroup>
+										<h:panelGroup rendered="#{dataResource.organization.abbreviation eq 'IUPHAR'}">
+											<div class="row">
+												<div class="col-md-2"><strong>IUPHAR ID</strong></div>
+												<div class="col-md-10">
+													<layout:dataRow staticUrlDisplayPath="" collection="#{dataResource.synonyms}" displayPath="name" baseURL="#{dataResource.organization.baseURL}" layout="vertical" />
+												</div>
+											</div>
+										</h:panelGroup>
+									</h:panelGroup>
+								</p:dataList>
+							</c:if >
+						</h:panelGroup>
+
+						<div class="row">
+							<div class="col-md-2"><strong>CAS Registry ID</strong></div>
+							<div class="col-md-10">
+							<ui:fragment rendered="#{not cc.attrs.ligand.hasPubchemData}">
+								<h:panelGroup rendered="#{cc.attrs.bsm.casNumber != null and cc.attrs.bsm.casNumber.name != null}">#{cc.attrs.bsm.casNumber.name}</h:panelGroup>
+								<h:panelGroup rendered="#{cc.attrs.bsm.casNumber eq null or cc.attrs.bsm.casNumber.name eq null}">Not Available</h:panelGroup>
+							</ui:fragment>
+							<ui:fragment rendered="#{cc.attrs.ligand.hasPubchemData and cc.attrs.ligand.pubchemData ne null}">
+								<h:outputText value="#{(cc.attrs.ligand.pubchemData.cas ne null)?cc.attrs.ligand.pubchemData.cas:'Not Available'}" />
+							</ui:fragment>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2"><strong>Jmol</strong></div>
+							<div class="col-md-10">Not available</div>
+						</div>
+							<div class="row">
+							<div class="col-md-2"><strong>Description</strong></div>
+							<div class="col-md-10">
+								<h:outputText value="#{(cc.attrs.bsm.blurb ne null)?cc.attrs.bsm.blurb:'Not Available'}" escape="false" />
+							</div>
+						</div>
+					</div>
+				
+					<div class="col-md-2">
+						<h:graphicImage rendered="#{not cc.attrs.ligand.hasPubchemData}" library="images" class="ligand-image img-rounded" name="/ligand/#{cc.attrs.bsm.moleculePictureFile}" />
+						<h:graphicImage rendered="#{cc.attrs.ligand.hasPubchemData}" value="#{apiUrls.calcLink(api.ncbi_pubchem_compound_cid_imagefly,cc.attrs.ligand.pubchemData.pubchemId)}" class="ligand-image img-rounded"  />		
+					</div>
+				</div>
+			</p:panel>
+		</div>
+
+	</composite:implementation>
+</ui:composition>

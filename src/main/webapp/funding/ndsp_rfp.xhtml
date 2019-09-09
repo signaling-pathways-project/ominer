@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Current NURSA Data Source Project (NDSP) RFPs</h5>
+	</ui:define>
+
+	<ui:define name="body">
+
+		<!-- <p>Currently there are no open NDSP RFPs. Please follow us on <a href="https://twitter.com/NURSATweets" target="_blank">Twitter</a> or check back to this site for details on upcoming RFPs.</p> -->
+		<layout:panel title="Funding Cycle 5 (2017)" style = "primary">
+			<p><b>Nuclear Receptor Signaling Atlas (NURSA) Hub: Consensome Validation NDSPs</b></p>
+			<p>
+				<b>IMPORTANT DATES</b><br />
+				<b>May 31, 2017:</b> Deadline for Letter of Intent<br />
+				<b>June 19, 2017:</b> Deadline for electronic application submission<br />
+				<b>August 1, 2017:</b> Earliest possible start date<br />
+			</p>
+			<p><b>MISSION</b>: The mission of the Nuclear Receptor Signaling Atlas (NURSA) Hub is to improve the accessibility and re-usability of publicly-archived datasets of relevance to the nuclear receptor (NR) signaling research community.</p>
+			<p><b>BACKGROUND</b>: To arrive at consensus physiological system- and organ-specific transcriptomic signatures of NR pathways, the NURSA Hub has added a new module to its Transcriptomine data analysis platform, called Consensome. In this feature, genes are ranked according to the frequency with which they are significantly differentially expressed in publicly archived datasets involving manipulation of a given NR pathway in a specific organ or physiological system. The rankings, or Consensomes, are available at <a href="https://www.nursa.org/nursa/transcriptomine/index.jsf">https://www.nursa.org/nursa/transcriptomine/index.jsf</a></p>
+
+			<p><b>SCOPE</b>: In addition to validating well-characterized NR target genes, many Consensomes contain highly ranked genes that represent potentially important, but currently underappreciated, transcriptional targets of NR signaling pathways. In this NDSP solicitation, we invite applications proposing bench validation of relationships between NR signaling pathways and gene(s) predicted by the Consensomes, but that are previously unpublished in the research literature. </p>
+
+			<p><b>ELIGIBILITY</b>: Responsive proposals will range from those that propose validation of:
+				<ul>
+					<li>a larger number of genes with less depth of validation 
+						<ul>
+							<li>Q-PCR (for quantitative validation of induction or repression) and siRNA to demonstrate involvement in a NR-regulated cellular process, such as the GR pathway in gluconeogenesis or the PPARγ pathway in adipogenesis</li>
+						</ul>
+					</li>
+					<li>or a more defined range of genes with more detailed mechanistic characterization
+						<ul>
+							<li>involvement of other cellular pathway components, e.g. kinases, in a receptor-gene paradigm</li>
+						</ul>
+					</li>
+				</ul>
+			</p>
+
+			<p><b>WEBINAR</b>: All interested principal investigators, or a designated member of their laboratories (e.g. advanced graduate student, postdoctoral fellow), are <b><u><i>strongly</i></u></b> encouraged to view a recorded <a href="https://www.youtube.com/watch?v=13_vM0dIkh8" target="_blank">  webinar</a> that demonstrates the use of the Consensomes to identify candidate genes, and provides examples of both responsive and non-responsive proposals.</p>
+			
+			<p>
+				<b>SCOPE</b><br />
+				We welcome solicitations from the NR research community as well as the wider metabolism and metabolic disease research communities. Unlike previous NDSP applications, generation of discovery-scale (‘omics) datasets will <u><b><i>not</i></b></u> be supported: rather, the emphasis is on hypothesis-driven bench validation and mechanistic characterization of underappreciated gene-NR pathway relationships highlighted in the Consensomes. The inclusion of preliminary data supporting an unpublished gene-pathway relationship predicted by a Consensome is encouraged. 
+			</p>
+
+			<p><b>APPLICATION</b><br />
+				Electronic application forms will be made available to investigators who submit approved letters of intent.  Applicants should provide evidence of resources (funding, laboratory, reagents, etc.) to support the project proposed.  If this evidence comes from a mentor’s laboratory (in the case of advanced graduate students or postdocs), it should be accompanied by a letter of support from the mentor.  Funding is limited to $75,000 total costs for one year of support. We expect to fund 4-6 applications.  Only applications that are responsive to this announcement and are relevant to the mission of <a target="_blank" href="https://www.niddk.nih.gov/research-funding/research-programs">NIDDK</a> will be reviewed.    For further information, please contact the NURSA Informatics Project Leader Dr. Neil McKenna (<a href="mailto:nmckenna@bcm.edu">nmckenna@bcm.edu</a>) or the NURSA Project Scientist Dr. Corinne Silva (<a href="mailto:silvacm@niddk.nih.gov">silvacm@niddk.nih.gov</a>). 
+			</p>
+
+			<p><b>REVIEW CRITERIA</b><br />
+				Criteria for review include: 1) Impact: does the project leverage the capability of Transcriptomine to identify and validate novel and important gene-tissue NR signaling pathway relationships relevant to the physiology and pathophysiology of cellular signaling, metabolism or metabolic disease? 2) Feasibility: evidence that the hypothesis has been developed through Transcriptomine and is testable within a 1 year timeframe; 3) Integration-evidence that the project will complement the efforts of NURSA; and 4) Investigator/Environment: evidence that the applicant has the expertise and resources necessary and available to support the project
+			</p>
+
+		</layout:panel>
+		<p>
+			<strong>Previous NURSA Data Source Project (NDSP) RFPs </strong>
+		</p>
+		<layout:panel title="Funding Cycle 4 (2016)" style = "primary">
+			<p><b>Nuclear Receptor Signaling Atlas (NURSA) Hub Open Competition for NURSA Data Source Projects (NDSP)</b></p>
+			<!-- <p>
+				<b>IMPORTANT DATES</b><br />
+				<b>May 24, 2016:</b>	Deadline for Letter of Intent<br />
+				<b>June 24, 2016:</b> Deadline for electronic application submission<br />
+				<b>September 1, 2016:</b> Earliest possible start date<br />
+			</p> -->
+			
+			<!-- <p><b>FUNDING INFORMATION</b><br />Total costs for each NDSP cannot exceed $150,000/year for 1-2 years.  We expect to fund 2-4 NDSPs (for 1 year with additional years dependent on progress and availability of funds).  </p> -->
+			<p><b>Background</b> : The mission of the Nuclear Receptor Signaling Atlas (NURSA) is to accrue, develop, and communicate information advancing our understanding of the integral role of nuclear receptor signaling in the physiology and pathophysiology of metabolic diseases including diabetes, obesity and reproductive diseases and disorders.  Currently, the central core of NURSA is a Hub that provides the integration and cohesion needed to aggregate, annotate, and present in a user friendly fashion state-of-the-art data from multiple sources.  A web portal, <a href="http://www.nursa.org">www.nursa.org</a>, serves as the interface with the broader scientific community. To achieve its goals, the NURSA Informatics Hub solicits applications for NURSA Data Source Projects (NDSPs) to provide innovative research input to the Hub.  NDSPs are designed as focused and collaborative projects to explore key issues and questions that represent gaps in the knowledge base. Together with the Hub, the PIs of NDSPs form a consortium that works together to advance knowledge of the physiological and pathophysiological role of nuclear receptor signaling.  NDSP PIs should be investigators with well-established and funded laboratories who can leverage their individual and collaborative resources in order to address the scientific goals of the proposed NDSP.  Three previous NDSP announcements have resulted in a total of eleven NURSA-funded data source projects that support high quality cross-cutting research that by its nature creates the kind of data the Hub can effectively communicate to the community through the web portal<a href="https://www.nursa.org/nursa/funding/nursa_projects.jsf">https://www.nursa.org/nursa/funding/nursa_projects.jsf</a>.</p>
+			<p>
+				<b>Goal</b> : The nuclear receptor (NR) community has generated a large number of discovery-scale transcriptomic datasets that collectively document the tissue-specific regulation of gene expression by NR signaling pathways. Despite their potential for affording insight into unknown or unfamiliar NR signaling pathway biology, these datasets have been poorly exposed for re-use by the research community. In response to this, the NURSA Hub is aggregating, curating and processing these datasets to enhance their discoverability, accessibility and citability.  The full current list of datasets can be browsed on the <a href="https://nursa.org/nursa/datasets/index.jsf?datasetType=Transcriptomic">NURSA Dataset home page</a> or the 30,000,000+ data points in the entire resource can be mined via the <a href="https://www.nursa.org/nursa/transcriptomine/index.jsf">Transcriptomine</a> search engine.  To fully leverage this significant investment of knowledge and expertise, this fourth NDSP announcement solicits applications based on the existing collection of NURSA transcriptomic data points. Examples of responsive applications include:  
+				<ul>
+					<li>Demonstrating how the Transcriptomine knowledgebase can be leveraged to identify novel gene-tissue-NR signaling pathway relationships that have not been previously characterized in the published research literature, and that can be then validated in a bench research component. </li>
+					<li>Development of data visualization and analysis tools that interface with Transcriptomine to extend its utility. </li>
+					<li>Interoperability and/or integration between NURSA and external resources with complementary ‘omics-scale datasets, or biocuration activites to support such integration (e.g. integration of ChIP-Seq datasets).</li>
+				</ul>
+			</p>
+			<!-- <p>Successful applications will have a substantial informatics or biocurational component. Applicants are encouraged to make use of the Transcriptomine application programming interface (API) where appropriate - details can be obtained from  Dr. Neil McKenna (<a href="mailto:nmckenna@bcm.edu">nmckenna@bcm.edu</a>), PI of the NURSA Informatics Hub. Applications that propose active collaboration with the NURSA Informatics Hub are particularly welcome. We strongly encourage investigators to discuss their proposed applications with the NURSA Projet Scientist  Dr. Corinne Silva (<a href="mailto:silvacm@niddk.nih.gov">silvacm@niddk.nih.gov</a>), and Dr. McKenna prior to submission of a letter of intent</p> -->
+
+		</layout:panel>
+		<layout:panel title="Funding Cycle 3 (2015)" style = "primary">
+			<p><b>Background:</b>  The mission of the Nuclear Receptor Signaling Atlas (NURSA) is to accrue, develop, and communicate information that advances our understanding of the integral role of nuclear receptors in the physiology and pathophysiology of common and chronic metabolic diseases including diabetes, obesity and reproductive diseases and disorders.  Currently, the central core of NURSA is a Hub that provides the integration and cohesion needed to aggregate, annotate, and present in a user friendly fashion state-of-the-art data from multiple sources.  A web portal, <a href="http://www.nursa.org">www.nursa.org</a>, serves as the interface with the broader scientific community. To achieve its goals, the NURSA Hub solicits applications for NURSA Data Source Projects (NDSPs) to provide innovative research input to the Hub.  NDSPs are designed as focused and collaborative projects to explore key issues and questions that represent gaps in the knowledge base. The collaborative and integrative nature of NDSPs depends on the development of important new data transmitted to the Hub for secondary analysis, integration with the NURSA bsm pages, and presentation to the broader community through <a href="http://www.nursa.org">www.nursa.org</a>. NDSP investigators are expected to use a multi-disciplinary approach to accrue data that elucidates the role of nuclear receptors in human metabolic and reproductive disease.  Together with the Hub, the PIs of NDSPs form a consortium of NURSA investigators that contribute to the data flow to the NURSA Hub and work together to advance knowledge of the physiological and pathophysiological role of nuclear receptor signaling.  NDSP PIs should be investigators with well-established and funded laboratories who can leverage their individual and collaborative resources in order to address the scientific goals of the proposed NDSP.  Two previous NDSP announcements have resulted in a total of seven NURSA-funded data source projects that support high quality cross-cutting research that by its nature creates the kind of data the Hub can effectively communicate to the community through the web portal. While some of these projects are high risk, they also provide the possibility of high impact.</p>
+
+			<p><b>Goal:</b>  With this third NDSP announcement, we are soliciting applications that take an integrative physiology approach to address how nuclear receptor (NR) signaling mediates inter-tissue communication to regulate metabolic flow across multiple tissues (e.g. liver, adipose, gut, muscle).  Many studies to date have investigated signaling and metabolic pathways at a tissue specific level.  While these types of studies are clearly crucial to the understanding of metabolism in a specific cell or tissue type, we are looking for proposals that address the mechanisms by which tissues communicate with each other to regulate the homeostatic flow of nutrients.  Numerous studies have demonstrated the integral role that NRs play in metabolic signaling; however, here we are challenging investigators to address the integrative physiology of NR signaling. As one of these projects will be funded by NICHD, your proposal could also address how inter-tissue NR signaling might impact reproduction.  In both cases, we expect that these NDSPs would bring in new concepts and investigators to the NURSA Hub while leveraging the big data capabilities of the Hub with an influx of different data types.  </p>
+
+		</layout:panel>
+
+		<layout:panel title="Funding Cycle 2 (2014)" style = "primary">
+
+			<p>In 2014, an RFP was released containing calls for proposals
+				addressing two topics for NURSA NDSP Funding Cycle 2:</p>
+
+			<strong>Topic 1. Studies to advance and translate our
+				understanding of nuclear receptor (NR) and coregulator biology and
+				physiology to influence disease outcomes. </strong>
+			<p>A major need is to understand and elucidate the integration of
+				NR-mediated signaling from a complex milieu of competing endogenous
+				NR ligands, using among other approaches, bioinformatics and
+				computational biology. Areas of interest include:</p>
+			<ol>
+				<li>Modulation of NR signaling in the gut or liver after
+					feeding and role this signaling plays in disease progression (e.g.
+					diabetes, obesity). Studies may include NR signaling from the gut
+					microbiome as it influences-or is influenced by-disease state.</li>
+					
+				<li>Given the integral role for low grade, chronic inflammation in
+				metabolic disease, investigate the role of NR signaling in the
+				crosstalk between inflammation and dysfunctional signaling in
+				metabolic tissues. See <a
+					href="http://www.immgen.org" target="_blank">Immunological Genome Project</a> as an
+				example source of data and protocol information.</li>
+			</ol>
+			
+			<strong>Topic 2. Generation of potentially novel NR ligands that can be applied in chemical biology studies to better understand NR mechanism of action.</strong>
+			<p>   Natural products are of
+			 particular interest (see <a href = "http://dtp.nci.nih.gov/branches/npb/repository.html" target = "_blank">NCI natural products repository</a> as one 
+			 source.)  Areas of interest include:
+			 </p>
+			 <ol>
+			 <li>Development of new fractionation technologies to discover unknown endogenous ligands of NRs and/or NR-focused iterative chemistry approaches such as fragment-based lead design.  Such proposals should describe how the approach is new and likely to assist in identifying unknown NR ligands. </li>
+			 <li>b. Analysis of transcriptomic and/or metabolomic signatures associated with the administration of a ligand in a given cell-to compare to that of “new” ligands.  Resultant data should serve as a useful library that could lead to new molecular probes/ligands/drug candidates.</li>
+			 </ol>
+			 
+
+		</layout:panel>
+
+
+		<layout:panel title="Funding Cycle 1 (2013)" style = "primary">
+
+			<p>In 2013, an RFP was released containing calls for proposals
+				addressing two topics for NURSA NDSP Funding Cycle 1:</p>
+
+
+			<strong>Topic 1: NUCLEAR RECEPTORS in ENCODE</strong>
+			<p>Nuclear receptors and their co-associated proteins regulate
+				gene expression in a tissue, cell, ligand and time specific manner.
+				NRs bind to DNA in the context of chromatin patterns and cell
+				specific gene regulation is mediated through the use of different
+				combinations of epigenetic features. The ENCODE project has assigned
+				biochemical function to 80% of the human genome and the publically
+				available database provides a rich source of integrative data.
+				Applications for this topic combined nuclear receptor expertise with
+				bioinformatics expertise for mining the datasets available from
+				ENCODE, thus allowing the elucidation of NR-specific signaling in a
+				context that is relevant to metabolic or reproductive disease.</p>
+
+
+			<strong>Topic 2: NUCLEAR RECEPTORS and GUT MICROBIOME</strong>
+			<p>It has become increasingly well-appreciated that the gut
+				microbiome plays an integral role in the course of metabolic
+				disease. Proposals for this topic investigate the role of NRs and NR
+				signaling in mediating effects of the gut microbiome on intestinal
+				physiology, barrier function, and inflammation. Integrate
+				metagenomics, microbial metabolomics, gnotobiotic, and/or transgenic
+				approaches to identify specific bacterial factors that act via
+				nuclear receptors in the intestine and/or define NR-dependent
+				changes in intestinal function due to alterations in the gut
+				microbiome.</p>
+
+		</layout:panel>
+
+
+
+	</ui:define>
+
+
+</ui:composition>

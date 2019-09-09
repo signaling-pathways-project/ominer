@@ -1,0 +1,64 @@
+<ui:composition xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:func="http://bcm.edu.dldcc.big/nursa/functions"
+	template="/WEB-INF/templates/masterList.xhtml">
+
+	<ui:param name="dataset" value="#{superDatasetService.datasets}" />
+	<ui:define name="title">NURSA - Elsevier Datasets</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Datasets" />
+		</ui:include>
+	</ui:define>
+
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Datasets" outcome="/datasets/index.jsf" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="listing">
+		<p:dataTable 
+			value="#{dataset}" 
+			var="datasetResult"
+			emptyMessage="No datasets found for the search criteria" 
+			styleClass="dataTable">
+			
+		   <p:column width="100" id="typeColumn">
+				<f:facet name="header">
+					<h:outputText value="Type" />
+				</f:facet>
+				<h:outputText value="#{datasetResult.type}" />
+			</p:column>
+			
+			<p:column width="200" id="nameColumn">
+				<f:facet name="header">
+					<h:outputText value="Name" />
+				</f:facet>
+				<h:link value="#{datasetResult.name}" outcome="./index.jsf">
+					<f:param name="doi" value="#{datasetResult.doi.doi}" />
+				</h:link>
+			</p:column>
+
+			<p:column width="100" id="doiColumn">
+				<f:facet name="header">
+					<h:outputText value="DOI" />
+				</f:facet>
+				<h:outputText value="#{datasetResult.doi.doi}" />
+			</p:column>
+
+			<p:column width="200" id="speciesColumn">
+				<f:facet name="header">
+					<h:outputText value="Species" />
+				</f:facet>
+				<h:outputText value="#{datasetResult.species.commonName}" />
+			</p:column>	
+		</p:dataTable>
+		<br />
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface />
+
+	<composite:implementation>
+		<div class="pull-right">
+			<h:form id="datasetSearchForm" styleClass="searchForm">
+				<p:autoComplete
+					value="#{datasetSynonymListProducer.selectedDataset}"
+					completeMethod="#{datasetSynonymListProducer.complete}"
+					minQueryLength="2" var="searchDataset" itemValue="#{searchDataset}"
+					converter="datasetConverter" forceSelection="true"
+					styleClass="datasetAuto" panelStyleClass="panelDatasetAuto"
+					emptyMessage="No results found for your query"
+					placeholder="Search by dataset name" maxResults="10"
+					itemLabel="#{searchDataset.name}">
+					<p:ajax event="itemSelect"
+						listener="#{datasetSynonymListProducer.redirect}" />
+				</p:autoComplete>
+				<span class="fui-search"></span>
+			</h:form>
+		</div>
+	</composite:implementation>
+</ui:composition>

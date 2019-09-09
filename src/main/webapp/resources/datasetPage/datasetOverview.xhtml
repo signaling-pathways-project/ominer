@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:c="http://java.sun.com/jsp/jsp/jstl/core"
+	xmlns:func="http://bcm.edu.dldcc.big/nursa/functions"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+
+	<composite:interface>
+		<composite:attribute name="dataset"
+			type="edu.bcm.dldcc.big.nursa.model.omics.NURSADataset"
+			displayName="A Dataset object" required="true" />
+		
+	</composite:interface>
+	<composite:implementation>
+	<c:set var="end" valur="${fn:length(request.contextPath)}" />
+	<h:form>
+		<div id="#{cc.clientId}">
+
+        		<p:panel header="Overview" toggleable="false" collapsed="false">
+        			<p:ajax event="toggle" onstart="$.blockUI()" oncomplete = "$.unblockUI()"/>
+					<div class="dataDisplay">
+						<layout:dataRow label="Description :" data="#{cc.attrs.dataset.description}" />
+						<layout:dataRow label="Dataset Type :" data="#{((cc.attrs.dataset.type != 'Transcriptomic') or (cc.attrs.dataset.type != 'Metabolomic') or (cc.attrs.dataset.type != 'Cistromic')) ? 'Other' : cc.attrs.dataset.type}" />
+						<layout:dataRow label="Data Source :" data="#{cc.attrs.dataset.dataSource}" />
+						<layout:pubmedDataRow label="References:" collection="#{cc.attrs.dataset.references}" 
+						pubmed="pubmedId" citation="citation" volume="volume" pagination="pagination"/>
+					
+						<layout:dataRow label="DOI :" data="#{cc.attrs.dataset.doi.doi}" />
+					</div>
+					
+						
+					<p:panel rendered="#{not empty cc.attrs.dataset.fileID}">
+					SPP and its funded NDSP PIs have chosen to share their data with SPP bioinformatics hub end users without restriction. By clicking “Download” below, you agree to reference both the dataset’s publication listed on this webpage, or if not applicable to acknowledge the PI, and the SPP website within any publications that include results or secondary analyses of these data.
+						<br/><br/>
+						
+						<div style="margin: 0 auto; width: 50%;">
+							<a href="#{fn:substring(request.contextPath, 0, end)}/datasetfiles/downloadExtra?name=#{cc.attrs.dataset.fileID}" download="#{cc.attrs.dataset.fileID}"> Download #{cc.attrs.dataset.fileName}</a>
+						</div>
+					</p:panel>
+			</p:panel>
+
+		</div>
+		</h:form>
+	</composite:implementation>
+
+</ui:composition>

@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+	<composite:interface>
+		<composite:attribute name="clone"
+			type="edu.bcm.dldcc.big.nursa.model.reagents.Cloning"
+			displayName="Plasmid Cloning" required="true" />
+	</composite:interface>
+	<composite:implementation>
+	<h:form>
+		<div id="#{cc.clientId}">
+			<p:panel header="Overview" toggleable="true">
+				<div class="dataDisplay">
+						<layout:dataRow label="Backbone" data="#{cc.attrs.clone.backbone}" />
+						<layout:dataRow label="Backbone Mutation" data="#{cc.attrs.clone.backboneMutation}" />
+						<layout:dataRow label="Backbone Origin" data="#{cc.attrs.clone.backboneOrigin}" />
+						<layout:dataRow label="Backbone Size" data="#{cc.attrs.clone.backboneSize}" />
+						
+						<layout:dataRow label="Promoter" data="#{cc.attrs.clone.promoter}" />
+						
+					</div>
+			</p:panel>
+		</div>
+		</h:form>
+	</composite:implementation>
+
+</ui:composition>

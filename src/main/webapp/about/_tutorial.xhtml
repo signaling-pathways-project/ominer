@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - About NURSA</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="About" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="About" outcome="/about/index.jsf" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>NR Video Tutorial</h5>
+	</ui:define>
+
+	<ui:define name="body">
+
+		<p>New to the nuclear receptor field? We have created an animated,
+			narrated tutorial describing concepts and models of nuclear receptor
+			signaling. This tutorial has been peer-reviewed and published in
+			Science’s Signal Transduction Knowledge Environment (STKE).</p>
+
+		<p>Please adjust the volume on your speakers before playing the
+			tutorial.</p>
+
+		<div class="row">
+			<div class="col-xs-2">
+				<h:link outcome = "/tutorials/NRVideoTutorial.jsf" target = "_blank">
+				<!-- <h:link outcome = "/flashTutorial/gene/nuclearReceptor/start.jsf" target = "_blank"> -->
+				<img src="#{resource['/images/about/tutorial.gif']}"
+					height="100px" />
+					</h:link>
+			</div>
+			<div class="col-xs-10">
+				Click on the image to launch the tutorial (opens in a new window). <strong>Note
+					for public computer users: course will open at the chapter last
+					viewed by the previous user.</strong>
+			</div>
+		</div>
+		<br/>
+		<p>
+		To cite the tutorial, please reference: <br/>
+		 McKenna NJ and O'Malley BW (2005) An interactive course in nuclear receptor signaling: concepts and models. Sci STKE. <strong>2005</strong>, tr22. 
+		
+		</p>
+
+	</ui:define>
+
+
+</ui:composition>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Other Funding Opportunities</h5>
+	</ui:define>
+
+	<ui:define name="body">
+
+<p>NURSA encourages members of the community to seek additional funding opportunities from these agencies:
+</p>
+
+<ul>
+<li><a href = "http://www.niddk.nih.gov/research-funding/Pages/default.aspx" target = "_blank">NIDDK</a></li>
+<li><a href = "https://www.nichd.nih.gov/grants-funding/Pages/default.aspx" target = "_blank">NICHD</a></li>
+<li><a href = "http://commonfund.nih.gov/" target = "_blank">NIH Common Fund</a></li>
+<li><a href = "http://bd2k.nih.gov/funding_opportunities.html#sthash.uyMbQ5Jf.dpbs" target = "_blank">BD2K</a></li>
+</ul>
+
+	</ui:define>
+
+
+</ui:composition>

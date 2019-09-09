@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure>
+	 <!-- 2 enable JPA use to hibernate 5.2 slot javassist -->
+    <deployment>
+        <!--<exclude-subsystems>
+            <subsystem name="org.hibernate" />
+            <subsystem name="org.hibernate.validator" />
+        </exclude-subsystems>
+        -->
+        <exclusions>
+            <module name="org.javassist" />
+            <!--
+            <module name="org.hibernate" />
+            <module name="org.hibernate.validator" />
+            -->
+        </exclusions>
+    </deployment>
+</jboss-deployment-structure>

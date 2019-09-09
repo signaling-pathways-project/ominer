@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface>
+		<composite:attribute name="bean" required="true" />
+		<composite:attribute name="property" required="true" />
+		<composite:attribute name="updateArea" required="true" />
+		<composite:attribute name="blockArea" required="true" />	
+	</composite:interface>
+	<composite:implementation>
+
+		<h6>
+			<span class="label label-info">Molecule Type</span>
+		</h6>
+
+		<!-- not using flat styles here
+						it's moderately complex to get the styles working with JSF and involves
+						manipulating the DOM a bit
+						more importantly, it interferes with onclick events and possibly submitting the data
+						and I don't have a few days to troubleshoot and fix it, sadly. 
+						this effect v1.2.2 of the Flat UI Kit-->
+		 <p:selectManyCheckbox value="#{cc.attrs.bean[cc.attrs.property]}" layout="pageDirection">
+			<f:selectItem itemLabel="Nuclear Receptors ( &lt;span id = &quot;nrTotal&quot;&gt;&lt;/span&gt; )" itemEscaped="false" itemValue="Nuclear Receptor" />
+			<f:selectItem itemLabel="Coregulators ( &lt;span id = &quot;crTotal&quot;&gt;&lt;/span&gt; )" itemEscaped="false" itemValue="Coregulator" />
+			<f:selectItem itemLabel="Ligands ( &lt;span id = &quot;ligandTotal&quot;&gt;&lt;/span&gt; )" itemEscaped="false" itemValue="Ligand" />
+			<p:ajax update="#{cc.attrs.updateArea}" onstart="PF('#{cc.attrs.blockArea}').show()" oncomplete="PF('#{cc.attrs.blockArea}').hide()" />
+		</p:selectManyCheckbox>
+ 
+	</composite:implementation>
+</ui:composition>

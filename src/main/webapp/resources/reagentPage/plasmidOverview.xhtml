@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:layout="http://java.sun.com/jsf/composite/layout">
+	<composite:interface>
+		<composite:attribute name="plasmid"
+			type="edu.bcm.dldcc.big.nursa.model.reagents.Plasmid"
+			displayName="A plasmid object" required="true" />
+	</composite:interface>
+	<composite:implementation>
+	<h:form>
+		<div id="#{cc.clientId}">
+			<p:panel header="Overview" toggleable="false">
+				<div class="dataDisplay">
+						<layout:dataRow label="Reagent Type" data="#{cc.attrs.plasmid.type}" />
+						<layout:dataRow label="Gene/Insert Name" layout="horizontal" nursaUrlLabel="#{cc.attrs.plasmid.mol.official.name}" 
+						urlParam="#{cc.attrs.plasmid.mol.doi.doi}"/>
+						<layout:dataRow label="Insert Size" data="TBD" />
+						<layout:dataRow label="Species" data="#{cc.attrs.plasmid.species.commonName}" />
+						
+						<layout:dataRow label="Mutation" data="TBD" />
+						<layout:dataRow label="Vector backbone" data="TBD" />
+						<layout:dataRow label="Vector type" data="TBD" />
+						<layout:dataRow label="Bacteria resistance(s)" data="TBD" />
+						<layout:dataRow label="Growth strain(s)" data="TBD" />
+						<layout:dataRow label="High or Low Copy" data="TBD" />
+						<layout:dataRow label="Source" data="TBD" />
+					</div>
+			</p:panel>
+		</div>
+		</h:form>
+	</composite:implementation>
+
+</ui:composition>

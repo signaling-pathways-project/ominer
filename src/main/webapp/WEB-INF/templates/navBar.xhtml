@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- main navigation
+can take a passed parameter called active
+it will set the class of the top level menu item that matches it to active
+ex:
+
+active = "Molecule" will set the top level "Molecule" to active
+ -->
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+	<!-- wrap it for custom css namespace -->
+
+	<!-- this div - specifically, the class on the div - is needed to get the menu
+		to work in Safari. I'm looking into why this is the case and will hopefully remove it soon
+		12/6/13 cmw 
+		1/7/14 cmw - there's a new version of Flat UI Kit out, but I'm not ready to drop it in just yet until
+		we have time to test and tweak-->
+	<div class="iconbar"></div>
+
+	<div class="nursaNav">
+		<div class="navbar navbar-default">
+			<div class="navbar-header">
+				<button type="button" class="btn btn-navbar" data-toggle="collapse"
+					data-target=".navbar-collapse-01"></button>
+			</div>
+			<div class="navbar-collapse collapse navbar-collapse-01">
+				<ul class="nav navbar-nav">
+					<!-- Menu items go here -->
+					<li>
+						<h:link outcome = "/index.jsf" styleClass= "#{active=='Home'?'active':''}">Home</h:link>
+					</li>
+					<li>
+						<h:link outcome = "/datasets/index" styleClass= "#{active=='Datasets'?'active':''}">Datasets</h:link>
+						<ul>
+							<li><h:link outcome="/datasets/index">All</h:link></li>
+							<ui:remove><!-- TODO make dynamic  ie use list of all types--></ui:remove>
+							<li><h:link outcome="/datasets/index"><f:param name="datasetType" value="Transcriptomic" />Transcriptomic</h:link></li>
+							<ui:remove><!-- <li><h:link outcome="/datasets/index"><f:param name="datasetType" value="Metabolomic" />Metabolomic</h:link></li> --></ui:remove>
+							<li><h:link outcome="/datasets/index"><f:param name="datasetType" value="Cistromic" />Cistromics (ChIP-Seq)</h:link></li>
+						</ul>
+					</li>
+					<li>
+						<h:link outcome = "/ominer/query" styleClass= "#{active=='Tools'?'active':''}">Ominer</h:link>
+					</li>
+					<li>
+						<h:link outcome = "/news" styleClass= "#{active=='News'?'active':''}">News</h:link>
+					</li>
+					<li>
+						<h:link outcome = "/collaborations" styleClass= "#{active=='Collaborations'?'active':''}">Collaborations</h:link>
+					</li>
+					<ui:remove>
+					<!-- <li>
+						<h:link outcome = "/funding/index.jsf" styleClass= "#{active=='Funding'?'active':''}">Funding</h:link>
+						<ul>
+							<li><h:link outcome = "/funding/index">Funding Welcome</h:link></li>
+							<li><h:link outcome="/funding/ndsp_rfp">NDSP RFPs</h:link></li>
+							<li><h:link outcome="/funding/other_funding">Other Funding Opportunities</h:link></li>
+							<li><h:link outcome="/funding/nursa_projects">NURSA-funded Research Projects</h:link></li>
+							<li><h:link outcome="/underConstruction.jsf">NURSA-funded Research Publications</h:link></li>
+						</ul>
+					</li> -->
+					<!-- <li><a href = "http://www.nrsignaling.org/" target = "_blank">NRS</a></li> -->
+					</ui:remove>
+					<li>
+						<h:link outcome = "/about/index.jsf" styleClass= "#{active=='About'?'active':''}">About</h:link>
+						<ul>
+							<li><h:link outcome = "/about/index">About Welcome</h:link></li>
+							<ui:remove>
+							<!-- <li><h:link outcome="/about/ourTeam">Our Team</h:link></li> -->
+							<!-- <li><h:link outcome="/about/NIDDKWelcome.jsf">NIDDK Welcome</h:link></li> -->
+							<!-- <li><h:link outcome="/about/tutorial">NR Video Tutorial</h:link></li> -->
+							<!-- <li><h:link outcome="/about/GEMS">GEMS</h:link></li> -->
+						</ui:remove>
+							<li><h:link outcome="/about/faqs">FAQs</h:link></li>
+							<ui:remove><!-- <li><h:link outcome="/about/feedback">Feedback</h:link></li> --></ui:remove>
+							<li><h:link outcome="/about/releaseNotes">Release Notes</h:link></li>
+							<li><h:link outcome = "/contact.jsf">Contact Us</h:link></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+
+</ui:composition>
+
+
+
+</html>

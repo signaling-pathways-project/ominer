@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+	
+	<ui:define name = "title">NURSA - About NURSA</ui:define>
+	
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name = "active" value = "About"/>
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name = "breadcrumb">
+	<ul class="breadcrumb">
+		<li><h:link value="Home" outcome="/index.jsf" /></li>
+		<li><h:link value="About" outcome="/about/index.jsf" /></li>
+	</ul>
+	</ui:define>
+
+	<ui:define name = "pageTitle">
+		<h5>Welcome to the Nuclear Receptor Signaling Atlas (NURSA 3.0)</h5>
+		<div class = "row">
+			<div class = "col-md-6 text-center">
+				<img src = "#{resource['/images/about/corinne.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class = "small">Corinne Silva, Ph.D.</div>
+			</div>
+			<div class = "col-md-6 text-center">
+				<img src = "#{resource['/images/about/margolis.jpg']}" class = "img-rounded" height = "150px"/>
+				<div class = "small">Ron Margolis, Ph.D.</div>
+			</div>
+		</div>
+		<div class = "spacer"/>
+		<p>The overarching mission of NURSA is to accrue, develop, and communicate information that advances our understanding of the roles of nuclear receptors (NRs) in human diseases and conditions for which NRs play an integral role. By using an interdisciplinary approach, the generation and sharing of new and novel data will lead to a more complete understanding of the role of NRs in human physiology and the pathophysiology of common and chronic diseases and conditions; such as diabetes, obesity, metabolic dysregulation, response to the environment, and reproductive diseases and disorders. The basic NURSA platform has employed a high throughput integrated ‘omics approach (genomics, proteomics, metabolomics) to the discovery of NR and coregulator expression in specific tissues and cells, together with an understanding of the role of ligands as they impact target genes and gene networks over time. Application of bioinformatics has fostered a systems biology understanding of the underlying physiology and role of nuclear receptors and their co-regulators in human disease.  In NURSA 3.0, the NURSA Hub provides the integration and cohesion needed to aggregate, annotate, and present in a user friendly fashion state-of-the-art data of many types and from multiple sources. </p>
+			
+		<p>To ensure an influx of new, novel, and important data, the NURSA Hub is dedicated to using NURSA Data Source Projects (NDSPs) to serve as the development and research arm of NURSA, as well as the source groups for new and unique concepts and data. The Hub will standardize descriptors across these groups, aggregating and annotating the data for public availability through the web portal.  </p>
+		<p>NURSA 3.0 has launched an updated and user friendly web portal that provides access to a compendium of information and datasets on nuclear receptors, their ligands and co-regulators, and NR-regulated gene transcription; as well as NR publications, recent news and funding opportunities.  We hope you’ll take the opportunity to interact with the NURSA Hub! </p>
+		<p>
+			<strong>Corinne Silva, Ph.D., Program Officer</strong><br/>
+			<strong>Ron Margolis, Ph.D., Project Scientist</strong>
+		</p>
+	</ui:define>
+</ui:composition>

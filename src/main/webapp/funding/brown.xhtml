@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+
+	<ui:define name="title">NURSA - Funding</ui:define>
+
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name="active" value="Funding" />
+		</ui:include>
+	</ui:define>"
+	
+	<ui:define name="breadcrumb">
+		<ul class="breadcrumb">
+			<li><h:link value="Home" outcome="/index.jsf" /></li>
+			<li><h:link value="Funding" outcome="/funding/index.jsf" /></li>
+			<li><h:link value="NURSA-funded Research Projects"
+					outcome="/funding/nursa_projects" /></li>
+		</ul>
+	</ui:define>
+
+	<ui:define name="pageTitle">
+		<h5>Epigenetics of diet and menopause in non-human</h5>
+	</ui:define>
+
+	<ui:define name="body">
+		<div>
+			<div class="pull-left project-image-wrap">
+				<img src="#{resource['/images/funding/myles-brown.gif']}" class = "img-rounded" height = "150px"/>
+				<div class="image-caption small text-center">
+					<strong>Myles Brown</strong><br/>
+					Dana Farber Cancer Institute<br/>
+				</div>
+			</div>
+			<strong>Abstract</strong><br />
+			Epidemiological evidence suggests estrogen deprivation associated with menopause and the Western diet play major roles in the epidemic of obesity, metabolic syndrome, and type 2-diabetes. In preliminary studies we have defined the Estrogen Receptor alpha (ER) cistrome and the estrogen-dependent gene expression program in the reproductive tissues and liver of cynomolgus monkeys (Macaca fascicularis). This proposal will address how estrogen replacement and diet influence the ER cistrome and the epigenetic state of liver and subcutaneous and visceral adipose tissues in nonhuman primates. It will also involve the development of methods for cross-species comparison to allow the integration of data obtained in model organisms with the existing human ENCODE data.<br /><br />
+
+			<strong>Specific Aims</strong>
+			<ol>
+				<li><strong>Define the effects of estradiol replacement on gene expression, the ER cistrome and the epigenetic profile of liver and adipose tissues in ovariectomized cynomolgus monkeys.</strong> This will utilize frozen tissues from a completed 8-month estradiol replacement trial in ovariectomized female animals. It will involve gene expression profiling using microarrays and RNAseq, ER cistrome analysis by ChIPseq and epigenetic profiling by histone mark ChIPseq and DNase-seq.</li>
+
+				<li><strong>Define the effects of diet on gene expression, the chromatin-defined epigenetic profile of liver and adipose tissues in premenopausal cynomolgus monkeys.</strong> This will involve a new 4-month study of intact female monkeys fed either a Mediterranean or Western diet, and followed by gene expression and epigenetic profiling.</li>
+
+				<li><strong>Develop computational tools and methods to facilitate cross-species comparisons.</strong> This will allow integration of data from model organisms such as mouse and cynomolgus monkeys with the human ENCODE data.</li>
+			</ol>
+		</div>
+		<div class="spacer"></div>
+	</ui:define>
+</ui:composition>

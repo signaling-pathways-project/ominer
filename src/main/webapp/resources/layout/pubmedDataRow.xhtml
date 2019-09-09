@@ -1,0 +1,133 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:composite="http://java.sun.com/jsf/composite">
+
+	<composite:interface displayName="displays a row of pubmed citation data - relies on Bootstrap 3">
+		<composite:attribute name="label" displayName="the label" type="String" required="false" />
+		<composite:attribute name="title" displayName="helper text" type="String" required="false" />
+		<composite:attribute name="collection" displayName="data as a collection" required="false" />
+		<composite:attribute name="listPubmedIds" type="String" displayName="Whether list pubmed Ids" required="false" />
+		<composite:attribute name="labelWidth" displayName="width of the label in Bootstrap grid units - the data width will be calculated from here" type="String" required="false" default="2" />
+		<composite:attribute name="pubmed" displayName="Article Id" type="String" required="false" />
+		<composite:attribute name="elsevierUrl" displayName="Elsevier Url" type="String" required="false" />
+		<composite:attribute name="fullList" displayName="Display full list" required="false" />
+		<composite:attribute name="citation" displayName="Article Title,Author" type="String" required="false" />
+		<composite:attribute name="volume" displayName="Article Volume" type="String" required="false" />
+		<composite:attribute name="authorsOnly" displayName="Author list only" type="String" required="false" default="false" />
+		<composite:attribute name="pagination" displayName="Article page" type="String" required="false" />
+		<composite:attribute name="layout" displayName="default is in two columns; vertical puts label on top" type="String" default="horizontal" required="false" />
+		<composite:attribute name="maxItems" displayName="maximum number of list items to display. Additional items will be displayed by a 'more' link" required="false" default="10" />
+	</composite:interface>
+							
+	<composite:implementation>
+		<ui:param name="dataWidth" value="#{cc.attrs.layout=='vertical'?12:12-cc.attrs.labelWidth}" />
+		<div class="row">
+		
+			<h:panelGroup layout="block" styleClass="col-md-#{cc.attrs.labelWidth}" rendered="#{cc.attrs.layout=='horizontal'}">
+				<ui:fragment rendered="#{empty cc.attrs.title}">
+					<strong>#{cc.attrs.label}</strong>
+				</ui:fragment>
+				<ui:fragment rendered="#{not empty cc.attrs.title}">
+					<strong>#{cc.attrs.label} : <sup><span data-toggle="tooltip" title="#{cc.attrs.title}" class="glyphicon glyphicon-question-sign"></span></sup></strong>
+				</ui:fragment>
+			</h:panelGroup>
+ 			
+ 	
+			<div class="col-md-#{dataWidth}">
+				<h:panelGroup rendered="#{cc.attrs.layout=='vertical'}">
+					<strong>#{cc.attrs.label}</strong>
+					<br />
+				</h:panelGroup>
+				
+				<h:panelGroup rendered="#{!empty cc.attrs.collection}">
+					<ui:repeat value="#{dataRowBean.truncateList(cc.attrs.collection,cc.attrs.maxItems)}" var="item" varStatus="status">
+						<ui:fragment rendered="#{empty cc.attrs.listPubmedIds}">
+							#{pubmedAbstractBean.initialCitation(item)}
+							<b>#{(not empty cc.attrs.volume)?item[cc.attrs.volume]:''}</b> #{item[cc.attrs.pagination]}
+						</ui:fragment>
+						<ui:fragment rendered="#{empty cc.attrs.listPubmedIds and cc.attrs.authorsOnly eq false}">
+							<p:commandLink action="#" oncomplete="PF('#{cc.clientId}abstractBox').show()" update="@parent">
+								<f:setPropertyActionListener value="#{item}" target="#{referenceUtil.reference}" />
+								View Abstract
+							</p:commandLink>
+							 | 
+							<a href="#{urlUtil.calcPubmedUrl(urlUtil.pubmedBaseUrl,item[cc.attrs.pubmed])}" target="_blank">View PubMed</a>
+							<ui:fragment rendered="#{not empty cc.attrs.elsevierUrl}"> | <a href="#{cc.attrs.elsevierUrl}" target="_blank">View Article</a> </ui:fragment>
+							<ui:fragment rendered="#{!status.last}"><hr/></ui:fragment>
+						</ui:fragment>
+						<ui:fragment rendered="#{!empty cc.attrs.listPubmedIds}">
+							<a href="#{urlUtil.calcPubmedUrl(urlUtil.pubmedBaseUrl,item[cc.attrs.pubmed])}"
+							target="_blank">
+						#{item.pubmedId} 
+							</a>
+							<h:outputText rendered="#{!status.last}" value=", " />
+						</ui:fragment>
+					</ui:repeat>
+					
+					<ui:fragment
+						rendered="#{cc.attrs.collection.size() gt cc.attrs.maxItems}">
+						<h:outputText value = " "/>
+						<a href = "#" onclick = "PF('#{cc.clientId}moreBox').show();return false;">
+						more...
+						</a>
+					
+						<p:dialog widgetVar="#{cc.clientId}moreBox" modal = "true"
+						width = "600" header = "#{cc.attrs.label}">
+								<ui:repeat
+									value="#{cc.attrs.collection}"
+									var="item" varStatus="status">
+									<ui:fragment rendered="#{empty cc.attrs.listPubmedIds}">
+										#{pubmedAbstractBean.initialCitation(item)} <b>#{(not empty cc.attrs.volume)?item[cc.attrs.volume]:''}</b> #{item[cc.attrs.pagination]}
+										<p:commandLink action="#" oncomplete="PF('#{cc.clientId}abstractBox').show()" >
+											<f:setPropertyActionListener value="#{item}" target="#{referenceUtil.reference}" />
+										View Abstract 
+										</p:commandLink>
+										|
+										<a href="#{urlUtil.calcPubmedUrl(urlUtil.pubmedBaseUrl,item[cc.attrs.pubmed])}"
+										target="_blank">View Pubmed</a>
+										<ui:fragment rendered="#{!status.last}">	
+											<hr/>
+										</ui:fragment>
+									</ui:fragment>
+									<ui:fragment rendered="#{!empty cc.attrs.listPubmedIds}">
+										<a href="#{urlUtil.calcPubmedUrl(urlUtil.pubmedBaseUrl,item[cc.attrs.pubmed])}"
+										target="_blank">
+ 										#{item.pubmedId} 
+										</a>
+										<h:outputText rendered="#{!status.last}" value=", " />
+									</ui:fragment>
+								</ui:repeat>
+							</p:dialog>
+					</ui:fragment>
+					
+					
+					<p:dialog widgetVar="#{cc.clientId}abstractBox" modal = "true" dynamic="true"
+						width = "600" header = "#{referenceUtil.reference.article.articleTitle}" 
+						styleClass="ui-dialog-abastract" resizable="false">
+							#{pubmedAbstractBean.initialCitation(referenceUtil.reference)} 
+							<b>#{(not empty referenceUtil.reference.article.volume)?referenceUtil.reference.article.volume:''}</b> 
+							#{referenceUtil.reference.article.pagination}
+							<a
+							href="#{urlUtil.calcPubmedUrl(urlUtil.pubmedBaseUrl,referenceUtil.reference.pubmedId)}"
+							target="_blank">View Pubmed</a>
+							<hr/>
+							<p style="text-align: center">Abstract</p>
+							#{pubmedAbstractBean.getPubmedAbstract(referenceUtil.reference)}
+					</p:dialog>
+					
+				</h:panelGroup>
+
+				<h:outputText
+					rendered="#{empty cc.attrs.collection}"
+					value="Not available" />
+			</div>
+			
+		</div>
+
+	</composite:implementation>
+</ui:composition>

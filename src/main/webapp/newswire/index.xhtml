@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/templates/standard.xhtml">
+	
+	<ui:define name = "title">NURSA - Newswire</ui:define>
+	
+	<ui:define name="nav">
+		<ui:include src="/WEB-INF/templates/navBar.xhtml">
+			<ui:param name = "active" value = "Newswire"/>
+		</ui:include>
+	</ui:define>
+
+	<ui:define name = "pageTitle">
+	<h5> NURSA Tweets</h5>
+	</ui:define>
+
+	<ui:define name="body">
+	<div class = "row">
+
+		<div class = "col-md-12 text-center">
+			<a class="twitter-timeline" height="800"  data-dnt="true" href="https://twitter.com/NURSATweets/lists/nursatweets-list" data-widget-id="482174407914168321">Tweets from https://twitter.com/NURSATweets/lists/nursatweets-list</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		</div>
+
+	</div>
+
+
+	</ui:define>
+
+
+</ui:composition>
