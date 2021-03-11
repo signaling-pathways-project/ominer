@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.QueryParametersData;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.QueryParametersData;
 
 import java.io.Serializable;
 import java.util.ArrayList;

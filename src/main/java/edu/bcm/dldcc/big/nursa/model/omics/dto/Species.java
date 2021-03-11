@@ -7,8 +7,6 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Immutable;
 
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmNone;
-
 
 /**
  * Species POJO

@@ -1,12 +1,12 @@
 package edu.bcm.dldcc.big.nursa.model.transcriptomic.dto;
 
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmNone;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmNone;
 
 
 /**
@@ -34,7 +34,7 @@ public class FoldChange implements Serializable {
 	public FoldChange(long id, BigDecimal value, String description,String display) {
 		this.id = id;
 		this.value = (value!=null)?value:BigDecimal.ZERO;
-		this.description = (description!=null)?description:TmNone.none.name();
+		this.description = (description!=null)?description: TmNone.none.name();
 		this.display=(display!=null)?display:TmNone.none.name();
 	}
 	

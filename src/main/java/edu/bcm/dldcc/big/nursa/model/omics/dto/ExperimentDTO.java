@@ -1,7 +1,5 @@
 package edu.bcm.dldcc.big.nursa.model.omics.dto;
 
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.SourceSeparator;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmNone;
 import edu.bcm.dldcc.big.nursa.model.transcriptomic.dto.DatapointDTO;
 import edu.bcm.dldcc.big.nursa.util.Utility;
 

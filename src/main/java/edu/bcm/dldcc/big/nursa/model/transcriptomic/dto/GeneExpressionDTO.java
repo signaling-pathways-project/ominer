@@ -3,6 +3,8 @@
  */
 package edu.bcm.dldcc.big.nursa.model.transcriptomic.dto;
 
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmNone;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -38,7 +40,7 @@ public class GeneExpressionDTO {
 			String foldchangeValue, String pvalueOperator,
 			String pvalue,String symbol,String identifier, String identifierType) {
 		this.id=id;
-		this.geneId =(geneId!=null)? geneId:TmNone.none.ordinal();
+		this.geneId =(geneId!=null)? geneId: TmNone.none.ordinal();
 		this.foldchangeOperator =(foldchangeOperator!=null)? foldchangeOperator:TmNone.none.name();
 		this.foldchangeValue = (foldchangeValue!=null)?foldchangeValue:TmNone.none.name();
 		this.pvalueOperator = (pvalueOperator!=null)?pvalueOperator:TmNone.none.name();

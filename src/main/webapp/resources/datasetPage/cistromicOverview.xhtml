@@ -77,7 +77,12 @@
 					<hr />
 					<div class="row">
 						<div class="col-md-12">
+							<!--apollo 1/2020
 							<a target="_blank" class="btn btn-default" href="#{request.contextPath}/datasetfiles/download/#{cc.attrs.dataset.id}"><span class="glyphicon glyphicon-download-alt"></span> Download Dataset</a>
+							-->
+							<ui:fragment rendered="#{cc.attrs.dataset.type == 'Cistromic'}">
+								<a target="_blank" class="btn btn-default" href="#{fn:substring(request.contextPath, 0, end)}/rest/downloads/dataset/cis/#{cc.attrs.dataset.id}"><span class="glyphicon glyphicon-download-alt"></span> Download Dataset</a>
+							</ui:fragment>
 						</div>
 					</div>
 				</div>

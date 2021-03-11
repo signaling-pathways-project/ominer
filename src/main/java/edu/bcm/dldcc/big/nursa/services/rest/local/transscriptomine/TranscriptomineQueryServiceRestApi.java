@@ -4,8 +4,8 @@ import edu.bcm.dldcc.big.nursa.model.omics.NURSADataset;
 import edu.bcm.dldcc.big.nursa.model.omics.QueryForm;
 import edu.bcm.dldcc.big.nursa.model.omics.QueryParamName;
 import edu.bcm.dldcc.big.nursa.model.omics.QueryParameter;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.QueryParametersData;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmQueryResponse;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.QueryParametersData;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmQueryResponse;
 import edu.bcm.dldcc.big.nursa.model.transcriptomic.dto.DatapointDTO;
 import edu.bcm.dldcc.big.nursa.services.TranscriptomineService;
 import edu.bcm.dldcc.big.nursa.services.rest.omics.cache.FileDownloadMemoryCache;
@@ -85,8 +85,7 @@ public class TranscriptomineQueryServiceRestApi implements TranscriptomineQueryS
 	 * @return
 	 */
 	private List<DatapointDTO> filterMissingPathways(Collection<DatapointDTO> datapoints){
-		log.log(Level.FINE,"@filterMissingPathways #="+datapoints.size());
-		List<DatapointDTO> fdatapoints=datapoints.stream()               
+		List<DatapointDTO> fdatapoints=datapoints.stream()
         .filter(dat -> !dat.getMoleculePathway().equals(TranscriptomineQueryService.PATHWAY_NODE_SEPARATOR))    
         .collect(Collectors.toList()); 
 		return fdatapoints;
@@ -293,6 +292,11 @@ private QueryForm formatQueryForm(QueryParametersData queryParametersData) throw
         return response.build();
 	}
 
+	/**
+	 * FIXME This Query for dataset is broken APollo 10.9.2019
+	 * @param datasetId
+	 * @return
+	 */
     @Override
     public Response downloadDatasetAsEndNote(String datasetId) {
         InputStream targetStream = context.getResourceAsStream("/WEB-INF/citation.ris");

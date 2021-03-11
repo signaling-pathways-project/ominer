@@ -3,7 +3,7 @@ package edu.bcm.dldcc.big.nursa.services.rest.omics;
 import edu.bcm.dldcc.big.nursa.model.omics.ConsensomeSummary;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.ConsensomeDataWrap;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.OmicsDatapoint;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmQueryResponse;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmQueryResponse;
 import edu.bcm.dldcc.big.nursa.model.transcriptomic.dto.DatapointBasicDTO;
 import io.swagger.annotations.*;
 import org.jboss.resteasy.annotations.GZIP;

@@ -22,11 +22,11 @@ import javax.ws.rs.core.Response;
 import edu.bcm.dldcc.big.nursa.model.cistromic.BindingScore;
 import edu.bcm.dldcc.big.nursa.model.cistromic.BindingScore_;
 import edu.bcm.dldcc.big.nursa.model.cistromic.CisConsensome;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.SimpleQueryForm;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.SimpleQueryForm;
 import edu.bcm.dldcc.big.nursa.model.omics.*;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.*;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.QueryParametersData;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmQueryResponse;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.QueryParametersData;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmQueryResponse;
 import edu.bcm.dldcc.big.nursa.services.rest.omics.cache.ApisCacheManager;
 import edu.bcm.dldcc.big.nursa.services.utils.FileHelper;
 import edu.bcm.dldcc.big.nursa.services.utils.InputStreamWithFileDeletion;
@@ -274,7 +274,7 @@ public class CistromicsRestServiceBean implements CistromicsRestService {
 			String pathwayCategory, String signalingPathway,
 			Integer minScore, Integer maxScore,String bsm, String reportBy,Integer countMax) {
 
-	     log.log(Level.INFO," ************SRX query...*************");
+	     log.log(Level.FINE," ************SRX query...*************");
 	     if(countMax.intValue() > OmicsServicebean.MAX_ABS_NUMBER_DATAPOINTS){
             return Response.status(400).entity("The Service cannot return the requested number of datapoints").build();
          }
@@ -293,7 +293,6 @@ public class CistromicsRestServiceBean implements CistromicsRestService {
         if(ApisCacheManager.queryCache.containsKey(sform.cacheKey())){
 			//log.log(Level.INFO,"SRX cache hit ... new qform id=>"+queryForm.getId());
             this.omicsServicebean.persistQueryId(sform,queryForm);
-			//log.log(Level.INFO,"SRX cache hit new qform(file) cache id =>"+queryForm.getId());
             TmQueryResponse<OmicsDatapoint> cacheResult=ApisCacheManager.queryCache.get(sform.cacheKey());
             cacheResult.getQueryForm().setId(queryForm.getId());
             return Response.ok().entity(cacheResult).build();

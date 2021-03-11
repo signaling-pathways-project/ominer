@@ -12,11 +12,10 @@ import edu.bcm.dldcc.big.nursa.model.omics.dto.DatasetApiQueryDTO;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.DatasetMinimalDTO;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.NursaDatasetDTO;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.PsOrgan;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.AutosuggestList;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.QueryParametersData;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.SummaryData;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.SummaryDataGraph;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmQueryResponse;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.AutosuggestList;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.QueryParametersData;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.SummaryData;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmQueryResponse;
 
 import javax.ejb.Local;
 import java.util.Collection;
@@ -60,14 +59,7 @@ public interface TranscriptomineService {
 	 public <T> T findBasicDatapointsByExpId(int experimentId, Double foldChange,
 			 Double foldChangeMin,Double foldChangeMax,String direction,String absSort);
 
-    /**
-	 * Return all {@link SummaryDataGraph} data
-	 * @param <T>
-	 * @param type
-	 * @return
-	 */
-	public <T> List<SummaryDataGraph<T>> getAllSummaryGraphData(Class<T> type);
-	
+
 	/**
 	 * Return # of important Data summary, {@link SummaryData}
 	 * @return
@@ -79,7 +71,7 @@ public interface TranscriptomineService {
 	 * @param <T>
 	 * @return
 	 */
-	public <T> SummaryDataGraph<T> getSumamryGraph(Class<T> type,GraphType graphType);
+	//public <T> SummaryDataGraph<T> getSumamryGraph(Class<T> type,GraphType graphType);
 	
 	
 	/**

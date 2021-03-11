@@ -30,19 +30,19 @@ $(document).ready(function(){
 		if( searchBy == 'consensome'){
 			changeGenesOfInterest( true );
 			$('#species').val('Human');
-//			$('#omics-category option[value="any"]').attr({'disabled':'disabled'});
+			// $('#omics-category option[value="any"]').attr({'disabled':'disabled'});
 			checkForpathwayRequest();
 		} else if( searchBy == 'gene'){
 			changeGenesOfInterest();
 			$('#gene-autocomplete-holder').slideDown();
 			$('#gene-autocomplete-holder').find('input').focus();
-//			$('#omics-category').val('any');
+			// $('#omics-category').val('any');
 
 			$('#omics-category').change();
 		} else if(searchBy == 'geneList'){
 			changeGenesOfInterest();
 			$('#geneList-holder').slideDown();
-//			$('#omics-category option[value="any"]').attr({'disabled':'disabled'});
+			// $('#omics-category option[value="any"]').attr({'disabled':'disabled'});
 			$("#submit-query").addClass('disabled');
 
 			$('#omics-category').val('transcriptomics');
@@ -50,7 +50,7 @@ $(document).ready(function(){
 			changeGenesOfInterest();
 			$('#goTerm-autocomplete-holder').slideDown();
 			$('#goTerm-autocomplete-holder').find('input').focus();
-//			$('#omics-category option[value="any"]').attr({'disabled':'disabled'});
+			// $('#omics-category option[value="any"]').attr({'disabled':'disabled'});
 			$("#submit-query").addClass('disabled');
 
 			$('#omics-category').val('transcriptomics');
@@ -58,7 +58,7 @@ $(document).ready(function(){
 			$('#regulation').slideDown();
 			$(".autocomplete-field").hide();
 			$('#tissue-cell-line, #pathway-modules, #species, #tissue-category-target, #pathway-target').val('all');
-//			$('#omics-category').val('any');
+			// $('#omics-category').val('any');
 			$('#pathway-modules, #significance, #tissue-cell-line, #species, #significance').attr({'disabled':'disabled'});
 			$('#submit-query').addClass('disabled');
 
@@ -68,7 +68,6 @@ $(document).ready(function(){
 		// Reset the gene list file upload
 		$('#geneList-holder').removeClass('has-success has-error');
 		control.replaceWith( control = control.clone( true ) );
-
 	});
 
 	// omics category
@@ -175,8 +174,8 @@ $(document).ready(function(){
 		$('#pathway-modules').attr({'disabled':'disabled'});
 		
 		$('#species').attr({'disabled':'disabled'});
-        $('#species option[value="all"]').removeAttr('disabled');
-        $('#species').change();
+    $('#species option[value="all"]').removeAttr('disabled');
+		$('#species').change();
 		
 		$('#tissue-cell-line').attr({'disabled':'disabled'});
 		
@@ -249,7 +248,7 @@ $(document).ready(function(){
 				}
 			}
 		} else {
-//			$("#submit-query").removeClass('disabled');
+			// $("#submit-query").removeClass('disabled');
 		}
 	};
 
@@ -320,8 +319,7 @@ var processDirectUrlRequest = function() {
 	var transferGene = '';
 	if( getParameterByName('doi') ){
 		window.location.href = url+'/doi/?doi='+getParameterByName('doi');
-	}
-	if(getParameterByName('geneSearchType')){
+	} else if(getParameterByName('geneSearchType')){
 		if (getParameterByName('geneSearchType') == 'goTerm')
 			transferGene = getParameterByName('geneSearchType');
 
@@ -369,8 +367,8 @@ var processDirectUrlRequest = function() {
 				$('#omics-category').val('transcriptomics');
 			else if (getParameterByName('omicsCategory').toLowerCase() == 'cistromics')
 				$('#omics-category').val('cistromics');
-//			else
-//				$('#omics-category').val('any');
+			// else
+			// 	$('#omics-category').val('any');
 			
 			$('#omics-category').trigger('change');
 		}
@@ -405,7 +403,6 @@ var processDirectUrlRequest = function() {
 			}
 
 			dataParams.species = $('#species').val();
-		//dataParams.species = 'test';
 			query.species = $('#species').val();
 			
 			var detailUrl = '';
@@ -432,7 +429,7 @@ var processDirectUrlRequest = function() {
 		}
 		// $.when(getGeneId(), getMolId(), getTissueId(), getTissueCategory(true), getPathway(true)).done(function(a1, a2, a3){
 		$.when(getGeneId(transferGene), getTissueId(), getTissueCategory(true), getPathway(true)).done(function(a1, a2, a3){
-//			validateForm(true);
+			// validateForm(true);
 			var validatedForm = validateForm(true);
 			if( validatedForm ){
 				if( $('#omics-category').val().toLowerCase() == 'cistromics'){
@@ -456,9 +453,10 @@ var processDirectUrlRequest = function() {
 			}
 			
 		});
-	} else if( getParameterByName('doi') ){
-		  window.location.href = url+'/doi/?doi='+getParameterByName('doi');
-	}
+	} 
+	// else if( getParameterByName('doi') ){
+	// 	window.location.href = url+'/doi/?doi='+getParameterByName('doi');
+	// }
 };
 
 
@@ -571,7 +569,7 @@ var consensomSummary = function( display ){
 		}
 
 		dataParams.species = $('#species').val();
-	//dataParams.species = 'test';
+		// dataParams.species = 'test';
 		query.species = $('#species').val();
 		
 		
@@ -599,10 +597,6 @@ var consensomSummary = function( display ){
 				handleConsensomDivs($('#consensome-summary-data'));
 				$('.consensome').not('#consensome-summary').hide();
 				handleConsensomDivs($('#consensome-summary'));
-				
-				$('#num-of-experiments').text(format_number(data.numberOfExperiments));
-				//apollo 10.30.2018 $('#num-of-data-points').text(format_number(data.numberDatapoints));
-				$('#num-of-datasets').text(format_number(data.numberOfDatasets));
 
 				$("#submit-query").removeClass('disabled');
 			} else {
@@ -635,7 +629,7 @@ var getConsensomeResults = function( doiRequest ){
 	
 	var dataParams = {};
 	var query = {};
-	if( $('#physiological-systems-target').val() !== 'all' ) {
+	if( $('#physiological-systems-target').val() && $('#physiological-systems-target').val() !== 'all' ) {
 		dataParams.ps = $('#physiological-systems-target').val();
 		query.ps = dataParams.ps;
 		if( $('#organ-target').val() !== 'all' ) {
@@ -644,7 +638,7 @@ var getConsensomeResults = function( doiRequest ){
 		}
 	}
 
-	if( $('#pathway-modules').val() !== 'all' ) {
+	if( $('#pathway-modules').val() && $('#pathway-modules').val() !== 'all' ) {
 		dataParams.signalingPathway = $('#pathway-target').val();
 		dataParams.pathwayType = $('#pathway-target').attr('ptype');
 	}
@@ -659,24 +653,24 @@ var getConsensomeResults = function( doiRequest ){
 	var detailUrl = '';
 	var downloadUrl = '';
 	var localDownload='';
-    var isLocalDownload=true;
+  var isLocalDownload=true;
 
-    dataParams.omicsCategory = $('#omics-category').val();
-	if (dataParams.omicsCategory == 'tm' || dataParams.omicsCategory == 'transcriptomics') {
+  dataParams.omicsCategory = $('#omics-category').val();
+	if( dataParams.omicsCategory == 'tm' || dataParams.omicsCategory == 'transcriptomics' ) {
 		detailUrl = '/rest/omics/transcriptomics/v1/consensome/datalist';
 		dataParams.omicsCategory == 'tm';
 		localDownload='/rest/omics/transcriptomics/v1/consensome/download'
 	}
 	else {
 		detailUrl = '/rest/omics/cistromics/v1/consensome/datalist';
-        localDownload='/rest/omics/cistromics/v1/consensome/download'
+    localDownload='/rest/omics/cistromics/v1/consensome/download'
 	}
 
 	downloadUrl = '/datasetfiles/consensome/download/';
 
 	////Apollo 1.9.2019  There is a bug of file caching. If consensome files are cached in mongodb, remove ref to isLocalDownload and localDownload
 
-    if(isLocalDownload)
+  if(isLocalDownload)
 		downloadUrl=localDownload;
 
 	$.get(url + detailUrl, dataParams , function (res) {
@@ -690,25 +684,28 @@ var getConsensomeResults = function( doiRequest ){
 				
 			var html = '';
 
-			if( doiRequest ){
-				dataParams = {
-					signalingPathway:res.consensomeSummary.pathway,
-					ps:res.consensomeSummary.physiologicalSystem,
-					organ:res.consensomeSummary.organ,
-					species:res.consensomeSummary.species
-				};
+			// if( doiRequest ){
+			// 	dataParams = {
+			// 		signalingPathway:res.consensomeSummary.pathway,
+			// 		ps:res.consensomeSummary.physiologicalSystem,
+			// 		organ:res.consensomeSummary.organ,
+			// 		species:res.consensomeSummary.species
+			// 	};
 
-//				populateTissueCategory(dataParams);
+			// 	// populateTissueCategory(dataParams);
 
-				$('#num-of-experiments').text(format_number(res.consensomeSummary.numberOfExperiments));
-				$('#num-of-data-points').text(format_number(res.consensomeSummary.numberDatapoints));
-				$('#num-of-datasets').text(format_number(res.consensomeSummary.numberOfDatasets));
-			}
-//
-            if(!isLocalDownload)
-			    $("#consensome-download").attr({"href": url+downloadUrl+res.consensomeSummary.key.doi});
-            else
-                $("#consensome-download").attr({"href": url+downloadUrl+"?doi="+res.consensomeSummary.key.doi});
+			// 	$('#num-of-experiments').text(format_number(res.consensomeSummary.numberOfExperiments));
+			// 	$('#num-of-data-points').text(format_number(res.consensomeSummary.numberDatapoints));
+			// 	$('#num-of-datasets').text(format_number(res.consensomeSummary.numberOfDatasets));
+			// }
+			$('#num-of-experiments').text(format_number(res.consensomeSummary.numberOfExperiments));
+			$('#num-of-data-points').text(format_number(res.consensomeSummary.numberDatapoints));
+			$('#num-of-datasets').text(format_number(res.consensomeSummary.numberOfDatasets));
+			
+      if(!isLocalDownload)
+			  $("#consensome-download").attr({"href": url+downloadUrl+res.consensomeSummary.key.doi});
+			else
+				$("#consensome-download").attr({"href": url+downloadUrl+"?doi="+res.consensomeSummary.key.doi});
 
 			if (dataParams.omicsCategory == 'tm' || dataParams.omicsCategory == 'transcriptomics')
 				$('#consensome-results-table-tm').dataTable().fnDestroy();
@@ -723,7 +720,7 @@ var getConsensomeResults = function( doiRequest ){
 				row.macs2score = d3.round(row.averageScore,2);
 				row.targetName = row.targetName;
 				row.geneUrl = 'geneSearchType=gene&gene='+encodeURIComponent(row.gene);
-				row.geneUrl += '&foldChangeMin=1&foldChangeMax=30';
+				row.geneUrl += '&foldChangeMin=1&foldChangeMax=30'; //Apollo =10000000 lift 7.24.2020, remove 9/4/2020
 
 				if( dataParams.signalingPathway && dataParams.signalingPathway.toLowerCase() != 'all' ){
 					row.geneUrl += '&signalingPathway='+encodeURIComponent(dataParams.signalingPathway);	
@@ -739,7 +736,7 @@ var getConsensomeResults = function( doiRequest ){
 				
 				row.geneUrl += '&species='+encodeURIComponent(dataParams.species);
 				row.geneUrl += '&omicsCategory=' + dataParams.omicsCategory;
-//				row.geneUrl += '&pathwayType=' + query.pathwayType;
+				// row.geneUrl += '&pathwayType=' + query.pathwayType;
 				
 				html += template( row );
 			});
@@ -817,10 +814,10 @@ var getConsensomeResults = function( doiRequest ){
 				$('#species-cp').text("All");
 
 			$("#tm-search-form").unblock();
-			var doiParam = {}; 					
-			doiParam.doi =doiFConsensome;
-			doiParam.geneSearchType='consensome';
-			History.pushState({state:'results'}, null, '/ominer/query.jsf?'+$.param(doiParam));
+			// var doiParam = {}; 					
+			// doiParam.doi =doiFConsensome;
+			// doiParam.geneSearchType='consensome'; 
+			History.pushState({state:'results'}, null, '/ominer/query.jsf?'+$.param(dataParams));
 
 			consensomResults(true, dataParams.omicsCategory);
 		} else {
@@ -854,11 +851,9 @@ var consensomResults = function( display,omicsCategory ){
 		else {
 			handleConsensomDivs($('#consensome-results-cis-table-wrap'));
 		}
-		
 	} else{
 		$('#consensome-results').fadeOut();
 	}
-	
 };
 
 var consensomeError = function( display ){
@@ -910,13 +905,18 @@ var getTissueCategory = function( urlRequest ){
 	var subTissue = getParameterByName('subTissue');
 
 	if( parentTissue && parentTissue != 'all' ) {
-		$('#tissue-cell-line').val($('#tissue-cell-line option[tname="'+parentTissue+'"]').val() || 'all');
-		if( urlRequest ) $('#tissue-cell-line').trigger('change'); 
+		$('#tissue-cell-line').val($('#tissue-cell-line option[tname="'+parentTissue+'"]').val() || 'all'); 
+		if( urlRequest ) $('#tissue-cell-line').trigger('change');
+	} else {
+		$('#tissue-cell-line').val('all');
 	}
+	
 	if( subTissue && subTissue != 'all' ) {
 		var organID = $('#tissue-cell-line-'+$('#tissue-cell-line').val()+' option[tname="'+subTissue+'"]').val() || 'all';
 		$('#tissue-cell-line-'+$('#tissue-cell-line').val()).val(organID);
 		if( urlRequest ) $('#tissue-cell-line-'+$('#tissue-cell-line').val()).trigger('change'); 
+	} else {
+		$('#tissue-cell-line-'+$('#tissue-cell-line').val()).val('all');
 	}
 };
 
@@ -934,7 +934,7 @@ var removeError = function($div){
 var changeGenesOfInterest = function( consensome ){
 	if( consensome ){
 		$('#omics-category, #pathway-modules, #tissue-cell-line, #species').removeAttr('disabled');
-//		$('#omics-category option[value="any"]').attr({'disabled':'disabled'});
+		// $('#omics-category option[value="any"]').attr({'disabled':'disabled'});
 		$('#regulation').hide();
 	} else {
 		$('#omics-category, #pathway-modules, #significance, #tissue-cell-line, #species').removeAttr('disabled');
@@ -1084,7 +1084,7 @@ var getResults = function( dataParams, type ){
 					$("html, body").animate({ scrollTop: $(document).height() }, 500); 
 			}
 			$('#searchResults').show();
-//			$("#submit-query").removeClass('disabled');
+			// $("#submit-query").removeClass('disabled');
 
 			$('#tm-search-form').unblock();
 		}).fail(function( jqXHR, textStatus, errorThrown ) {
@@ -1810,6 +1810,7 @@ var drawScatterPlot = function( name, yAxisName, yAxisData, series, div ) {
     });
 };
 // End Create scatter plot
+//Apollo 7/24/2020 life =30 to =1000000
 var createGeneUrl = function (label, typeGene) {
 	var genelist = label.split('|');
 	var urlGenePre = url + "/ominer/query.jsf?geneSearchType=gene&findMax=y&gene=";
@@ -1943,9 +1944,9 @@ var prepareScatterPlot = function( graphData ) {
 		$('#tm-view-change-form').hide();
 		$('#scatter-plot').empty();
 		return
-
-} // We do not need to show an empty graph
-    $('#tm-view-change-form').show();
+	} // We do not need to show an empty graph
+  
+  $('#tm-view-change-form').show();
 	var geneyAxis = [], expyAxis = [], rnayAxis = [], speciesyAxis = [], pathwayyAxis = []; 
 	var genePoints = [], expPoints = [], rnaPoints = [], speciesPoints = [], pathwayPoints = [];
 	var series = [];

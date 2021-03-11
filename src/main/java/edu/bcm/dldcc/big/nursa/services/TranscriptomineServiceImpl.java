@@ -20,18 +20,12 @@ import edu.bcm.dldcc.big.nursa.model.omics.dto.DatasetMinimalDTO;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.NursaDatasetDTO;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.Pathway;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.PsOrgan;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.AutosuggestList;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.AutosuggestTerm;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.MetaboliteDTO;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.QueryParametersData;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.SummaryData;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.SummaryDataGraph;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.SunBurstData;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmQueryResponse;
-import edu.bcm.dldcc.big.nursa.model.transcriptomic.dto.Datapoint;
-import edu.bcm.dldcc.big.nursa.model.transcriptomic.dto.DatapointBasicDTO;
-import edu.bcm.dldcc.big.nursa.model.transcriptomic.dto.DatapointDTO;
-import edu.bcm.dldcc.big.nursa.model.transcriptomic.dto.FoldChangeDTO;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.AutosuggestList;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.AutosuggestTerm;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.QueryParametersData;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.SummaryData;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmQueryResponse;
+import edu.bcm.dldcc.big.nursa.model.transcriptomic.dto.*;
 import edu.bcm.dldcc.big.nursa.services.rest.local.transscriptomine.util.ApiApplicationErrorMessage;
 import edu.bcm.dldcc.big.nursa.services.rest.local.transscriptomine.util.LigandScheme;
 import edu.bcm.dldcc.big.nursa.services.rest.local.transscriptomine.util.LigandSearchSQL;
@@ -43,7 +37,6 @@ import edu.bcm.dldcc.big.nursa.services.rest.pubapi.ApiDirection;
 import edu.bcm.dldcc.big.nursa.services.rest.pubapi.ApiGeneSearchMode;
 import edu.bcm.dldcc.big.nursa.services.rest.pubapi.ApiMoleculeTreatmentTime;
 import edu.bcm.dldcc.big.nursa.services.utils.AutosuggestHelperBean;
-import edu.bcm.dldcc.big.nursa.services.utils.GraphHelper;
 import edu.bcm.dldcc.big.nursa.services.utils.QueryHelper;
 import edu.bcm.dldcc.big.nursa.util.filter.BaseFilter;
 
@@ -157,9 +150,7 @@ public class TranscriptomineServiceImpl implements TranscriptomineService, Seria
 		return q;
 	}
 
-	@Override
-	public  <T> List<SummaryDataGraph<T>> getAllSummaryGraphData(Class<T> type)
-	{return null;}
+
 	
 	private boolean isFoldChangeRange(Double foldChangeMin,
     		Double foldChangeMax){
@@ -398,63 +389,7 @@ private Double getMaxFoldChangeForExperimentAsSQL(Long id){
        	return new SummaryData(numberOfDatapoints, numberOfExperiments, numberOfNuclearReceptors, numberOfCoregulators, numberOfLigands, numberOfTissueAndCells, numberOfSpecies );
 	}
 
-    // Cashe of this method is happening on the highe level
-	@Override
-	public <T> SummaryDataGraph getSumamryGraph(Class<T> type,GraphType graphType) {
 
-        SummaryDataGraph graph = new SummaryDataGraph();
-        if (GraphType.expressionByMolecules.equals(graphType))
-        {
-            //
-            // LIGAND
-            //
-            Query query =  entityManager.createNativeQuery("SELECT * from statistic_ligand");
-            List<Object[]> records = query.getResultList();
-            SunBurstData root =  GraphHelper.agregateResults(records);
-
-            graph.addSunBurstData(root.getChildren());
-
-            //
-            // Coregulator(CR)
-            //
-            query = entityManager.createNativeQuery("SELECT * FROM statistic_coregulator");
-
-            records = query.getResultList();
-
-            root = GraphHelper.agregateResults(records);
-            root.setName("Coregulator");
-            graph.addChild(root);
-
-            //
-            // NuclearReceptor NR is here
-            //
-            query = entityManager.createNativeQuery("SELECT * FROM statistic_nuclearreceptor");
-
-            root = GraphHelper.agregateResults(query.getResultList());
-            root.setName("Nuclear Receptor");
-            graph.addChild(root);
-        }
-        else if (GraphType.expressionByRna.equals(graphType))
-        {
-            Query q = entityManager.createNativeQuery("SELECT * FROM statistic_rna");
-
-            List<Object[]> records = q.getResultList();
-
-            SunBurstData root = GraphHelper.agregateResults(records);
-
-            graph.addSunBurstData(root.getChildren());
-        }
-        else if (GraphType.expressionBySpecies.equals(graphType))
-        {
-            Query query = entityManager.createNativeQuery("SELECT * FROM statistic_species");
-
-            List<Object[]> records = query.getResultList();
-            SunBurstData root =  GraphHelper.agregateResults(records);
-
-            graph.addSunBurstData(root.getChildren());
-        }
-		return graph;
-	}
 	
 	@Override
 	public List findDataPoints(QueryForm queryForm, Class type, Integer maxNumber,boolean isPersist) {
@@ -520,12 +455,13 @@ private Double getMaxFoldChangeForExperimentAsSQL(Long id){
 	@Override
 	public <T> AutosuggestList autoSuggestList(Class<T> type, String value, Integer max) {
 
+		//if issue, check addition of this. to the HelperBean
         if (type.equals(GOTerm.class))
-           return autosuggestHelperBean.autoSuggestGOTerm(value, max);
+           return this.autosuggestHelperBean.autoSuggestGOTerm(value, max);
         else if (type.equals(MoleculeAutoSuggest.class))
-            return autosuggestHelperBean.autoSuggestMolecule(value,max);
+            return this.autosuggestHelperBean.autoSuggestMolecule(value,max);
         else if (type.equals(Gene.class))
-            return autosuggestHelperBean.autoSuggestGene(value, max);
+            return this.autosuggestHelperBean.autoSuggestGene(value, max);
         else if (type.equals(TranslationalAutoSuggest.class))
             return autosuggestHelperBean.autoSuggestDisease(value, max);
         else if (type.equals(Tissue.class))

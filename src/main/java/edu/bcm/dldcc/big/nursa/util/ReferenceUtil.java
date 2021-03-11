@@ -3,6 +3,8 @@ package edu.bcm.dldcc.big.nursa.util;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import javax.enterprise.context.RequestScoped;
@@ -10,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.Transient;
 
+import edu.bcm.dldcc.big.nursa.controller.NURSADatasetBean;
 import edu.bcm.dldcc.big.nursa.model.common.Article;
 import edu.bcm.dldcc.big.nursa.model.omics.BsmView;
 import edu.bcm.dldcc.big.nursa.model.omics.NURSADataset;
@@ -27,7 +30,9 @@ import edu.bcm.dldcc.big.nursa.model.core.MiRNAInteraction;
 @Named("referenceUtil")
 @ViewScoped
 public class ReferenceUtil implements Serializable{
-	
+
+	private static Logger log = Logger.getLogger(ReferenceUtil.class.getName());
+
 	private static final long serialVersionUID = 6802388986959747782L;
 	@Inject private PubmedAbstractBean pubmedAbstractBean;
 
@@ -72,9 +77,14 @@ public class ReferenceUtil implements Serializable{
 	{
 		StringBuilder citation = new StringBuilder();
 		Article article=null;
-		if(dataset.getReference()!=null)
-			article=dataset.getReference().getArticle();
 
+		log.log(Level.FINE,"dataset ref="+dataset.getReference().toString());
+
+		if(dataset.getReference()!=null) {
+            article = dataset.getReference().getArticle();
+        }
+
+        log.log(Level.INFO," article="+article);
 		// GEO
 		//TODO need check FileHelper#generateRisFile too
 		if (null != dataset.getRepo() && (dataset.getRepo().startsWith("GSE") || (dataset.getRepo().startsWith("SRP"))))
@@ -86,13 +96,16 @@ public class ReferenceUtil implements Serializable{
 				else
 					sData = (new SimpleDateFormat("yyyy")).format(dataset.getPublished());
 
-				if(article!= null) { //1.22.2019 condition added since article can be null due to no pubmedid to retrieve Article
+                //buildPublication(dataset.getContributors(), dataset.getName(), sData, dataset.getDoi().getDoi(), citation);
+                //log.log(Level.SEVERE," citation pre check article nullness ="+citation.toString());
+
+                if(article!= null) { //1.22.2019 condition added since article can be null due to no pubmedid to retrieve Article
 					if (sData.equals("") && dataset.getReference() != null) {
 						sData = article.getPublishYear();
 					}
 					buildPublication(dataset.getContributors(), dataset.getName(), sData, dataset.getDoi().getDoi(), citation);
 				}else{
-					citation.append("Dataset has incomplete record(Missing Pubmed Information)");
+					citation.append("Dataset has incomplete record (Missing Pubmed Information)");
 				}
 			}else{
 				if (article != null){
@@ -120,7 +133,7 @@ public class ReferenceUtil implements Serializable{
 		builder.append(date);
 		builder.append(") ");
 		builder.append(name);
-		builder.append(", v1.0. SignalingPathway Project Datasets. ");
+		builder.append(", v 1.0 Signaling Pathways Project Datasets. ");
 		builder.append(doi);
 	}
 

@@ -1,18 +1,20 @@
 package edu.bcm.dldcc.big.nursa.services.rest.pubapi;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.inject.Inject;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
+import edu.bcm.dldcc.big.nursa.services.rest.omics.DatasetDownloadBean;
 import org.jboss.resteasy.annotations.cache.Cache;
 
 @Path("/cache/")
 public class TestCache {
 
 	//@Context ServerCache restCache;
-	
+
+	@Inject
+	private DatasetDownloadBean datasetDownloadBean;
+
 	@GET
     @Path("test/")
     @Produces("application/json")
@@ -22,4 +24,5 @@ public class TestCache {
 		System.out.println("@test");
 		return Response.ok("ICHYN").build();
 	}
+
 }

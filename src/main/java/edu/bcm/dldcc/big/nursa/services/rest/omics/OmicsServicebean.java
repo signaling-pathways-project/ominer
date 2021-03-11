@@ -1,13 +1,13 @@
 package edu.bcm.dldcc.big.nursa.services.rest.omics;
 
 import edu.bcm.dldcc.big.nursa.model.cistromic.*;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.SimpleQueryForm;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.SimpleQueryForm;
 import edu.bcm.dldcc.big.nursa.model.core.GeneInfoEtl;
 import edu.bcm.dldcc.big.nursa.model.core.GeneInfoEtl_;
 import edu.bcm.dldcc.big.nursa.model.omics.*;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.*;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.QueryParametersData;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmQueryResponse;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.QueryParametersData;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmQueryResponse;
 import edu.bcm.dldcc.big.nursa.services.TranscriptomineService;
 import edu.bcm.dldcc.big.nursa.services.rest.omics.cache.FileDownloadMemoryCache;
 import edu.bcm.dldcc.big.nursa.services.rest.omics.cache.PathwaysNodesMapBean;

@@ -1,8 +1,8 @@
 package edu.bcm.dldcc.big.nursa.services.utils;
 
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.AutosuggestList;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.AutosuggestListImpl;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.AutosuggestTermImpl;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.AutosuggestList;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.AutosuggestListImpl;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.AutosuggestTermImpl;
 
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;

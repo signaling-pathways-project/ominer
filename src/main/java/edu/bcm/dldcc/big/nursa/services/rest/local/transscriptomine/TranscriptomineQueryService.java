@@ -1,7 +1,7 @@
 package edu.bcm.dldcc.big.nursa.services.rest.local.transscriptomine;
 
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.QueryParametersData;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmQueryResponse;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.QueryParametersData;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmQueryResponse;
 import edu.bcm.dldcc.big.nursa.model.transcriptomic.dto.DatapointDTO;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;

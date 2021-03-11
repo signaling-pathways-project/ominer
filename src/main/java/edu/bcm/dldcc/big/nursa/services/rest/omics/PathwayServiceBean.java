@@ -75,26 +75,4 @@ public class PathwayServiceBean {
         criteria.orderBy(orderList);
         return em.createQuery(criteria).getResultList();
     }
-
-    /*public List<SimpleSignalingPathway> getShortSignalingPathway(PathwayCategory levelType, String[] names){
-
-            CriteriaBuilder cb = em.getCriteriaBuilder();
-            CriteriaQuery<SimpleSignalingPathway> criteria = cb.createQuery(SimpleSignalingPathway.class);
-            Root<SimpleSignalingPathway> pathRoot = criteria.from(SimpleSignalingPathway.class);
-
-           List<Predicate> predicates = new ArrayList<Predicate>();
-            predicates.add(cb.equal(pathRoot.get(SimpleSignalingPathway_.type),levelType));
-            predicates.add(cb.equal(pathRoot.get(SimpleSignalingPathway_.active),1));
-            if(names != null){
-                Expression<String> nameExp = pathRoot.get(SimpleSignalingPathway_.name);
-                predicates.add(nameExp.in(Arrays.asList(names)));
-            }
-            criteria.select(pathRoot).where(predicates.toArray(new Predicate[]{}));
-
-            List<Order> orderList = new ArrayList<Order>();
-            orderList.add(cb.asc(pathRoot.get(SimpleSignalingPathway_.name)));
-            criteria.orderBy(orderList);
-            return em.createQuery(criteria).getResultList();
-
-    }*/
 }

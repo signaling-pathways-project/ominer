@@ -1,6 +1,6 @@
 package edu.bcm.dldcc.big.nursa.services.rest.omics;
 
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.AutosuggestList;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.AutosuggestList;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

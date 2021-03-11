@@ -109,8 +109,11 @@ var createPathwaysDropDown = function(node, $dropdown, $div, level) {
     	node = _.chain(node).sortBy('name').sortBy('displayOrder').value();
         $.each(node, function (key, value) {
         	//Apollo 11.20.2018 add Models
-        	if ((value.id ==100 || value.id ==300 || value.id ==400 || value.id ==700 || value.id== 1101) || level!=1)
-        		createPathwaysDropDown(value, $dropdown, $div, 2);
+			//apollo 5/15/2020 add 2101=Models
+        	if ((value.id ==100 || value.id ==300 || value.id ==400 || value.id ==700 || value.id== 1101 || value.id== 2101) || level!=1) {
+                //if(node.active==1) //apollo 7/10/2020 inactive pathway still show, this fails
+        			createPathwaysDropDown(value, $dropdown, $div, 2);
+            }
         });
         return;
     }
@@ -205,7 +208,7 @@ var enableSlider = function( opts, cb ) {
 	options.truncatedData = [];
 	var range_all_sliders = {};
 	var maxCutOff = 30;
-options.tm= true;
+	options.tm= true;
 	if( options.tm === true ) {
 		options.max = Math.ceil(options.queryForm.largestFoldChange); 
 		options.selectedMinOriginal = parseInt(options.queryForm.queryParameter.foldChangeMin);
@@ -229,7 +232,7 @@ options.tm= true;
 		options.selectedMin = options.selectedMinOriginal;
 		options.selectedMax = options.selectedMaxOriginal;
 
-//		prepareScatterPlot(JSON.parse(JSON.stringify(options.results)));
+		// prepareScatterPlot(JSON.parse(JSON.stringify(options.results)));
 
 	} else if( options.tm === false ){
 		maxCutOff = 10;

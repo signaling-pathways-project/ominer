@@ -9,8 +9,6 @@ import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.MetaboliteDTO;
-
 import java.util.Comparator;
 import java.util.List;
 

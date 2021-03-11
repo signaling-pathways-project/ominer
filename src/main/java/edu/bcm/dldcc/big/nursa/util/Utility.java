@@ -1,9 +1,9 @@
 package edu.bcm.dldcc.big.nursa.util;
 
 
-import java.util.Random;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmNone;
 
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmNone;
+import java.util.Random;
 
 public class Utility {
 	
@@ -19,6 +19,6 @@ public class Utility {
 
     public static String stringOrTnNone(String s)
     {
-        return (null != s)?s:TmNone.none.name();
+        return (null != s)?s: TmNone.none.name();
     }
 }

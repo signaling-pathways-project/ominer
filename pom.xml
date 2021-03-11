@@ -28,7 +28,7 @@
 	</properties>
 
 	<ciManagement>
-		<url>http://svn.dldcc.bcm.edu/jenkins</url>
+		<url>http://localhost/jenkins</url>
 		<system>Jenkins-CI</system>
 	</ciManagement>
 	
@@ -36,19 +36,19 @@
 		<repository>
 			<id>dldcc-public</id>
 			<name>Internal Releases</name>
-			<url>https://svn.dldcc.bcm.edu/nexus/content/repositories/releases/</url>
+			<url>https://localhost/nexus/content/repositories/releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>dldcc-public</id>
 			<name>Internal Releases</name>
-			<url>https://svn.dldcc.bcm.edu/nexus/content/repositories/snapshots/</url>
+			<url>https://localhost/nexus/content/repositories/snapshots/</url>
 			</snapshotRepository>
 	</distributionManagement>
 	<repositories>
 		<repository>
 			<id>dldcc-public</id>
 			<name>DLDCC Public Repository Group</name>
-			<url>https://svn.dldcc.bcm.edu/nexus/content/groups/public</url>
+			<url>https://localhost/nexus/content/groups/public</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>

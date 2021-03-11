@@ -47,9 +47,11 @@ active = "Molecule" will set the top level "Molecule" to active
 					<li>
 						<h:link outcome = "/ominer/query" styleClass= "#{active=='Tools'?'active':''}">Ominer</h:link>
 					</li>
-					<li>
+					<ui:remove>
+					<!-- <li>
 						<h:link outcome = "/news" styleClass= "#{active=='News'?'active':''}">News</h:link>
-					</li>
+					</li> -->
+					</ui:remove>
 					<li>
 						<h:link outcome = "/collaborations" styleClass= "#{active=='Collaborations'?'active':''}">Collaborations</h:link>
 					</li>
@@ -78,7 +80,9 @@ active = "Molecule" will set the top level "Molecule" to active
 						</ui:remove>
 							<li><h:link outcome="/about/faqs">FAQs</h:link></li>
 							<ui:remove><!-- <li><h:link outcome="/about/feedback">Feedback</h:link></li> --></ui:remove>
-							<li><h:link outcome="/about/releaseNotes">Release Notes</h:link></li>
+							<ui:remove>
+								<!-- <li><h:link outcome="/about/releaseNotes">Release Notes</h:link></li> -->
+							</ui:remove>
 							<li><h:link outcome = "/contact.jsf">Contact Us</h:link></li>
 						</ul>
 					</li>

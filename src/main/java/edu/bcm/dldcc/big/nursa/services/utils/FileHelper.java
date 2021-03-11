@@ -2,7 +2,7 @@ package edu.bcm.dldcc.big.nursa.services.utils;
 
 import edu.bcm.dldcc.big.nursa.model.omics.*;
 import edu.bcm.dldcc.big.nursa.model.omics.dto.OmicsDatapoint;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.SimpleQueryForm;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.SimpleQueryForm;
 import edu.bcm.dldcc.big.nursa.model.transcriptomic.ExpAnnotationViewEntity;
 import edu.bcm.dldcc.big.nursa.services.PubmedAbstractBean;
 import edu.bcm.dldcc.big.nursa.services.rest.omics.CitationsBean;

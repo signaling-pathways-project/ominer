@@ -51,6 +51,7 @@ also, NB the "first" facet of head. This is a PrimeFaces feature, not standard, 
 	<!-- GA only for beta/prod  -->
 
 
+
 	
 </h:head>
 <h:body id="wholePage">
@@ -86,37 +87,45 @@ able to use the PF spinner instead (or not use it at all) -->
 		<ui:insert name="nav" />
 		<div class="row breadcumbs-search-wrap">
 			<div class="col-md-8">
-				<!-- breadcrumb -->
 				<ui:insert name="breadcrumb" />
 			</div>
 			<div class="col-md-4 autocomplete-wrap">
-				<!-- autocomplete -->
 				<ui:insert name = "autocomplete"/>
 			</div>
 		</div>
 
-		<!-- page title -->
 		<ui:insert name="pageTitle" />
 
-		<!--  page content -->
 		<ui:insert name="body" />
 
-		<!--  end page content -->
 
 		<!-- page footer -->
+        <!--10.21.2020 add DKNET footer-->
 		<div class=" bottom-menu footer">
-			<div class="row">
+            <div class="row">
+			<div class="col-md-9" style="color:#34485D">Copyright &#169; Signaling Pathways Project 2017-2020 |<a href="mailto:support@signalingpathways.org">Contact Us</a>
+				<br/>Compatible Browsers: Firefox 24+, Chrome 30+, IE 9+ &amp; Safari 5.1.9+
+			</div>
+			<div class="col-md-3" style="color:#34485D">
+				<table style="padding:0; margin:0">
+					<tr><td>
+						Part of the <br/>
+						<a href="https://dknet.org">NIDDK Information Network</a>
+					</td><td>
+                        <a href="https://dknet.org"><img src="https://dknet.org/upload/community-components/dkNET_logo_circle_2723d092b63885e0.png" width="48"></img></a>
+					</td></tr>
+				</table>
+			</div>
+            </div>
+			<!--<div class="row">
 				<div class="col-xs-12">
-					Copyright &#169; Signaling Pathways Project 2017-2019 |
-						<!-- <h:outputText value="#{now}">
-							<f:convertDateTime pattern="yyyy" type="date" />
-						</h:outputText> |  -->
+					Copyright &#169; Signaling Pathways Project 2017-2020 |
 					<a href="mailto:support@signalingpathways.org">Contact Us</a>
-					<h:outputLabel styleClass="pull-right" rendered="#{currentProjectStage ne stage.Production}" value="  #{currentProjectStage} (r4.0.17-SNAPSHOT)" />
+					<h:outputLabel styleClass="pull-right" rendered="#{currentProjectStage ne stage.Production}" value="  #{currentProjectStage} (r4.8.0-SNAPSHOT)" />
 					<br />
 					Compatible Browsers: Firefox 24+, Chrome 30+, IE 9+ &amp; Safari 5.1.9+
 				</div>
-			</div>
+			</div>-->
 		</div>
 		<!-- end page footer -->
 		<!-- HTML for blockUI content -->
@@ -130,6 +139,33 @@ able to use the PF spinner instead (or not use it at all) -->
 				</div>
 			</div>
 		</div>
+
+		<!-- modal-->
+		<div id="myModal" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+						<h4 class="modal-title">NURSA Retirement Notice!</h4>
+					</div>
+					<div class="modal-body">
+						<div style="margin: 0 auto; width: 700px; background-color: #ebebeb; padding: 40px; border:1px solid #eeeeee; border-radius: 15px;">
+							<h1 style="font-size: 24px; text-align: center;">NURSA</h1>
+							<h4 style="text-align: center;">Nuclear Receptor Signaling Atlas</h4>
+							<p>After more than 15 years of support from NIDDK, and as announced in our last newsletter, the NURSA website as it currently exists is being retired in March 2020. We would like to place on record our deep appreciation of the support of NIDDK over the 15 years of NURSA's existence, as well as from our community of users.</p>
+							<p>Please note the following important announcements:</p>
+							<ul>
+								<li>NURSA is succeeded by the <a href="https://www.signalingpathways.org/ominer/query.jsf">Signaling Pathways Project (SPP)</a>, an integrated transcriptomic/ChIP-Seq knowledgebase for mammalian cellular signaling pathways. An article on SPP was recently published in <a href="https://doi.org/10.1038/s41597-019-0193-4">Nature Scientific Data</a>.</li>
+								<li>All NURSA-biocurated transcriptomic <a href="https://www.signalingpathways.org/datasets/index.jsf">datasets</a> have been preserved for data mining in SPP through an enhanced and expanded version of Transcriptomine named <a href="https://www.signalingpathways.org/ominer/query.jsf">Ominer</a>.</li>
+								<li>SPP is supported by NIDDK through dkNET, and will be powering a planned hypothesis generation environment on dkNET, the <a href="https://dknet.org/about/hypothesis_center">Hypothesis Center</a>. All non-transcriptomic dataset NURSA content will be transferred to dkNET, with whom we are evaluating options for archiving this content. Please sign up on the <a href="https://mobile.twitter.com/dknet_info">dkNET</a> and <a href="https://mobile.twitter.com/sigpathproject">SPP</a> Twitter feeds for future updates on archiving of this content.</li>
+								<li>Please direct any questions to <a href="mailto:support@signalingpathways.org">support@signalingpathways.org</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 	</div>
 	<!--  end top container -->
 

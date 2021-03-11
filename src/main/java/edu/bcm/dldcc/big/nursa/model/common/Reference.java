@@ -99,6 +99,19 @@ public class Reference implements Serializable {
 	}
 
 	@Override
+	public String toString() {
+		final StringBuffer sb = new StringBuffer("Reference{");
+		sb.append("id=").append(id);
+		sb.append(", pubmedId='").append(pubmedId).append('\'');
+		sb.append(", nursaCitation='").append(nursaCitation).append('\'');
+		sb.append(", volume='").append(volume).append('\'');
+		sb.append(", pagination='").append(pagination).append('\'');
+		sb.append(", article=").append(article);
+		sb.append('}');
+		return sb.toString();
+	}
+
+	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;

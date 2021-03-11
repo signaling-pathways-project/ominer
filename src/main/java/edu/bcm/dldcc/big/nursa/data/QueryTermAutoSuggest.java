@@ -5,7 +5,7 @@ import edu.bcm.dldcc.big.nursa.model.common.TranslationalAutoSuggest;
 import edu.bcm.dldcc.big.nursa.model.core.GOTerm;
 import edu.bcm.dldcc.big.nursa.model.core.Gene;
 import edu.bcm.dldcc.big.nursa.model.omics.Tissue;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.AutosuggestList;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.AutosuggestList;
 import edu.bcm.dldcc.big.nursa.services.TranscriptomineService;
 
 import javax.enterprise.context.RequestScoped;

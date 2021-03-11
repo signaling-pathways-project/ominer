@@ -80,7 +80,6 @@ public class NURSADataset  implements Serializable {
 
 
 	@ManyToOne(cascade=CascadeType.ALL)
-	@ForeignKey(name = "none")
 	private Reference reference;
 	
 	@Transient @JsonProperty

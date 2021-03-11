@@ -10,7 +10,7 @@ import javax.annotation.Resource;
 import javax.ejb.*;
 
 import edu.bcm.dldcc.big.nursa.model.omics.dto.OmicsDatapoint;
-import edu.bcm.dldcc.big.nursa.model.cistromic.dto.TmQueryResponse;
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmQueryResponse;
 import org.infinispan.configuration.cache.Configuration;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
 import org.infinispan.manager.DefaultCacheManager;

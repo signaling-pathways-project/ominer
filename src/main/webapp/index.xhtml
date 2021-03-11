@@ -9,6 +9,12 @@
 	<ui:define name="header">
 
 		<ui:include src="/WEB-INF/templates/header.xhtml" />
+
+		<script>
+            $(document).ready(function(){
+                //disable notice 5.29.2020 $("#myModal").modal('show');
+            });
+		</script>
 				
 	</ui:define>
 
@@ -40,11 +46,8 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"><h5 style="margin: 0">News</h5></div>
 					<div class="panel-body">
-						<p>Here is the latest tweets from Signaling Pathways Project, letting users know about the latest developments and a <a href="/news.jsf"> link to the page of interest.</a></p>
-						<!-- <p:scrollPanel mode="native" style="height:100px">
-							<a class="twitter-timeline" href="https://twitter.com/sigpathproject?ref_src=twsrc%5Etfw">Tweets by sigpathproject</a> <script async="async" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-						</p:scrollPanel> -->
-						<!-- <a class="more-tweets" id="toMoreTweets" href="#" onclick="PF('tweetDlg').show();">more ...</a> -->
+						<p>Check out the Signaling Pathways Project article in <a href="https://doi.org/10.1038/s41597-019-0193-4" target="_blank">Scientific Data</a>.</p>
+						<p>To catch up on the latest SPP news, please see our <a href="https://twitter.com/sigpathproject" target="_blank">Twitter feed</a>.</p>
 					</div>
 				</div>
 			</div>
@@ -57,12 +60,7 @@
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<div class="carousel slide" data-ride="carousel">
-								<!-- Indicators -->
-								<!-- <ol class="carousel-indicators">
-									<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-									<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-									<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-								</ol> -->
+
 
 								<!-- Wrapper for slides -->
 								<div class="carousel-inner" role="listbox">
@@ -84,15 +82,7 @@
 									</div>
 								</div>
 
-								<!-- Controls -->
-								<!-- <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-									<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-									<span class="sr-only">Previous</span>
-								</a>
-								<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-									<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-									<span class="sr-only">Next</span>
-								</a> -->
+
 							</div>
 						</div>
 					</div>
@@ -106,11 +96,7 @@
 							</a>
 						</div>
 						<div class="panel-body">
-							<!-- <h:graphicImage library="images" name="/icons/bulb.svg" /> -->
-							<!-- <a href="about/tutorial.jsf"> NR Video Tutorial</a><br /> 
-							<a href="about/faqs.jsf">FAQs</a><br />
-							<a href="about/index.jsf">PI Welcome</a><br />
-							<h:link value="NIDDK Welcome" outcome="./about/NIDDKWelcome.jsf"></h:link> -->
+
 							<p>Signaling Pathways is an 'omics dataset re-use platform developed and maintained by a biocuration and analysis tool development team based in Baylor College of Medicine.</p>
 						</div>
 					</div>
@@ -126,7 +112,6 @@
 							</a>
 						</div>
 						<div class="panel-body">
-							<!-- <h:graphicImage library="images" name="/tm-logo.svg" /> -->
 							<p>Mine our universe of biocurated 'omics data points to generate hypotheses, validate data and test models</p>
 						</div>
 					</div>
@@ -141,12 +126,15 @@
 							</a>
 						</div>
 						<div class="panel-body">
-							<!-- <h:graphicImage library="images" name="/icons/pc.svg" /> -->
 							<p>Browse and filter our biocurated datasets</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
+
+
+
 	</ui:define>
 </ui:composition>

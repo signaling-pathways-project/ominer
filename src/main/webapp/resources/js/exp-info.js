@@ -213,6 +213,8 @@ var drawScatterPlot = function( name, yAxisName, yAxisData, series, div ) {
 					thisLabel = thisLabel.replace('##', " | ");
 					var shortLabel = thisLabel.match(/\b\w+\b/g);
 					var shortLabelD;
+					//Apollo 7/24/2020 lift=30 to =1000000
+					//Apollo 9/4/2020 take back to 30, as cache becomes unusabel
 					var urlGene = url + "/ominer/query.jsf?geneSearchType=gene&findMax=y&gene="+thisLabel+
 						"&foldChangeMin=2&foldChangeMax=30&significance=0.05&species=all&reportsBy=pathways&omicsCategory=" + typeGene;
 					var urlLink;

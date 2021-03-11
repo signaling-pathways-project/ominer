@@ -109,7 +109,7 @@
 						<div class="form-group" id="pathway-group">
 
 							<select id="pathway-modules" disabled="disabled" name="pathway-modules" class="form-control pathway-modules">
-								<option value="all" tname="all" ptype="type">All Signaling Pathway Module Categories</option>
+								<option value="all" tname="all" selected="true" ptype="type">All Signaling Pathway Module Categories</option>
 							</select>
 							<input id="pathway-target" value="all" name="pathway" ptype="type" class="form-control hide" />
 						</div>
@@ -125,7 +125,7 @@
 						</div>
 						<div class="form-group" id="tissue-cell-line-group">
 						    <select id="tissue-cell-line" disabled="disabled" name="tissue-cell-line" class="form-control">
-								<option value="all" tname="all">All Physiological Systems</option>
+								<option value="all" tname="all" selected="true">All Physiological Systems</option>
 							</select>
 							<br />
 							<script type="text/template" class="tissues-and-cell-lines-option">
@@ -134,7 +134,7 @@
 							<script type="text/template" class="tissue-cell-line-sub-template">
 								<div class="tissue-cell-line-sub">
 									<select id="tissue-cell-line-{{rc.parent}}" name="tissue-cell-line-sub" class="form-control">
-										<option value="all" tname="all">All Organs</option>
+										<option value="all" selected="true" tname="all">All Organs</option>
 									</select>
 								</div>
 							</script>
@@ -215,88 +215,81 @@
 				<p>Calculated across <strong id="num-of-data-points">X</strong> data points from <strong id="num-of-experiments">Y</strong> experiments in <strong id="num-of-datasets">Z</strong> datasets.</p>
 				<div id="consensome-results-table-tm-wrap">
 					<table id="consensome-results-table-tm" class="display" cellspacing="0" width="100%">
-				        <thead>
-				            <tr>
-				                <th class="col-md-2">Target</th>
-				                <th class="col-md-2">Gene Name</th>
-				                <th class="col-md-2">Discovery Rate<!-- Frequency --></th>
-				                <th class="col-md-2">GMFC</th>
-				                <th class="col-md-2">CPV</th>
-				                <th class="col-md-2">Percentile</th>
-				            </tr>
-				        </thead>
-				        <tfoot>
-				            <tr>
-				                <th>Target</th>
-				                <th>Gene Name</th>
-				                <th>Discovery Rate<!-- Frequency --></th>
-				                <th>GMFC</th>
-				                <th>CPV<!-- p-value --></th>
-				                <th>Percentile</th>
-						   </tr>
-						   
-				        </tfoot>
-				        <tbody id="consensome-results-table-body-tm">
-				        </tbody>
+		        <thead>
+		            <tr>
+		                <th class="col-md-2">Target</th>
+		                <th class="col-md-2">Gene Name</th>
+		                <th class="col-md-2">Discovery Rate<!-- Frequency --></th>
+		                <th class="col-md-2">GMFC</th>
+		                <th class="col-md-2">CPV</th>
+		                <th class="col-md-2">Percentile</th>
+		            </tr>
+		        </thead>
+			      <tfoot>
+			        <tr>
+	              <th>Target</th>
+	              <th>Gene Name</th>
+	              <th>Discovery Rate<!-- Frequency --></th>
+	              <th>GMFC</th>
+	              <th>CPV<!-- p-value --></th>
+	              <th>Percentile</th>
+					  	</tr>
+			      </tfoot>
+				      <tbody id="consensome-results-table-body-tm">
+				      </tbody>
 				    </table>
 				    
 				    <script type="text/template" class="consensome-results-table-row-tm">
-					<tr>
-						<td class="text-center">
-<a target="_blank" href="#{request.contextPath}/ominer/query.jsf?{{rc.geneUrl}}">
-		                		<i>{{rc.gene}}</i>
-		                	</a>
-</td>
-						<td class="text-center">{{rc.targetName}}</td>
-		                <td class="text-center">{{rc.discoveryRate}}</td>
-		                <td class="text-center">{{rc.gmFc}}</td>
-		                <td class="text-center">{{rc.qValue}}</td>
-						<td class="text-center">{{rc.percentile}}</td>
-		            </tr>
-		        	</script>
-		        
-		        	<br /><br />
+						<tr>
+							<td class="text-center">
+								<a target="_blank" href="#{request.contextPath}/ominer/query.jsf?{{rc.geneUrl}}">
+		              <i>{{rc.gene}}</i>
+								</a>
+							</td>
+							<td class="text-center">{{rc.targetName}}</td>
+                <td class="text-center">{{rc.discoveryRate}}</td>
+                <td class="text-center">{{rc.gmFc}}</td>
+                <td class="text-center">{{rc.qValue}}</td>
+								<td class="text-center">{{rc.percentile}}</td>
+		         </tr>
+		        </script>
+					<br /><br />
 				</div>
 				<div id="consensome-results-table-cis-wrap">
-				    <table id="consensome-results-table-cis" class="display" cellspacing="0" width="100%">
-				        <thead>
-				            <tr>
-				                <th class="col-md-2">Target</th>
-				                <th class="col-md-2">Gene Name</th>
-				                <th class="col-md-2">MACS2 Average <!-- Frequency --></th>
-				                <th class="col-md-2">Percentile</th>
-				            </tr>
-				        </thead>
-				        <tfoot>
-				            <tr>
-				                <th>Target</th>
-				                <th>Gene Name</th>
-				                <th>MACS2 Average <!-- Frequency --></th>
-				                <th>Percentile</th>
-						   </tr>
-						   
-				        </tfoot>
-				        <tbody id="consensome-results-table-body-cis">
-				        </tbody>
-				    </table>
-
-		        	
-		        	<script type="text/template" class="consensome-results-table-row-cis">
+					<table id="consensome-results-table-cis" class="display" cellspacing="0" width="100%">
+						<thead>
+							<tr>
+								<th class="col-md-2">Target</th>
+								<th class="col-md-2">Gene Name</th>
+								<th class="col-md-2">MACS2 Average <!-- Frequency --></th>
+								<th class="col-md-2">Percentile</th>
+							</tr>
+						</thead>
+						<tfoot>
+						<tr>
+							<th>Target</th>
+							<th>Gene Name</th>
+							<th>MACS2 Average <!-- Frequency --></th>
+							<th>Percentile</th>
+						</tr>
+						</tfoot>
+						<tbody id="consensome-results-table-body-cis">
+						</tbody>
+					</table>
+		      <script type="text/template" class="consensome-results-table-row-cis">
 					<tr>
 						<td class="text-center">
-<a target="_blank" href="#{request.contextPath}/ominer/query.jsf?{{rc.geneUrl}}">
-		                		<i>{{rc.gene}}</i>
-		                	</a>
-</td>
+							<a target="_blank" href="#{request.contextPath}/ominer/query.jsf?{{rc.geneUrl}}">
+							<i>{{rc.gene}}</i>
+							</a>
+						</td>
 						<td class="text-center">{{rc.targetName}}</td>
-		                <td class="text-center">{{rc.macs2score}}</td>
+						<td class="text-center">{{rc.macs2score}}</td>
 						<td class="text-center">{{rc.percentile}}</td>
-		            </tr>
-		        	</script>
-		        	
-		        	<br /><br />
+					</tr>
+		       </script>
+		      <br /><br />
 				</div>
-				
 			</div>
 		</div>
 		<div class="consensome alert" id="consensome-requirements">
@@ -548,7 +541,7 @@
 							<td><b>Citation:</b></td>
 							<td>
 								<div class="citation">
-									<p><span id="citation"></span> {{rc.datasetName}} v1.0. NURSA Datasets.</p>
+									<p><span id="citation"></span> {{rc.datasetName}} v 1.0 NURSA Datasets.</p>
 									dx.doi.org/{{rc.datasetDoi}}
 								</div>
 								<div class="no-citation">Not Available</div>
@@ -566,7 +559,8 @@
 						<tr>
 							<td><b>Download Dataset Citation:</b></td>
 							<td>
-								<a target="_blank" href="#{request.contextPath}/rest/transcriptomine/download/dataset/{{rc.datasetId}}">
+								<!-- Apollo 10.7.2019 was transcriptomine/download/dataset/{{rc.datasetId}-->
+								<a target="_blank" href="#{request.contextPath}/rest/omics/citations/download/dataset/{{rc.datasetId}}">
 									<h:graphicImage library="images" styleClass="image-left" name="endnote-icon.png" />
 									<h:graphicImage library="images" styleClass="image-left" name="Mendeley.png" />
 									<h:graphicImage library="images" styleClass="image-left" name="Papers3.png" />
@@ -658,7 +652,7 @@
 							<td><b>Citation:</b></td>
 							<td>
 								<div class="citation">
-									<p><span id="citation"></span> {{rc.datasetName}} v1.0. NURSA Datasets.</p>
+									<p><span id="citation"></span> {{rc.datasetName}} v 1.0 NURSA Datasets.</p>
 									dx.doi.org/{{rc.datasetDoi}}
 								</div>
 								<div class="no-citation">Not Available</div>
@@ -676,7 +670,8 @@
 						<tr>
 							<td><b>Download Dataset Citation:</b></td>
 							<td>
-								<a target="_blank" href="#{request.contextPath}/rest/transcriptomine/download/dataset/{{rc.datasetId}}">
+								<!--Apollo 10.7.2019  was transcriptomine/download/dataset/{{rc.datasetId}-->
+								<a target="_blank" href="#{request.contextPath}/rest/omics/citations/download/dataset/{{rc.datasetId}}">
 									<h:graphicImage library="images" styleClass="image-left" name="endnote-icon.png" />
 									<h:graphicImage library="images" styleClass="image-left" name="Mendeley.png" />
 									<h:graphicImage library="images" styleClass="image-left" name="Papers3.png" />

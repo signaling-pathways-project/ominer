@@ -1,5 +1,7 @@
 package edu.bcm.dldcc.big.nursa.model.transcriptomic.dto;
 
+import edu.bcm.dldcc.big.nursa.model.omics.dto.TmNone;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -32,7 +34,7 @@ public class Direction {
 	public Direction(long id, String value, String display) {
 		this.id = id;
 		this.value = value;
-		this.display = (display!=null)?display:TmNone.none.name();
+		this.display = (display!=null)?display: TmNone.none.name();
 	}
 	
 	@XmlElement
