@@ -18,7 +18,7 @@
         <commons-io.version>2.4</commons-io.version>
          <version.surefire.plugin>2.16</version.surefire.plugin>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.primefaces.version>5.0</org.primefaces.version>
+		<org.primefaces.version>6.0</org.primefaces.version>
 		<skipTests>true</skipTests>
 		<swagger.host>http://localhost</swagger.host>
 		<infinispan.version>8.2.4.Final</infinispan.version>
