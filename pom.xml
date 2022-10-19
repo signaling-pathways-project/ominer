@@ -23,7 +23,7 @@
 		<swagger.host>http://localhost</swagger.host>
 		<infinispan.version>8.2.4.Final</infinispan.version>
 		<version.maven.war.plugin>2.5</version.maven.war.plugin>
-		 <jackson.version>2.7.2</jackson.version>
+		 <jackson.version>2.13.4.1</jackson.version>
         <deploy.name>nursa</deploy.name>
 	</properties>
 
